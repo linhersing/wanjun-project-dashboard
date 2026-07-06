@@ -20,3 +20,8 @@
 
 https://linhersing.github.io/wanjun-project-dashboard/
 
+## 更新規則
+
+之後只要使用者更新需求、修正資訊、調整風險、改變驗收狀態或新增重要指令，Codex 必須同步更新本看板，不需使用者另外提醒。
+
+每次更新仍必須遵守 GitHub-safe 規則，不得加入正式資料、真實 driveId、完整本機路徑、secrets、SQLite、logs、runtime 或未遮蔽截圖。
