@@ -1,0 +1,647 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>萬軍系統專案狀態看板</title>
+  <style>
+    :root {
+      --bg: #f4f7f6;
+      --panel: #ffffff;
+      --panel-soft: #f9fbfa;
+      --ink: #102033;
+      --muted: #5a6c7f;
+      --line: #dce6e3;
+      --green: #1f6b5d;
+      --green-2: #e8f4ef;
+      --blue: #3858c9;
+      --blue-2: #eef2ff;
+      --yellow: #8a6a00;
+      --yellow-2: #fff8dc;
+      --red: #9a2c2c;
+      --red-2: #fff0f0;
+      --shadow: 0 14px 34px rgba(21, 45, 60, .08);
+      --radius: 8px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Microsoft JhengHei", "PingFang TC", "Noto Sans TC", "Segoe UI", Arial, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.55;
+    }
+
+    a {
+      color: var(--blue);
+      text-decoration: none;
+      font-weight: 800;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .shell {
+      display: grid;
+      grid-template-columns: 280px minmax(0, 1fr);
+      min-height: 100vh;
+    }
+
+    .side {
+      position: sticky;
+      top: 0;
+      align-self: start;
+      height: 100vh;
+      padding: 28px 22px;
+      background: #0e2035;
+      color: #eef6ff;
+      overflow: auto;
+    }
+
+    .side h1 {
+      margin: 0 0 6px;
+      font-size: 24px;
+      line-height: 1.25;
+    }
+
+    .side p {
+      margin: 0 0 22px;
+      color: #b9c7d8;
+      font-size: 14px;
+    }
+
+    .side nav {
+      display: grid;
+      gap: 8px;
+    }
+
+    .side a {
+      display: block;
+      padding: 9px 10px;
+      border-radius: 8px;
+      color: #eef6ff;
+      background: rgba(255,255,255,.06);
+      font-size: 14px;
+    }
+
+    main {
+      padding: 34px 40px 56px;
+    }
+
+    .hero {
+      margin-bottom: 22px;
+      padding: 30px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--panel);
+      box-shadow: var(--shadow);
+    }
+
+    .eyebrow {
+      margin: 0 0 8px;
+      color: var(--green);
+      font-size: 14px;
+      font-weight: 900;
+    }
+
+    h2 {
+      margin: 0 0 14px;
+      font-size: 28px;
+      line-height: 1.25;
+    }
+
+    h3 {
+      margin: 0 0 10px;
+      font-size: 21px;
+      line-height: 1.3;
+    }
+
+    .hero h2 {
+      font-size: 38px;
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      margin: 0;
+      max-width: 980px;
+      color: var(--muted);
+      font-size: 17px;
+    }
+
+    section {
+      margin-top: 22px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 14px;
+    }
+
+    .card {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--panel);
+      padding: 18px;
+      box-shadow: 0 8px 24px rgba(21, 45, 60, .05);
+    }
+
+    .span-3 { grid-column: span 3; }
+    .span-4 { grid-column: span 4; }
+    .span-6 { grid-column: span 6; }
+    .span-8 { grid-column: span 8; }
+    .span-12 { grid-column: span 12; }
+
+    .status {
+      display: inline-flex;
+      align-items: center;
+      min-height: 28px;
+      padding: 3px 9px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 900;
+      border: 1px solid transparent;
+    }
+
+    .status.stable { color: var(--green); background: var(--green-2); border-color: #badccd; }
+    .status.experiment { color: var(--blue); background: var(--blue-2); border-color: #cbd5ff; }
+    .status.pending { color: var(--yellow); background: var(--yellow-2); border-color: #e9d48b; }
+    .status.blocked { color: var(--red); background: var(--red-2); border-color: #efb4b4; }
+
+    .fact {
+      display: grid;
+      gap: 4px;
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .fact strong {
+      color: var(--ink);
+      font-size: 16px;
+    }
+
+    .list {
+      margin: 10px 0 0;
+      padding-left: 19px;
+      color: var(--muted);
+    }
+
+    .list li {
+      margin: 5px 0;
+    }
+
+    .table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--panel);
+    }
+
+    .table th,
+    .table td {
+      padding: 11px 12px;
+      border-bottom: 1px solid #edf2f0;
+      text-align: left;
+      vertical-align: top;
+      font-size: 14px;
+    }
+
+    .table th {
+      background: var(--panel-soft);
+      color: #405065;
+      font-weight: 900;
+    }
+
+    .table tr:last-child td {
+      border-bottom: 0;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 10px;
+    }
+
+    .event {
+      display: grid;
+      grid-template-columns: 140px minmax(0, 1fr);
+      gap: 14px;
+      padding: 14px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--panel);
+    }
+
+    .event .date {
+      color: var(--green);
+      font-weight: 900;
+    }
+
+    .event p {
+      margin: 4px 0 0;
+      color: var(--muted);
+    }
+
+    .role-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+    }
+
+    .role {
+      border: 1px solid var(--line);
+      border-left: 6px solid var(--green);
+      border-radius: var(--radius);
+      background: var(--panel);
+      padding: 14px;
+    }
+
+    .role:nth-child(2n) {
+      border-left-color: var(--blue);
+    }
+
+    .role p {
+      margin: 6px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 14px;
+    }
+
+    figure {
+      margin: 0;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--panel);
+      overflow: hidden;
+    }
+
+    figure img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      object-fit: cover;
+      background: #f6f8f8;
+    }
+
+    figcaption {
+      padding: 11px 12px;
+      color: var(--muted);
+      font-size: 14px;
+      border-top: 1px solid var(--line);
+    }
+
+    .callout {
+      border: 1px solid #e9d48b;
+      border-radius: var(--radius);
+      background: var(--yellow-2);
+      padding: 14px 16px;
+      color: #5c4700;
+    }
+
+    .update-box {
+      background: #102033;
+      color: #edf6ff;
+      border-radius: var(--radius);
+      padding: 16px;
+      overflow: auto;
+      font-size: 14px;
+    }
+
+    code {
+      font-family: Consolas, "SFMono-Regular", monospace;
+      font-size: .95em;
+    }
+
+    @media (max-width: 980px) {
+      .shell {
+        grid-template-columns: 1fr;
+      }
+
+      .side {
+        position: static;
+        height: auto;
+      }
+
+      main {
+        padding: 24px 18px 42px;
+      }
+
+      .span-3,
+      .span-4,
+      .span-6,
+      .span-8,
+      .span-12 {
+        grid-column: span 12;
+      }
+
+      .event {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <aside class="side">
+      <h1>萬軍系統看板</h1>
+      <p>給人工閱讀的專案狀態網站。只放 GitHub-safe 資訊。</p>
+      <nav aria-label="頁面導覽">
+        <a href="#overview">目前總覽</a>
+        <a href="#drive-status">F / H 狀態</a>
+        <a href="#roles">系統角色說明</a>
+        <a href="#timeline">進度時間線</a>
+        <a href="#done">已完成與待驗收</a>
+        <a href="#galleries">驗收相簿</a>
+        <a href="#rules">禁止事項</a>
+        <a href="#update-format">每次更新格式</a>
+      </nav>
+    </aside>
+
+    <main>
+      <header class="hero" id="overview">
+        <p class="eyebrow">GitHub-safe Project Dashboard</p>
+        <h2>萬軍可攜式數位資產與知識管理系統</h2>
+        <p>
+          這頁是給使用者人工掌握專案狀態的儀表板：F 是冷凍穩定基準，H 是受控實驗硬碟，GitHub 只保存程式與安全文件。
+          本頁不包含 5TB 原始資料、真實 driveId、磁碟代號、logs、SQLite、runtime、secrets 或本機完整路徑。
+        </p>
+      </header>
+
+      <section class="grid" aria-label="project summary">
+        <article class="card span-3">
+          <span class="status stable">正式版本</span>
+          <div class="fact"><strong>v2026.07.01-18</strong><span>main 穩定線目前不升版。</span></div>
+        </article>
+        <article class="card span-3">
+          <span class="status experiment">實驗分支</span>
+          <div class="fact"><strong>feature/dynamic-index-preview-poc</strong><span>H 實驗功能與驗收都在這條線。</span></div>
+        </article>
+        <article class="card span-3">
+          <span class="status pending">目前驗收</span>
+          <div class="fact"><strong>H-wide Explorer</strong><span>機械驗證通過；Office 真實視窗仍待人工確認。</span></div>
+        </article>
+        <article class="card span-3">
+          <span class="status stable">GitHub 範圍</span>
+          <div class="fact"><strong>只存程式與安全文件</strong><span>不存 F/H 正式資料與執行產物。</span></div>
+        </article>
+      </section>
+
+      <section id="drive-status">
+        <h2>F / H 狀態看板</h2>
+        <div class="grid">
+          <article class="card span-6">
+            <h3>F 硬碟</h3>
+            <span class="status stable">冷凍穩定基準</span>
+            <ul class="list">
+              <li>定位：正式穩定基準與救生艇。</li>
+              <li>目前保持 `v2026.07.01-18`，星期二前不部署實驗功能。</li>
+              <li>不切 feature、不掃 5TB、不修改原始資料。</li>
+              <li>如果 H 實驗失敗，F 仍作為可退回的實體基準。</li>
+            </ul>
+          </article>
+          <article class="card span-6">
+            <h3>H 硬碟</h3>
+            <span class="status experiment">受控實驗硬碟</span>
+            <ul class="list">
+              <li>定位：唯一實驗、開發與驗收硬碟。</li>
+              <li>目前功能集中在動態索引、Watcher、行政 POC、H explorer 與 H-wide explorer。</li>
+              <li>危險操作只在明確安全 sandbox 測試；正式資料不做破壞性操作。</li>
+              <li>刪除第一階段只移到 H 安全回收區，不永久刪除。</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section id="roles">
+        <h2>Git / GitHub / BAT / SQLite / Watcher / H Explorer 的角色</h2>
+        <div class="role-grid">
+          <article class="role">
+            <h3>Git</h3>
+            <p>保存程式修改歷史、commit、分支與可回復點。Git 不保存原始 5TB 資料。</p>
+          </article>
+          <article class="role">
+            <h3>GitHub</h3>
+            <p>保存共用程式、文件、安全截圖與驗收相簿。Private repo 不是 F/H 原始資料備份。</p>
+          </article>
+          <article class="role">
+            <h3>BAT</h3>
+            <p>一般使用者入口。未來正式流程應是點 BAT 後檢查程式更新、資料索引與啟動服務。</p>
+          </article>
+          <article class="role">
+            <h3>SQLite</h3>
+            <p>每顆硬碟自己的本機索引。GitHub 保存索引程式，不保存正式 SQLite 檔案。</p>
+          </article>
+          <article class="role">
+            <h3>Watcher</h3>
+            <p>服務運行期間監聽受控資料夾異動，經 debounce 後更新索引。事件遺失時仍需啟動核對。</p>
+          </article>
+          <article class="role">
+            <h3>H Explorer</h3>
+            <p>H 實驗版檔案瀏覽器。H-wide 模式可瀏覽 H 主要資料區，系統保護區禁止 mutation。</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="timeline">
+        <h2>從 v2026.07.01-18 到目前 feature 的時間線</h2>
+        <div class="timeline">
+          <article class="event">
+            <div class="date">v2026.07.01-18</div>
+            <div><strong>正式穩定基準</strong><p>看過紀錄改為 server 全站注入與硬碟端 state；F 保持此版作冷凍基準。</p></div>
+          </article>
+          <article class="event">
+            <div class="date">dynamic index POC</div>
+            <div><strong>資料動態化概念驗證</strong><p>建立 Python + SQLite 平行預覽，證明新增、刪除、改名能更新本機索引，但初期不取代正式頁。</p></div>
+          </article>
+          <article class="event">
+            <div class="date">photo index</div>
+            <div><strong>照片資料庫最小動態整合</strong><p>按年份、年會、搜尋先改讀 photo SQLite；`?legacy=1` 保留舊靜態頁。</p></div>
+          </article>
+          <article class="event">
+            <div class="date">Watcher</div>
+            <div><strong>H 小型受控資料夾自動同步</strong><p>服務運行時新增、改名、移動、刪除可由 watcher 推進 generation；仍不掃整顆 5TB。</p></div>
+          </article>
+          <article class="event">
+            <div class="date">admin POC</div>
+            <div><strong>窗口行政動態預覽</strong><p>只用 H temp 假資料驗證資料夾、Word、Excel、PPT、PDF、搜尋與 dryRun 開檔。</p></div>
+          </article>
+          <article class="event">
+            <div class="date">H explorer</div>
+            <div><strong>H 實驗檔案總管</strong><p>加入新增資料夾、改名、複製、貼上、剪下移動、移到安全回收區與 operation log。</p></div>
+          </article>
+          <article class="event">
+            <div class="date">936d508</div>
+            <div><strong>H-wide Explorer 檢查點</strong><p>H-wide 模式可瀏覽 H 根目錄主要資料夾；根目錄與系統保護區不可 mutation；機械驗證 46 PASS / 0 FAIL / 3 PENDING_MANUAL。</p></div>
+          </article>
+        </div>
+      </section>
+
+      <section id="done">
+        <h2>已完成、待人工驗收、下一步</h2>
+        <div class="grid">
+          <article class="card span-4">
+            <h3>已完成</h3>
+            <ul class="list">
+              <li>F/H 雙硬碟角色原則確立：F 冷凍，H 實驗。</li>
+              <li>GitHub 安全政策納入 repo。</li>
+              <li>照片動態索引、Watcher 與 H 小型驗收 POC。</li>
+              <li>行政動態預覽 POC。</li>
+              <li>H explorer 與 H-wide explorer 機械驗證。</li>
+              <li>GitHub-safe acceptance gallery。</li>
+            </ul>
+          </article>
+          <article class="card span-4">
+            <h3>待人工驗收</h3>
+            <ul class="list">
+              <li>Word / Excel / PowerPoint 真實 Windows 視窗開啟。</li>
+              <li>H-wide explorer 在使用者實際操作下是否符合直覺。</li>
+              <li>H 實驗版是否可擴大到更多真實 managedRoots。</li>
+              <li>H 功能通過後，是否批准進入 main 與 F。</li>
+            </ul>
+          </article>
+          <article class="card span-4">
+            <h3>下一步</h3>
+            <ul class="list">
+              <li>星期二在公司電腦前做 H 人工驗收。</li>
+              <li>確認 H explorer 開資料夾、開檔、保護區阻擋與回收區流程。</li>
+              <li>確認後再討論是否發布到 main。</li>
+              <li>未批准前不碰 F。</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section id="galleries">
+        <h2>驗收相簿與安全截圖</h2>
+        <p class="callout">
+          截圖只引用 GitHub-safe 版本；不放真實 driveId、secrets、完整本機路徑、logs、SQLite、runtime 或正式資料內容。
+        </p>
+        <div class="gallery" style="margin-top:14px">
+          <figure>
+            <a href="../acceptance-gallery/h-wide-explorer-20260705/index.html">
+              <img src="../acceptance-gallery/h-wide-explorer-20260705/assets/01-h-root-main-folders.png" alt="H-wide explorer root folders">
+            </a>
+            <figcaption>H-wide Explorer：H 根目錄主要資料夾、保護區標示。</figcaption>
+          </figure>
+          <figure>
+            <a href="../acceptance-gallery/h-wide-explorer-20260705/index.html">
+              <img src="../acceptance-gallery/h-wide-explorer-20260705/assets/10-protected-area-blocked.png" alt="Protected area blocked">
+            </a>
+            <figcaption>H-wide Explorer：系統保護區 mutation 被阻擋。</figcaption>
+          </figure>
+          <figure>
+            <a href="../acceptance-gallery/h-wide-explorer-20260705/index.html">
+              <img src="../acceptance-gallery/h-wide-explorer-20260705/assets/11-test-report-summary.png" alt="Mechanical validation summary">
+            </a>
+            <figcaption>H-wide Explorer：46 PASS / 0 FAIL / 3 PENDING_MANUAL。</figcaption>
+          </figure>
+          <figure>
+            <a href="../acceptance-gallery/h-explorer-20260705/index.html">
+              <img src="../acceptance-gallery/h-explorer-20260705/assets/01-h-explorer-home.png" alt="H explorer earlier gallery">
+            </a>
+            <figcaption>前一階段 H Explorer 驗收相簿。</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section id="rules">
+        <h2>禁止事項與安全邊界</h2>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>項目</th>
+              <th>規則</th>
+              <th>原因</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>F 硬碟</td>
+              <td>星期二前完全不動。</td>
+              <td>保留穩定基準與救生艇。</td>
+            </tr>
+            <tr>
+              <td>main</td>
+              <td>不合併、不升版。</td>
+              <td>H 實驗未人工驗收前不得正式發布。</td>
+            </tr>
+            <tr>
+              <td>GitHub</td>
+              <td>只保存程式、文件、GitHub-safe 截圖。</td>
+              <td>GitHub 不是 5TB 原始資料備份。</td>
+            </tr>
+            <tr>
+              <td>原始資料</td>
+              <td>不修改、不搬動、不刪除 F/H 正式資料。</td>
+              <td>Git、logs、SQLite 都不能一鍵還原原始資料。</td>
+            </tr>
+            <tr>
+              <td>H explorer 刪除</td>
+              <td>只能移到 H 安全回收區。</td>
+              <td>第一階段不允許永久刪除。</td>
+            </tr>
+            <tr>
+              <td>系統保護區</td>
+              <td>可瀏覽或禁止進入，但不可 mutation。</td>
+              <td>保護 runtime、state、logs、temp、backups、SQLite、cache、secrets。</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section id="update-format">
+        <h2>每次更新 Dashboard 的固定紀錄格式</h2>
+        <div class="update-box">
+<pre><code>日期：
+分支：
+Commit：
+版本：
+
+本次狀態變更：
+- 
+
+F 狀態：
+- 是否保持冷凍：
+- 是否有任何操作：
+
+H 狀態：
+- 新增 / 修改功能：
+- 測試範圍：
+- PASS / FAIL / PENDING_MANUAL / NOT_IN_SCOPE：
+
+GitHub-safe 截圖 / 相簿：
+- 
+
+本次進 GitHub：
+- 
+
+明確排除：
+- F/H 原始資料
+- 5TB 照片、影片、音訊、Office、PDF
+- SQLite、logs、runtime、cache、temp、本機測試輸出
+- true driveId、完整本機路徑、secrets、token、deploy key
+
+分類不確定項目：
+- 無 / 或列出並停止詢問
+
+下一步：
+- </code></pre>
+        </div>
+      </section>
+    </main>
+  </div>
+</body>
+</html>

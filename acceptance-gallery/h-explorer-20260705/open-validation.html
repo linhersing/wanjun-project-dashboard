@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Open Validation Record</title>
+  <style>
+    body { margin: 0; font-family: "Noto Sans TC", "Microsoft JhengHei", Arial, sans-serif; color: #071346; background: #f4f7f4; }
+    main { width: min(1120px, calc(100% - 32px)); margin: 40px auto; background: #fff; border: 1px solid #d8e0ea; border-radius: 8px; padding: 22px; box-shadow: 0 12px 28px rgba(20,35,55,.08); }
+    h1 { margin: 0 0 16px; font-size: 28px; }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { padding: 11px 12px; border-bottom: 1px solid #d8e0ea; text-align: left; vertical-align: top; }
+    th { background: #eef5f2; }
+    .pass { color: #247660; font-weight: 700; }
+    .pending { color: #8a6800; font-weight: 700; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Open Validation Record</h1>
+    <table>
+      <thead>
+        <tr><th>Check</th><th>Status</th><th>Evidence</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Open folder</td><td class="pass">PASS</td><td><code>/__wanjun/h-explorer/open</code> returned <code>windows-folder</code> and <code>opened=true</code> for a temp mirror folder.</td></tr>
+        <tr><td>Windows open physical folder</td><td class="pass">PASS</td><td>Resolved through driveRoot plus stable relative path; no absolute path input was required.</td></tr>
+        <tr><td>Open PDF/image through browser file endpoint</td><td class="pass">PASS</td><td><code>/__wanjun/h-explorer/file</code> returned HTTP 200 for PDF and PNG fixtures.</td></tr>
+        <tr><td>Open Word/Excel/PowerPoint</td><td class="pending">PENDING_MANUAL</td><td>dryRun mode confirmed <code>windows-default-file</code>; actual Office windows still need Tuesday manual test.</td></tr>
+        <tr><td>Block drive root operation</td><td class="pass">PASS</td><td>Mutation with empty relative path was rejected.</td></tr>
+        <tr><td>Block managedRoot escape</td><td class="pass">PASS</td><td><code>../outside</code> was rejected with forbidden access.</td></tr>
+        <tr><td>Legacy routes</td><td class="pass">PASS</td><td><code>/data</code>, <code>/file</code>, <code>/open-file</code>, and <code>/open</code> were smoke-tested against authorized temp mirror content.</td></tr>
+        <tr><td>F untouched</td><td class="pass">PASS</td><td>All tests targeted the H experiment temp mirror or read-only H roots only.</td></tr>
+      </tbody>
+    </table>
+  </main>
+</body>
+</html>
+

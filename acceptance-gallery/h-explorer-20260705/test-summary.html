@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Test Report Summary</title>
+  <style>
+    body { margin: 0; font-family: "Noto Sans TC", "Microsoft JhengHei", Arial, sans-serif; color: #071346; background: #f4f7f4; }
+    main { width: min(1120px, calc(100% - 32px)); margin: 40px auto; background: #fff; border: 1px solid #d8e0ea; border-radius: 8px; padding: 22px; box-shadow: 0 12px 28px rgba(20,35,55,.08); }
+    h1 { margin: 0 0 16px; font-size: 28px; }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { padding: 11px 12px; border-bottom: 1px solid #d8e0ea; text-align: left; vertical-align: top; }
+    th { background: #eef5f2; }
+    .pass { color: #247660; font-weight: 700; }
+    .pending { color: #8a6800; font-weight: 700; }
+    .note { margin-top: 14px; border-left: 4px solid #247660; padding: 12px 14px; background: #edf6f2; border-radius: 4px; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Test Report Summary</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>Area</th>
+          <th>PASS</th>
+          <th>FAIL</th>
+          <th>PENDING_MANUAL</th>
+          <th>NOT_IN_SCOPE</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>H temp mirror operation regression</td><td class="pass">38</td><td>0</td><td class="pending">3</td><td>0</td></tr>
+        <tr><td>Real H root read-only: annual media</td><td class="pass">11</td><td>0</td><td>0</td><td>0</td></tr>
+        <tr><td>Real H root read-only: guest coffee</td><td class="pass">10</td><td>0</td><td class="pending">1</td><td>0</td></tr>
+        <tr><td>Future F/replica rollout</td><td>0</td><td>0</td><td>0</td><td>1</td></tr>
+        <tr><td><strong>Total</strong></td><td class="pass"><strong>59</strong></td><td><strong>0</strong></td><td class="pending"><strong>4</strong></td><td><strong>1</strong></td></tr>
+      </tbody>
+    </table>
+    <div class="note">Office actual window launch is still pending manual acceptance. The automated checks verify dryRun mode and path contract only.</div>
+  </main>
+</body>
+</html>
+

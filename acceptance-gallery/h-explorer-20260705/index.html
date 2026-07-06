@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>H Explorer Acceptance Gallery - 2026-07-05</title>
+  <style>
+    :root {
+      --ink: #071346;
+      --muted: #52627a;
+      --line: #d8e0ea;
+      --panel: #ffffff;
+      --bg: #f4f7f4;
+      --accent: #247660;
+      --warn: #8a6800;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Noto Sans TC", "Microsoft JhengHei", Arial, sans-serif;
+      color: var(--ink);
+      background: var(--bg);
+      line-height: 1.6;
+    }
+    main {
+      width: min(1120px, calc(100% - 32px));
+      margin: 36px auto 64px;
+    }
+    h1, h2 { line-height: 1.2; margin: 0 0 14px; }
+    h1 { font-size: 32px; }
+    h2 { font-size: 22px; margin-top: 34px; }
+    p { color: var(--muted); margin: 0 0 16px; }
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 22px;
+      margin: 18px 0;
+      box-shadow: 0 12px 28px rgba(20, 35, 55, 0.08);
+    }
+    .badges { display: flex; flex-wrap: wrap; gap: 8px; margin: 18px 0 0; }
+    .badge {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 6px 10px;
+      background: #f8fbfb;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    th, td {
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+      vertical-align: top;
+    }
+    th { background: #eef5f2; }
+    tr:last-child td { border-bottom: 0; }
+    .pass { color: var(--accent); font-weight: 700; }
+    .pending { color: var(--warn); font-weight: 700; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 18px;
+    }
+    figure {
+      margin: 0;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    figure img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+    figcaption {
+      padding: 10px 12px;
+      font-weight: 700;
+    }
+    a { color: #0c5d91; }
+    .note {
+      border-left: 4px solid var(--accent);
+      padding: 12px 14px;
+      background: #edf6f2;
+      color: var(--ink);
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="panel">
+      <h1>H Explorer Acceptance Gallery</h1>
+      <p>2026-07-05 H experiment file browser acceptance evidence. This gallery is intentionally GitHub-safe: no true driveId, full local path, secrets, logs, SQLite, runtime, temp output, or raw F/H data are included.</p>
+      <div class="badges">
+        <span class="badge">branch: feature/dynamic-index-preview-poc</span>
+        <span class="badge">base checkpoint: 8a5f478</span>
+        <span class="badge">version: v2026.07.01-18</span>
+        <span class="badge">entry: /__wanjun/h-explorer</span>
+      </div>
+      <p style="margin-top:16px"><a href="test-summary.html">Open test summary page</a> · <a href="open-validation.html">Open validation record page</a></p>
+    </section>
+
+    <section id="test-summary" class="panel">
+      <h2>Test Report Summary</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Area</th>
+            <th>PASS</th>
+            <th>FAIL</th>
+            <th>PENDING_MANUAL</th>
+            <th>NOT_IN_SCOPE</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>H temp mirror operation regression</td><td class="pass">38</td><td>0</td><td class="pending">3</td><td>0</td></tr>
+          <tr><td>Real H root read-only: annual media</td><td class="pass">11</td><td>0</td><td>0</td><td>0</td></tr>
+          <tr><td>Real H root read-only: guest coffee</td><td class="pass">10</td><td>0</td><td class="pending">1</td><td>0</td></tr>
+          <tr><td>Future F/replica rollout</td><td>0</td><td>0</td><td>0</td><td>1</td></tr>
+          <tr><td><strong>Total</strong></td><td class="pass"><strong>59</strong></td><td><strong>0</strong></td><td class="pending"><strong>4</strong></td><td><strong>1</strong></td></tr>
+        </tbody>
+      </table>
+      <p class="note">Office actual window launch is still pending manual acceptance. The automated checks verify dryRun mode and path contract only.</p>
+    </section>
+
+    <section id="open-validation" class="panel">
+      <h2>Open Validation Record</h2>
+      <table>
+        <thead>
+          <tr><th>Check</th><th>Status</th><th>Evidence</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Open folder</td><td class="pass">PASS</td><td>`/__wanjun/h-explorer/open` returned `windows-folder` and `opened=true` for a temp mirror folder.</td></tr>
+          <tr><td>Windows open physical folder</td><td class="pass">PASS</td><td>Resolved through driveRoot plus stable relative path; no absolute path input was required.</td></tr>
+          <tr><td>Open PDF/image through browser file endpoint</td><td class="pass">PASS</td><td>`/__wanjun/h-explorer/file` returned HTTP 200 for PDF and PNG fixtures.</td></tr>
+          <tr><td>Open Word/Excel/PowerPoint</td><td class="pending">PENDING_MANUAL</td><td>dryRun mode confirmed `windows-default-file`; actual Office windows still need Tuesday manual test.</td></tr>
+          <tr><td>Block drive root operation</td><td class="pass">PASS</td><td>Mutation with empty relative path was rejected.</td></tr>
+          <tr><td>Block managedRoot escape</td><td class="pass">PASS</td><td>`../outside` was rejected with forbidden access.</td></tr>
+          <tr><td>Legacy routes</td><td class="pass">PASS</td><td>`/data`, `/file`, `/open-file`, and `/open` were smoke-tested against authorized temp mirror content.</td></tr>
+          <tr><td>F untouched</td><td class="pass">PASS</td><td>All tests targeted the H experiment temp mirror or read-only H roots only.</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="grid">
+      <figure><a href="assets/01-h-explorer-home.png"><img src="assets/01-h-explorer-home.png" alt="H explorer home"></a><figcaption>01. H explorer home</figcaption></figure>
+      <figure><a href="assets/02-toolbar.png"><img src="assets/02-toolbar.png" alt="Toolbar"></a><figcaption>02. Toolbar and search</figcaption></figure>
+      <figure><a href="assets/03-row-actions.png"><img src="assets/03-row-actions.png" alt="Row actions"></a><figcaption>03. Row action buttons</figcaption></figure>
+      <figure><a href="assets/04-after-create-folder.png"><img src="assets/04-after-create-folder.png" alt="After create folder"></a><figcaption>04. After create folder</figcaption></figure>
+      <figure><a href="assets/05-after-rename.png"><img src="assets/05-after-rename.png" alt="After rename"></a><figcaption>05. After rename</figcaption></figure>
+      <figure><a href="assets/06-after-copy-paste.png"><img src="assets/06-after-copy-paste.png" alt="After copy paste"></a><figcaption>06. After copy/paste</figcaption></figure>
+      <figure><a href="assets/07-after-cut-move.png"><img src="assets/07-after-cut-move.png" alt="After cut move"></a><figcaption>07. After cut/move</figcaption></figure>
+      <figure><a href="assets/08-after-recycle.png"><img src="assets/08-after-recycle.png" alt="After experiment recycle"></a><figcaption>08. After move to experiment recycle</figcaption></figure>
+      <figure><a href="assets/09-open-validation-record.png"><img src="assets/09-open-validation-record.png" alt="Open validation record"></a><figcaption>09. Open validation record</figcaption></figure>
+      <figure><a href="assets/10-test-report-summary.png"><img src="assets/10-test-report-summary.png" alt="Test report summary"></a><figcaption>10. Test report summary</figcaption></figure>
+    </section>
+  </main>
+</body>
+</html>

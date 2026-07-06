@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>H-wide Explorer Acceptance Gallery - 2026-07-05</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #102033;
+      --muted: #5c6b7d;
+      --line: #dbe6e2;
+      --panel: #ffffff;
+      --bg: #f4f8f6;
+      --accent: #1f6b5d;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Microsoft JhengHei", "Segoe UI", Arial, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+    }
+    header {
+      padding: 28px 36px 18px;
+      background: #fff;
+      border-bottom: 1px solid var(--line);
+    }
+    h1 { margin: 0 0 8px; font-size: 30px; line-height: 1.25; }
+    p { margin: 0; color: var(--muted); }
+    main { padding: 24px 36px 42px; }
+    .summary {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 10px;
+      margin-bottom: 22px;
+    }
+    .badge {
+      border: 1px solid var(--line);
+      border-left: 6px solid var(--accent);
+      border-radius: 8px;
+      background: var(--panel);
+      padding: 12px 14px;
+      font-weight: 800;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 18px;
+    }
+    figure {
+      margin: 0;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+      background: var(--panel);
+    }
+    figure a { display: block; }
+    img {
+      display: block;
+      width: 100%;
+      height: auto;
+      background: #f7faf9;
+    }
+    figcaption {
+      padding: 10px 12px;
+      font-size: 14px;
+      color: var(--muted);
+      border-top: 1px solid var(--line);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>H-wide Explorer Acceptance Gallery</h1>
+    <p>Private-repo, GitHub-safe evidence for H experimental wide file explorer. Images omit real driveId, secrets, logs, SQLite, runtime output, and local absolute paths.</p>
+  </header>
+  <main>
+    <section class="summary" aria-label="summary">
+      <div class="badge">Branch: feature/dynamic-index-preview-poc</div>
+      <div class="badge">Version: v2026.07.01-18</div>
+      <div class="badge">Mechanical: PASS 46 / FAIL 0</div>
+      <div class="badge">Office real windows: PENDING_MANUAL</div>
+    </section>
+    <section class="grid" aria-label="screenshots">
+      <figure><a href="assets/01-h-root-main-folders.png"><img src="assets/01-h-root-main-folders.png" alt="H root main folders"></a><figcaption>H root main folders are visible.</figcaption></figure>
+      <figure><a href="assets/02-enter-normal-folder.png"><img src="assets/02-enter-normal-folder.png" alt="Entered normal H folder"></a><figcaption>Entered an H normal data folder.</figcaption></figure>
+      <figure><a href="assets/03-parent-navigation.png"><img src="assets/03-parent-navigation.png" alt="Parent navigation"></a><figcaption>Parent navigation metadata is available.</figcaption></figure>
+      <figure><a href="assets/04-windows-open-folder.png"><img src="assets/04-windows-open-folder.png" alt="Windows open folder contract"></a><figcaption>Windows open contract for an H sandbox folder.</figcaption></figure>
+      <figure><a href="assets/05-created-folder.png"><img src="assets/05-created-folder.png" alt="Created folder result"></a><figcaption>New folder appears after create operation.</figcaption></figure>
+      <figure><a href="assets/06-renamed-file.png"><img src="assets/06-renamed-file.png" alt="Renamed file result"></a><figcaption>Renamed file appears after rename operation.</figcaption></figure>
+      <figure><a href="assets/07-copy-paste-result.png"><img src="assets/07-copy-paste-result.png" alt="Copy paste result"></a><figcaption>Copy/paste result appears in destination folder.</figcaption></figure>
+      <figure><a href="assets/08-cut-move-result.png"><img src="assets/08-cut-move-result.png" alt="Cut move result"></a><figcaption>Cut/move result appears in destination folder.</figcaption></figure>
+      <figure><a href="assets/09-search-updated.png"><img src="assets/09-search-updated.png" alt="Search result updated"></a><figcaption>Search reflects SQLite/page update.</figcaption></figure>
+      <figure><a href="assets/10-protected-area-blocked.png"><img src="assets/10-protected-area-blocked.png" alt="Protected area blocked"></a><figcaption>Protected system area mutation is blocked.</figcaption></figure>
+      <figure><a href="assets/11-test-report-summary.png"><img src="assets/11-test-report-summary.png" alt="Mechanical validation summary"></a><figcaption>Mechanical validation summary.</figcaption></figure>
+    </section>
+  </main>
+</body>
+</html>
