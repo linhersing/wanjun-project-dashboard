@@ -195,7 +195,7 @@
       top: 0;
       z-index: 5;
       display: grid;
-      grid-template-columns: repeat(6, minmax(0, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(132px, 1fr));
       gap: 8px;
       margin: 16px 0;
       padding: 10px;
@@ -548,7 +548,7 @@
       <p class="eyebrow">GitHub-safe Project Dashboard</p>
       <h2><span>萬軍可攜式數位資產</span><span>與知識管理系統</span></h2>
       <p class="hero-copy">
-        這個網站是專案報告與狀態總覽，不是正式資料庫本體。F 是冷凍穩定基準，H 是受控實驗硬碟；GitHub 只保存安全看板、文件與遮蔽截圖。
+        這個網站是 GitHub-safe 的公開專案報告，不是正式資料庫本體。它整理 2026-07-05 到 2026-07-06 的 ChatGPT / Codex 協作摘要，讓使用者用手機掌握 F、H、GitHub、Codex 與 Dashboard 狀態。
       </p>
       <div class="status-strip" aria-label="核心狀態">
         <article class="metric">
@@ -558,18 +558,18 @@
         </article>
         <article class="metric">
           <span class="experiment">H 狀態</span>
-          <strong>受控實驗硬碟</strong>
-          <p>動態索引、Watcher、H explorer 仍待人工驗收。</p>
+          <strong>H-wide Explorer 候選版</strong>
+          <p>機械驗證通過，尚未接正式 BAT，仍待人工驗收。</p>
         </article>
         <article class="metric">
           <span class="pending">同步狀態</span>
-          <strong>尚未啟用自動偵測</strong>
-          <p>手機網頁不能直接讀 USB 硬碟，需要本機安全摘要器。</p>
+          <strong>未做 F/H 原始資料同步</strong>
+          <p>GitHub 只同步程式與文件，不同步 5TB 原始資料。</p>
         </article>
         <article class="metric">
           <span class="stable">GitHub 範圍</span>
-          <strong>只放 GitHub-safe 資訊</strong>
-          <p>不放原始資料、driveId、完整路徑、SQLite、logs、runtime。</p>
+          <strong>VERSION v2026.07.01-18</strong>
+          <p>main 尚未合併 H-wide Explorer；公開看板只放安全摘要。</p>
         </article>
       </div>
     </section>
@@ -580,6 +580,7 @@
       <button class="tab" type="button" data-tab="history" aria-selected="false">過去紀錄</button>
       <button class="tab" type="button" data-tab="automation" aria-selected="false">自動化方案</button>
       <button class="tab" type="button" data-tab="gallery" aria-selected="false">驗收相簿</button>
+      <button class="tab" type="button" data-tab="next" aria-selected="false">下一步</button>
       <button class="tab" type="button" data-tab="rules" aria-selected="false">安全規則</button>
     </nav>
 
@@ -594,14 +595,14 @@
         </div>
         <div class="grid">
           <article class="card span-6">
-            <span class="pill experiment">最新需求</span>
-            <h3>看板改為分頁式，不再長頁滑到底</h3>
-            <p>手機版以大按鈕切換資訊區塊：最新消息、F/H 狀態、過去紀錄、自動化方案、驗收相簿與安全規則。</p>
+            <span class="pill experiment">2026-07-05</span>
+            <h3>H-wide Explorer 進入實驗驗收候選</h3>
+            <p>H explorer 從單一 temp 測試資料夾推進到 H-wide 方向。commit：936d5081c917a91549f6cc2893fd9ea63c6862f5。</p>
           </article>
           <article class="card span-6">
-            <span class="pill pending">重要判斷</span>
-            <h3>公開網站不能直接偵測本機硬碟</h3>
-            <p>GitHub Pages 在手機瀏覽器中無法讀取 USB 硬碟。未來要靠 Windows 本機工具產生 GitHub-safe 摘要，再同步到這個網站。</p>
+            <span class="pill stable">機械驗證</span>
+            <h3>PASS 46 / FAIL 0 / PENDING_MANUAL 3</h3>
+            <p>已驗證 H-wide Explorer 的瀏覽、保護區阻擋、安全回收區與操作後索引更新；Office 真實視窗開啟仍待人工確認。</p>
           </article>
           <article class="card span-4">
             <span class="pill stable">F</span>
@@ -610,13 +611,23 @@
           </article>
           <article class="card span-4">
             <span class="pill experiment">H</span>
-            <h3>維持實驗線</h3>
-            <p>H-wide Explorer、動態索引、Watcher 仍屬 H 實驗線，尚未正式上線。</p>
+            <h3>實驗驗收候選版</h3>
+            <p>H-wide Explorer 尚未整合正式根目錄 BAT，尚未合併 main。</p>
           </article>
           <article class="card span-4">
             <span class="pill stable">Dashboard</span>
-            <h3>之後自動同步</h3>
-            <p>需求、狀態、風險、驗收結果有更新時，Codex 必須同步更新本看板，不需另外提醒。</p>
+            <h3>公開看板已可手機查看</h3>
+            <p>public repo：wanjun-project-dashboard。此網站可供使用者與 Gemini 查看，但只放整理摘要。</p>
+          </article>
+          <article class="card span-6">
+            <span class="pill pending">尚未完成</span>
+            <h3>正式入口與人工驗收未完成</h3>
+            <p>H 正式根目錄 BAT 尚未接 H-wide Explorer；Word / Excel / PowerPoint 真實視窗開啟仍需使用者實機確認。</p>
+          </article>
+          <article class="card span-6">
+            <span class="pill blocked">重要邊界</span>
+            <h3>GitHub 不是 F/H 原始資料同步</h3>
+            <p>GitHub private repo 保存程式、測試、文件與版本紀錄，不保存正式照片、影片、Office/PDF、SQLite、logs 或 runtime。</p>
           </article>
         </div>
       </section>
@@ -645,8 +656,33 @@
             </tr>
             <tr>
               <td>H 硬碟</td>
-              <td><span class="pill experiment">受控實驗硬碟</span></td>
-              <td>唯一實驗與驗收硬碟；H explorer、Watcher、動態索引仍待人工驗收。</td>
+              <td><span class="pill experiment">H-wide Explorer 實驗驗收候選版</span></td>
+              <td>唯一實驗與驗收硬碟；H-wide Explorer 機械驗證 PASS 46 / FAIL 0 / PENDING_MANUAL 3，尚待人工驗收。</td>
+            </tr>
+            <tr>
+              <td>GitHub private repo</td>
+              <td><span class="pill stable">程式與文件倉庫</span></td>
+              <td>wanjun-internal-system-runtime 保存程式、測試、文件、版本紀錄，不放正式資料。</td>
+            </tr>
+            <tr>
+              <td>Public dashboard repo</td>
+              <td><span class="pill stable">公開安全看板</span></td>
+              <td>wanjun-project-dashboard 只放 GitHub-safe 狀態、決策、風險、驗收相簿與下一步，可用手機與 Gemini 查看。</td>
+            </tr>
+            <tr>
+              <td>main / VERSION</td>
+              <td><span class="pill pending">尚未正式發布</span></td>
+              <td>main 尚未合併 H-wide Explorer；VERSION 仍為 v2026.07.01-18。</td>
+            </tr>
+            <tr>
+              <td>H 正式根目錄 BAT</td>
+              <td><span class="pill pending">尚未整合</span></td>
+              <td>H-wide Explorer 目前不是正式啟動入口；需人工驗收通過後才進入 H-only 正式入口整合。</td>
+            </tr>
+            <tr>
+              <td>Office 實際視窗開啟</td>
+              <td><span class="pill pending">PENDING_MANUAL</span></td>
+              <td>Word / Excel / PowerPoint dryRun 模式已驗證；真實 Windows 視窗仍需使用者在公司電腦前確認。</td>
             </tr>
             <tr>
               <td>F/H 原始資料同步</td>
@@ -667,7 +703,7 @@
         </table>
       </section>
 
-      <section class="panel" id="panel-history" data-panel="history">
+      <section class="panel" id="timeline" data-panel="history">
         <div class="panel-head">
           <div>
             <h2>過去紀錄</h2>
@@ -709,12 +745,40 @@
             <div><strong>H 實驗版檔案總管</strong><p>新增資料夾、改名、複製、貼上、剪下移動、移到安全回收區與 operation log 完成機械化驗證。</p></div>
           </article>
           <article class="event">
+            <div class="date">2026-07-05</div>
+            <div><strong>H-wide Explorer 方向確認</strong><p>使用者明確要求 H 硬碟整體像檔案總管一樣瀏覽與操作，不再只限制在單一 temp 測試資料夾。</p></div>
+          </article>
+          <article class="event">
+            <div class="date">936d508</div>
+            <div><strong>H-wide Explorer commit 完成</strong><p>commit 936d5081c917a91549f6cc2893fd9ea63c6862f5；驗證結果 PASS 46 / FAIL 0 / PENDING_MANUAL 3 / NOT_IN_SCOPE 0。</p></div>
+          </article>
+          <article class="event">
+            <div class="date">H-wide 功能</div>
+            <div><strong>網頁版 H 硬碟檔案總管</strong><p>可瀏覽 H 根目錄主要資料夾、進入一般資料夾、返回上一層、Windows 開啟資料夾、開啟檔案、新增資料夾、改名、複製貼上、剪下移動、移到 H 安全回收區，並更新 SQLite / generation 與搜尋結果。</p></div>
+          </article>
+          <article class="event">
+            <div class="date">保護區</div>
+            <div><strong>系統保護區 mutation 阻擋</strong><p>保護 _wanjun_portable_system、runtime/state/logs/temp/backups、.git、系統回收區、SQLite/cache/secrets、portable-drive-info.json 與 key/token/password 類檔名。</p></div>
+          </article>
+          <article class="event">
+            <div class="date">相簿</div>
+            <div><strong>H-wide 驗收截圖相簿建立</strong><p>建立 GitHub-safe 驗收相簿，包含根目錄主要資料夾、一般資料夾、返回上一層、Windows 開啟、新增、改名、複製貼上、剪下移動、搜尋更新、保護區阻擋與測試摘要。</p></div>
+          </article>
+          <article class="event">
             <div class="date">Dashboard</div>
             <div><strong>公開專案報告網站建立</strong><p>建立 public repo `wanjun-project-dashboard`，只放 GitHub-safe 看板與驗收相簿，手機可直接開啟。</p></div>
           </article>
           <article class="event">
+            <div class="date">GitHub Pages</div>
+            <div><strong>private repo 不公開、不升級</strong><p>因 private repo Pages 需要升級或公開，使用者決定不把 wanjun-internal-system-runtime 改 public、不升級付費方案，另建 public dashboard repo。</p></div>
+          </article>
+          <article class="event">
             <div class="date">2026-07-06</div>
             <div><strong>看板改為分頁式專案報告</strong><p>取消長頁式選單，改為「最新消息 / 過去紀錄」分離，並加入 F/H 狀態偵測方案說明。</p></div>
+          </article>
+          <article class="event">
+            <div class="date">2026-07-06</div>
+            <div><strong>GitHub 與 F/H 同步概念釐清</strong><p>GitHub 是程式倉庫與版本紀錄，不是照片/影片同步工具，也不是 F/H 原始資料同步。H 可先正式啟用，不需等待 F 同步；F 是否取得功能需另行批准。</p></div>
           </article>
         </div>
       </section>
@@ -742,6 +806,16 @@
             <span class="pill stable">公開看板</span>
             <h3>只顯示遮蔽後結果</h3>
             <p>看板只接受 GitHub-safe JSON/HTML：不含真實 driveId、完整路徑、logs、SQLite、secrets 或正式資料內容。</p>
+          </article>
+          <article class="card span-6">
+            <span class="pill stable">目前同步方式</span>
+            <h3>由 Codex 依對話整理後更新</h3>
+            <p>本網站不會自動讀取 ChatGPT 對話，也不會自動讀硬碟。使用者在本對話提出修正後，Codex 會整理摘要、更新 dashboard repo、commit/push，網站才會更新。</p>
+          </article>
+          <article class="card span-6">
+            <span class="pill pending">未來可選</span>
+            <h3>本機安全摘要器</h3>
+            <p>若未來要自動顯示 F/H 狀態，可新增 Windows 本機工具，只輸出遮蔽後狀態，不碰原始資料、不做同步、不公開敏感資訊。</p>
           </article>
         </div>
         <div class="callout" style="margin-top:14px">
@@ -785,7 +859,43 @@
         </div>
       </section>
 
-      <section class="panel" id="panel-rules" data-panel="rules">
+      <section class="panel" id="next-step" data-panel="next">
+        <div class="panel-head">
+          <div>
+            <h2>下一步：人工驗收</h2>
+            <p class="panel-note">目前不建議再動正式 code。下一步是使用者在實機上驗收 H-wide Explorer。</p>
+          </div>
+          <span class="pill pending">建議日期：2026-07-07 或使用者實機時</span>
+        </div>
+        <div class="grid">
+          <article class="card span-7">
+            <h3>人工驗收清單</h3>
+            <ul class="list">
+              <li>打開 H-wide Explorer，確認可看到 H 根目錄主要資料夾。</li>
+              <li>點進 3 到 5 個一般資料夾，並返回上一層。</li>
+              <li>點 Windows 開啟資料夾。</li>
+              <li>開照片、PDF、影片、Word、Excel、PowerPoint。</li>
+              <li>在安全測試資料夾測新增資料夾、改名、複製貼上、剪下移動。</li>
+              <li>測移到 H 安全回收區，不做永久刪除。</li>
+              <li>確認系統保護區不可操作。</li>
+              <li>確認 F 沒被碰，且 F/H 原始資料同步沒有執行。</li>
+            </ul>
+          </article>
+          <article class="card span-5">
+            <h3>若人工驗收通過</h3>
+            <ul class="list">
+              <li>進入 H-only 正式入口整合階段。</li>
+              <li>目標：H 啟動後可直接進 H-wide Explorer。</li>
+              <li>仍只做 H，不碰 F，不做 F/H 同步。</li>
+              <li>不合併 main、不升正式版，除非使用者另外批准。</li>
+              <li>保留 rollback、系統保護區、H 安全回收區。</li>
+              <li>保留既有 /data、/file、/open-file、/open 路由。</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="panel" id="update-format" data-panel="rules">
         <div class="panel-head">
           <div>
             <h2>安全規則與每次更新格式</h2>
@@ -832,8 +942,15 @@
   <script>
     const tabs = Array.from(document.querySelectorAll(".tab"));
     const panels = Array.from(document.querySelectorAll(".panel"));
+    const hashToTab = {
+      "#timeline": "history",
+      "#update-format": "rules",
+      "#drive-status": "drives",
+      "#galleries": "gallery",
+      "#next-step": "next"
+    };
 
-    function activateTab(name) {
+    function activateTab(name, options = {}) {
       tabs.forEach((tab) => {
         const active = tab.dataset.tab === name;
         tab.setAttribute("aria-selected", active ? "true" : "false");
@@ -846,6 +963,9 @@
       } catch (_) {
         // Local storage may be disabled on some mobile browsers.
       }
+      if (options.hash && window.location.hash !== options.hash) {
+        history.replaceState(null, "", options.hash);
+      }
     }
 
     tabs.forEach((tab) => {
@@ -853,15 +973,27 @@
     });
 
     let initial = "news";
-    try {
-      const saved = localStorage.getItem("wanjun-dashboard-tab");
-      if (saved && tabs.some((tab) => tab.dataset.tab === saved)) {
-        initial = saved;
+    const initialHash = window.location.hash;
+    if (hashToTab[initialHash]) {
+      initial = hashToTab[initialHash];
+    } else {
+      try {
+        const saved = localStorage.getItem("wanjun-dashboard-tab");
+        if (saved && tabs.some((tab) => tab.dataset.tab === saved)) {
+          initial = saved;
+        }
+      } catch (_) {
+        initial = "news";
       }
-    } catch (_) {
-      initial = "news";
     }
     activateTab(initial);
+
+    window.addEventListener("hashchange", () => {
+      const mapped = hashToTab[window.location.hash];
+      if (mapped) {
+        activateTab(mapped);
+      }
+    });
   </script>
 </body>
 </html>
