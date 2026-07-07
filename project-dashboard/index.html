@@ -599,6 +599,11 @@
             <h3>今天 H 實機驗收沒有通過：正式照片年會頁沒有 H-wide Explorer 功能</h3>
             <p>使用者在公司電腦以 H 硬碟開啟目前正式照片年會頁，畫面仍是「萬軍照片資料庫」年會卡片頁，不是 `/__wanjun/h-explorer`。本機檢查顯示照片年會頁可開，但 `/__wanjun/h-explorer` 回 404，代表 H-wide Explorer 實驗功能尚未部署或尚未接到這顆 H 的正式啟動流程。</p>
           </article>
+          <article class="card span-12">
+            <span class="pill experiment">feature commit fdb49f9</span>
+            <h3>已修正「刪除照片後留下破圖卡片」；H 入口仍待實機部署校正</h3>
+            <p>新增保護：照片動態頁與 API 不再只相信 SQLite active 狀態，若實體檔案已不存在，會標記 removed 並從結果排除；圖片載入失敗時會移除卡片，不再留下破圖格。另補上 H-wide Explorer 只在 `driveRole=backup` 時自動啟用並出現在首頁快速工具。今天實機仍發現 H 的角色設定回報為 `unknown`，因此不能宣稱 H-wide Explorer 已正式可用。</p>
+          </article>
           <article class="card span-6">
             <span class="pill experiment">2026-07-05</span>
             <h3>H-wide Explorer 進入實驗驗收候選</h3>
@@ -616,8 +621,8 @@
           </article>
           <article class="card span-4">
             <span class="pill experiment">H</span>
-            <h3>實機入口未接上</h3>
-            <p>目前使用者手上的 H 正式入口仍進入照片資料庫頁；瀏覽器檔案總管功能尚未出現在實機操作路徑。</p>
+            <h3>實機入口與角色設定未完成</h3>
+            <p>目前使用者手上的 H 正式入口仍進入照片資料庫頁；診斷顯示硬碟角色仍為 unknown，需受控確認後才能啟用 H-wide Explorer。</p>
           </article>
           <article class="card span-4">
             <span class="pill stable">Dashboard</span>
@@ -662,7 +667,7 @@
             <tr>
               <td>H 硬碟</td>
               <td><span class="pill blocked">實機入口驗收未通過</span></td>
-              <td>唯一實驗與驗收硬碟；H-wide Explorer 曾完成機械驗證 PASS 46 / FAIL 0 / PENDING_MANUAL 3，但 2026-07-07 使用者從正式照片年會頁實機操作時沒有看到瀏覽器檔案總管功能。</td>
+              <td>唯一實驗與驗收硬碟；H-wide Explorer 曾完成機械驗證 PASS 46 / FAIL 0 / PENDING_MANUAL 3，但 2026-07-07 使用者從正式照片年會頁實機操作時沒有看到瀏覽器檔案總管功能，且實機角色設定仍回報 unknown。</td>
             </tr>
             <tr>
               <td>GitHub private repo</td>
@@ -682,7 +687,7 @@
             <tr>
               <td>H 正式根目錄 BAT</td>
               <td><span class="pill blocked">尚未接到實機路徑</span></td>
-              <td>目前 H 啟動後仍進入正式照片資料庫流程；`/__wanjun/h-explorer` 在使用者當下的服務回 404，必須先做 H-only 入口或部署校正。</td>
+              <td>目前 H 啟動後仍進入正式照片資料庫流程；`/__wanjun/h-explorer` 在使用者當下的服務回 404。feature 已補 H-wide Explorer 啟動設定，但需要先校正 H 角色與部署流程。</td>
             </tr>
             <tr>
               <td>Office 實際視窗開啟</td>
@@ -789,6 +794,10 @@
             <div class="date">2026-07-07</div>
             <div><strong>H 實機驗收校正：正式入口沒有 H-wide Explorer</strong><p>使用者在公司電腦以 H 硬碟開啟照片年會頁，瀏覽器仍顯示正式「萬軍照片資料庫」卡片頁，沒有新增資料夾、重新命名、複製、剪下、貼上等檔案總管操作。唯讀檢查顯示照片年會頁正常，但 `/__wanjun/h-explorer` 回 404；因此 H-wide Explorer 仍屬實驗線成果，尚未部署或接入使用者手上的正式 H 啟動路徑。</p></div>
           </article>
+          <article class="event">
+            <div class="date">fdb49f9</div>
+            <div><strong>修正 stale photo cards 與 H-wide 啟動設定</strong><p>feature 分支新增缺檔即標 removed、圖片破圖自動移除卡片、file/open endpoint 缺檔標記 removed；同時讓 H-wide Explorer 在 `driveRole=backup` 時由啟動設定自動開啟並出現在首頁快速工具。實機 H 目前仍需先處理角色 unknown 與入口部署，尚未正式完成。</p></div>
+          </article>
         </div>
       </section>
 
@@ -881,6 +890,7 @@
             <h3>必須先完成的校正</h3>
             <ul class="list">
               <li>確認 H 實機目前執行的程式版本是否包含 H-wide Explorer 路由。</li>
+              <li>確認 H 的硬碟角色設定；目前診斷為 unknown，需受控確認後才可改為 backup 或啟用 H-only 驗收入口。</li>
               <li>若路由不存在，先做 H-only 實驗部署或安全驗收入口，不碰 F、不合併 main、不升版。</li>
               <li>讓使用者從 H 的實際入口可以清楚進入 `/__wanjun/h-explorer`。</li>
               <li>在 H-wide Explorer 內重新驗證：瀏覽 H 主要資料區、返回上一層、Windows 開啟資料夾、開啟檔案。</li>
