@@ -24,16 +24,16 @@ https://linhersing.github.io/wanjun-project-dashboard/
 
 https://linhersing.github.io/wanjun-project-dashboard/project-dashboard/
 
-## 2026-07-05 到 2026-07-06 摘要
+## 2026-07-05 到 2026-07-07 摘要
 
 - F 硬碟：穩定冷凍線，目前不碰。
-- H 硬碟：H-wide Explorer 實驗驗收候選版。
+- H 硬碟：H-wide Explorer 實驗成果存在，但 2026-07-07 實機入口驗收未通過。
 - private repo：`wanjun-internal-system-runtime`，保存程式、測試、文件、版本紀錄，不放正式資料。
 - public dashboard repo：`wanjun-project-dashboard`，保存 GitHub-safe 專案報告，供手機與 Gemini 查看。
 - main：尚未合併 H-wide Explorer。
 - VERSION：仍為 `v2026.07.01-18`。
 - F/H 原始資料同步：未做。
-- H 正式根目錄 BAT：尚未整合 H-wide Explorer。
+- H 正式根目錄 BAT / 實機入口：尚未整合 H-wide Explorer；使用者目前開到的是正式照片年會頁。
 - Word / Excel / PowerPoint 真實視窗開啟：仍待人工驗收。
 
 H-wide Explorer 參考 commit：
@@ -43,6 +43,14 @@ H-wide Explorer 參考 commit：
 機械驗證摘要：
 
 `PASS 46 / FAIL 0 / PENDING_MANUAL 3 / NOT_IN_SCOPE 0`
+
+2026-07-07 實機校正：
+
+- 使用者在公司電腦以 H 硬碟測試時，瀏覽器顯示的是正式「萬軍照片資料庫」年會頁。
+- 該頁沒有新增資料夾、重新命名、複製、剪下、貼上等 H-wide Explorer 操作。
+- 唯讀檢查顯示照片年會頁可開，但 `/__wanjun/h-explorer` 回 404。
+- 因此 H-wide Explorer 目前仍應標示為「實驗線成果尚未接到使用者手上的 H 實機入口」，不能宣稱正式可用。
+- 下一步應先做 H-only 入口或部署校正，再重新進行實機驗收。
 
 ## 更新規則
 

@@ -591,9 +591,14 @@
             <h2>最新消息</h2>
             <p class="panel-note">只放目前最需要知道的狀態；過去細節請切到「過去紀錄」。</p>
           </div>
-          <span class="pill pending">最後更新：2026-07-06</span>
+          <span class="pill pending">最後更新：2026-07-07</span>
         </div>
         <div class="grid">
+          <article class="card span-12">
+            <span class="pill blocked">2026-07-07 實機校正</span>
+            <h3>今天 H 實機驗收沒有通過：正式照片年會頁沒有 H-wide Explorer 功能</h3>
+            <p>使用者在公司電腦以 H 硬碟開啟目前正式照片年會頁，畫面仍是「萬軍照片資料庫」年會卡片頁，不是 `/__wanjun/h-explorer`。本機檢查顯示照片年會頁可開，但 `/__wanjun/h-explorer` 回 404，代表 H-wide Explorer 實驗功能尚未部署或尚未接到這顆 H 的正式啟動流程。</p>
+          </article>
           <article class="card span-6">
             <span class="pill experiment">2026-07-05</span>
             <h3>H-wide Explorer 進入實驗驗收候選</h3>
@@ -611,8 +616,8 @@
           </article>
           <article class="card span-4">
             <span class="pill experiment">H</span>
-            <h3>實驗驗收候選版</h3>
-            <p>H-wide Explorer 尚未整合正式根目錄 BAT，尚未合併 main。</p>
+            <h3>實機入口未接上</h3>
+            <p>目前使用者手上的 H 正式入口仍進入照片資料庫頁；瀏覽器檔案總管功能尚未出現在實機操作路徑。</p>
           </article>
           <article class="card span-4">
             <span class="pill stable">Dashboard</span>
@@ -621,8 +626,8 @@
           </article>
           <article class="card span-6">
             <span class="pill pending">尚未完成</span>
-            <h3>正式入口與人工驗收未完成</h3>
-            <p>H 正式根目錄 BAT 尚未接 H-wide Explorer；Word / Excel / PowerPoint 真實視窗開啟仍需使用者實機確認。</p>
+            <h3>正式入口與 H-only 部署落差需先修正</h3>
+            <p>下一步不是再新增功能，而是先讓使用者從 H 的實際入口看得到 H-wide Explorer，並重新驗證新增、改名、複製、剪下、貼上與安全回收區。</p>
           </article>
           <article class="card span-6">
             <span class="pill blocked">重要邊界</span>
@@ -656,8 +661,8 @@
             </tr>
             <tr>
               <td>H 硬碟</td>
-              <td><span class="pill experiment">H-wide Explorer 實驗驗收候選版</span></td>
-              <td>唯一實驗與驗收硬碟；H-wide Explorer 機械驗證 PASS 46 / FAIL 0 / PENDING_MANUAL 3，尚待人工驗收。</td>
+              <td><span class="pill blocked">實機入口驗收未通過</span></td>
+              <td>唯一實驗與驗收硬碟；H-wide Explorer 曾完成機械驗證 PASS 46 / FAIL 0 / PENDING_MANUAL 3，但 2026-07-07 使用者從正式照片年會頁實機操作時沒有看到瀏覽器檔案總管功能。</td>
             </tr>
             <tr>
               <td>GitHub private repo</td>
@@ -676,8 +681,8 @@
             </tr>
             <tr>
               <td>H 正式根目錄 BAT</td>
-              <td><span class="pill pending">尚未整合</span></td>
-              <td>H-wide Explorer 目前不是正式啟動入口；需人工驗收通過後才進入 H-only 正式入口整合。</td>
+              <td><span class="pill blocked">尚未接到實機路徑</span></td>
+              <td>目前 H 啟動後仍進入正式照片資料庫流程；`/__wanjun/h-explorer` 在使用者當下的服務回 404，必須先做 H-only 入口或部署校正。</td>
             </tr>
             <tr>
               <td>Office 實際視窗開啟</td>
@@ -780,6 +785,10 @@
             <div class="date">2026-07-06</div>
             <div><strong>GitHub 與 F/H 同步概念釐清</strong><p>GitHub 是程式倉庫與版本紀錄，不是照片/影片同步工具，也不是 F/H 原始資料同步。H 可先正式啟用，不需等待 F 同步；F 是否取得功能需另行批准。</p></div>
           </article>
+          <article class="event">
+            <div class="date">2026-07-07</div>
+            <div><strong>H 實機驗收校正：正式入口沒有 H-wide Explorer</strong><p>使用者在公司電腦以 H 硬碟開啟照片年會頁，瀏覽器仍顯示正式「萬軍照片資料庫」卡片頁，沒有新增資料夾、重新命名、複製、剪下、貼上等檔案總管操作。唯讀檢查顯示照片年會頁正常，但 `/__wanjun/h-explorer` 回 404；因此 H-wide Explorer 仍屬實驗線成果，尚未部署或接入使用者手上的正式 H 啟動路徑。</p></div>
+          </article>
         </div>
       </section>
 
@@ -862,34 +871,33 @@
       <section class="panel" id="next-step" data-panel="next">
         <div class="panel-head">
           <div>
-            <h2>下一步：人工驗收</h2>
-            <p class="panel-note">目前不建議再動正式 code。下一步是使用者在實機上驗收 H-wide Explorer。</p>
+            <h2>下一步：先修正 H 實機入口落差</h2>
+            <p class="panel-note">2026-07-07 實機結果顯示，使用者目前開到的是正式照片年會頁，不是 H-wide Explorer。</p>
           </div>
-          <span class="pill pending">建議日期：2026-07-07 或使用者實機時</span>
+          <span class="pill blocked">目前狀態：實機入口未通過</span>
         </div>
         <div class="grid">
           <article class="card span-7">
-            <h3>人工驗收清單</h3>
+            <h3>必須先完成的校正</h3>
             <ul class="list">
-              <li>打開 H-wide Explorer，確認可看到 H 根目錄主要資料夾。</li>
-              <li>點進 3 到 5 個一般資料夾，並返回上一層。</li>
-              <li>點 Windows 開啟資料夾。</li>
-              <li>開照片、PDF、影片、Word、Excel、PowerPoint。</li>
-              <li>在安全測試資料夾測新增資料夾、改名、複製貼上、剪下移動。</li>
-              <li>測移到 H 安全回收區，不做永久刪除。</li>
-              <li>確認系統保護區不可操作。</li>
-              <li>確認 F 沒被碰，且 F/H 原始資料同步沒有執行。</li>
+              <li>確認 H 實機目前執行的程式版本是否包含 H-wide Explorer 路由。</li>
+              <li>若路由不存在，先做 H-only 實驗部署或安全驗收入口，不碰 F、不合併 main、不升版。</li>
+              <li>讓使用者從 H 的實際入口可以清楚進入 `/__wanjun/h-explorer`。</li>
+              <li>在 H-wide Explorer 內重新驗證：瀏覽 H 主要資料區、返回上一層、Windows 開啟資料夾、開啟檔案。</li>
+              <li>在 H 安全測試資料夾重新驗證：新增資料夾、改名、複製貼上、剪下移動、移到安全回收區。</li>
+              <li>確認操作後 SQLite / generation / 搜尋結果會更新。</li>
+              <li>確認系統保護區不可操作，且 F 沒被碰、F/H 原始資料同步沒有執行。</li>
             </ul>
           </article>
           <article class="card span-5">
-            <h3>若人工驗收通過</h3>
+            <h3>暫停事項</h3>
             <ul class="list">
-              <li>進入 H-only 正式入口整合階段。</li>
-              <li>目標：H 啟動後可直接進 H-wide Explorer。</li>
-              <li>仍只做 H，不碰 F，不做 F/H 同步。</li>
+              <li>暫不宣稱 H-wide Explorer 已正式可用。</li>
+              <li>暫不再新增大功能，先解決使用者看不到功能的入口問題。</li>
+              <li>不碰 F，不做 F/H 同步。</li>
               <li>不合併 main、不升正式版，除非使用者另外批准。</li>
-              <li>保留 rollback、系統保護區、H 安全回收區。</li>
-              <li>保留既有 /data、/file、/open-file、/open 路由。</li>
+              <li>不修改正式資料、不永久刪除任何資料。</li>
+              <li>保留既有照片頁、/data、/file、/open-file、/open 路由。</li>
             </ul>
           </article>
         </div>
