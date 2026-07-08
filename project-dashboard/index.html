@@ -607,6 +607,13 @@
             <p>仍未完成：`/__wanjun/h-explorer` 目前仍回 404，因為 H 的 driveRole 尚未經受控流程校正為 backup；因此不能宣稱 H-wide Explorer 已可用。</p>
           </article>
           <article class="card span-12">
+            <span class="pill stable">2026-07-08 rollback</span>
+            <h3>H 已回復到 F 穩定程式外觀；H-wide Explorer 暫停</h3>
+            <p>使用者正式判定 H 實驗外觀與操作模式未達需求，因此停止 H-wide Explorer 實驗。已將 F 的穩定程式端複製到 H，保留 H 自己的 driveId、backup 角色、runtime/state/log/temp/backups/secrets，不做整顆 5TB 鏡像刪除。</p>
+            <p>驗證結果：H 與 F 的關鍵程式檔一致，H 啟動後仍為 v2026.07.01-18；`/__wanjun/h-explorer` 在 H 與 F 都回 404；H 照片首頁回到靜態歷史照片目錄外觀，不再顯示動態資料總覽或 H 硬碟檔案總管入口。</p>
+            <p>後續若要讓 H 原始資料真正跟 F 一模一樣，必須另做 F→H 原始資料 dry-run 差異清單，再經人工確認後才可執行；本次沒有刪除 H 額外資料夾。</p>
+          </article>
+          <article class="card span-12">
             <span class="pill stable">2026-07-07 field correction · commit 860a33a</span>
             <h3>H-wide Explorer 已能開啟；照片頁改成清楚入口</h3>
             <p>H 的硬碟角色已經由 unknown 受控校正為 backup，`/__wanjun/h-explorer` 現在回 200。照片資料庫頁上方導覽新增「H 硬碟檔案總管」入口，讓照片索引頁與 Windows 檔案操作分開。</p>
@@ -810,6 +817,10 @@
           <article class="event">
             <div class="date">b2bd466</div>
             <div><strong>H 現場照片同步修正</strong><p>修正啟動流程：從 photo dynamic index 的 managedRoots 自動建立 scoped watcher。部署到 H 程式區後，watcher 已啟用；新增測試圖片約 6.3 秒進入索引，複製圖片約 5.3 秒進入索引，刪除後 active count 回落且搜尋頁不再留下破圖卡片。H-wide Explorer 仍因 driveRole unknown 沒有啟用。</p></div>
+          </article>
+          <article class="event">
+            <div class="date">2026-07-08</div>
+            <div><strong>H 回復到 F 穩定程式外觀</strong><p>使用者判定 H-wide Explorer 與動態照片外觀未達需求，決定停止這幾天的 H 實驗。H 已改回 F 的穩定程式端，保留 H 自己的硬碟身分與備份角色；H-wide Explorer 不再出現，照片首頁回到靜態歷史照片目錄外觀。本次沒有執行 F/H 5TB 原始資料鏡像同步。</p></div>
           </article>
           <article class="event">
             <div class="date">860a33a</div>
