@@ -548,7 +548,7 @@
       <p class="eyebrow">GitHub-safe Project Dashboard</p>
       <h2><span>萬軍可攜式數位資產</span><span>與知識管理系統</span></h2>
       <p class="hero-copy">
-        這個網站是 GitHub-safe 的公開專案報告，不是正式資料庫本體。它整理 2026-07-05 到 2026-07-06 的 ChatGPT / Codex 協作摘要，讓使用者用手機掌握 F、H、GitHub、Codex 與 Dashboard 狀態。
+        這個網站是 GitHub-safe 的公開專案報告，不是正式資料庫本體。它整理 ChatGPT / Codex 協作摘要，讓使用者用手機掌握 F、H、GitHub、Codex 與 Dashboard 狀態。
       </p>
       <div class="status-strip" aria-label="核心狀態">
         <article class="metric">
@@ -558,8 +558,8 @@
         </article>
         <article class="metric">
           <span class="experiment">H 狀態</span>
-          <strong>H-wide Explorer 候選版</strong>
-          <p>機械驗證通過，尚未接正式 BAT，仍待人工驗收。</p>
+          <strong>單一安全資料夾 MVP</strong>
+          <p>H-wide 已暫停；目前只驗證「管理此資料夾」最小操作。</p>
         </article>
         <article class="metric">
           <span class="pending">同步狀態</span>
@@ -569,7 +569,7 @@
         <article class="metric">
           <span class="stable">GitHub 範圍</span>
           <strong>VERSION v2026.07.01-18</strong>
-          <p>main 尚未合併 H-wide Explorer；公開看板只放安全摘要。</p>
+          <p>main 尚未合併第二階段 MVP；公開看板只放安全摘要。</p>
         </article>
       </div>
     </section>
@@ -594,6 +594,12 @@
           <span class="pill pending">最後更新：2026-07-08</span>
         </div>
         <div class="grid">
+          <article class="card span-12">
+            <span class="pill experiment">2026-07-08 第二階段 · commit 352a4d5</span>
+            <h3>Windows 式操作改為 H 單一安全資料夾 MVP</h3>
+            <p>上一輪 H-wide Explorer 實機驗收未達需求後，已停止整顆 H 方向，改採「正式照片資料庫外觀入口 + 單一 H 安全測試資料夾 + 最小操作」策略。入口名稱是「管理此資料夾」，不是孤立的 h-explorer 主頁。</p>
+            <p>本輪只允許：更新此資料夾索引、新增資料夾、重新命名、移到 H 安全回收區。不提供複製、剪下、貼上；不操作 F、不操作整顆 H、不永久刪除資料。機械化驗證：9 PASS / 0 FAIL；外部用 Windows 建立與改名資料夾後，按更新索引可在瀏覽器 API 反映。</p>
+          </article>
           <article class="card span-12">
             <span class="pill blocked">2026-07-08 分類校正</span>
             <h3>烏干達 2024 照片分類錯置已修正：F/H 同步清掉東馬卡片</h3>
@@ -692,8 +698,8 @@
             </tr>
             <tr>
               <td>H 硬碟</td>
-              <td><span class="pill blocked">實機入口驗收未通過</span></td>
-              <td>唯一實驗與驗收硬碟；H-wide Explorer 曾完成機械驗證 PASS 46 / FAIL 0 / PENDING_MANUAL 3，但 2026-07-07 使用者從正式照片年會頁實機操作時沒有看到瀏覽器檔案總管功能，且實機角色設定仍回報 unknown。</td>
+              <td><span class="pill experiment">單一安全資料夾 MVP 測試中</span></td>
+              <td>唯一實驗與驗收硬碟；H-wide Explorer 已判定不採用。新的第二階段只在 H 的單一安全測試資料夾中驗證更新索引、新增資料夾、重新命名與移到安全回收區。</td>
             </tr>
             <tr>
               <td>GitHub private repo</td>
@@ -708,12 +714,12 @@
             <tr>
               <td>main / VERSION</td>
               <td><span class="pill pending">尚未正式發布</span></td>
-              <td>main 尚未合併 H-wide Explorer；VERSION 仍為 v2026.07.01-18。</td>
+              <td>main 尚未合併第二階段 MVP；VERSION 仍為 v2026.07.01-18。</td>
             </tr>
             <tr>
               <td>H 正式根目錄 BAT</td>
-              <td><span class="pill blocked">尚未接到實機路徑</span></td>
-              <td>目前 H 啟動後仍進入正式照片資料庫流程；`/__wanjun/h-explorer` 在使用者當下的服務回 404。feature 已補 H-wide Explorer 啟動設定，但需要先校正 H 角色與部署流程。</td>
+              <td><span class="pill pending">尚未整合</span></td>
+              <td>本輪沒有修改正式根目錄 BAT。第二階段 MVP 先由 H 測試服務與正式照片外觀入口驗證，通過後再討論是否接入 H 啟動流程。</td>
             </tr>
             <tr>
               <td>Office 實際視窗開啟</td>
@@ -837,6 +843,10 @@
             <div><strong>烏干達 2022/2024 生成頁修正</strong><p>已備份 F/H 受影響頁面後，依來源路徑規則移除不應出現在烏干達的 EM東馬卡片。修正後 F/H 烏干達 2024 剩 289 張卡片、4 個有效頁碼；舊第 5 頁不再顯示錯置照片。這次只修生成 HTML，不搬動、不刪除、不改名任何原始資料。</p></div>
           </article>
           <article class="event">
+            <div class="date">352a4d5</div>
+            <div><strong>Windows 操作第二階段：H 單一安全資料夾 MVP</strong><p>使用者同意重新啟動 Windows 式操作，但嚴格限制範圍。新方案不再做整顆 H，也不再做孤立 h-explorer 主頁；只從照片資料庫正式外觀進入「管理此資料夾」，並限制在 H 的單一安全測試資料夾。機械化驗證 9 PASS / 0 FAIL；外部 Windows 改資料夾後，按更新索引可反映到瀏覽器 API。</p></div>
+          </article>
+          <article class="event">
             <div class="date">860a33a</div>
             <div><strong>H-wide Explorer 現場入口校正</strong><p>H 角色受控校正為 backup 後，`/__wanjun/h-explorer` 可開啟。照片資料庫導覽新增「H 硬碟檔案總管」入口，舊版靜態頁按鈕改標為系統備援。安全資料夾 live test 已驗證新增資料夾、改名、移到安全回收區成功。</p></div>
           </article>
@@ -926,29 +936,42 @@
       <section class="panel" id="next-step" data-panel="next">
         <div class="panel-head">
           <div>
-            <h2>下一步：先修正照片分類與路徑來源</h2>
-            <p class="panel-note">2026-07-08 唯讀掃描確認，烏干達 2024 靜態頁混入東馬資料，且 H 靜態頁仍含 F 絕對路徑。</p>
+            <h2>下一步：人工驗收 H 單一安全資料夾 MVP</h2>
+            <p class="panel-note">第二階段已縮小範圍：先確認正式照片外觀入口、單一 H 安全資料夾、最小操作與安全回收區。</p>
           </div>
-          <span class="pill blocked">目前狀態：分類來源需校正</span>
+          <span class="pill experiment">目前狀態：H-only MVP 待人工看畫面</span>
         </div>
         <div class="grid">
           <article class="card span-7">
-            <h3>必須先完成的校正</h3>
+            <h3>下一次使用者實機要確認</h3>
             <ul class="list">
-              <li>先產出照片分類稽核表：頁面國家、年份、來源根、相對路徑、疑似錯置原因。</li>
-              <li>確認烏干達 2024 混入東馬資料的產生來源，不可只手動刪頁或補按鈕。</li>
-              <li>修正跨硬碟路徑策略：正式頁不得依賴 F/H 磁碟代號或舊 port，應以 driveRoot + stable relative path 開啟。</li>
-              <li>建立重建前 dry-run，列出將移除、移入與保留的卡片，再由使用者確認。</li>
-              <li>重建或修正頁面前先保留 v18 靜態回復點與 H 程式備份。</li>
-              <li>Windows 檔案總管功能仍保留為下一輪需求，但需等分類與路徑來源校正後再重啟。</li>
+              <li>從照片資料庫首頁看到「Windows 操作驗收」卡片或「管理此資料夾」入口。</li>
+              <li>進入後只看到 H 的安全測試資料夾，不是整顆 H，也不是舊 h-explorer。</li>
+              <li>按「更新此資料夾索引」後，F5 仍能看到最新結果。</li>
+              <li>在頁面中新增資料夾成功。</li>
+              <li>在頁面中重新命名檔案或資料夾成功。</li>
+              <li>在頁面中移到 H 安全回收區成功，且不是永久刪除。</li>
+              <li>外部用 Windows 改資料夾後，按更新索引能反映到瀏覽器。</li>
             </ul>
           </article>
           <article class="card span-5">
-            <h3>暫停事項</h3>
+            <h3>仍然禁止</h3>
             <ul class="list">
-              <li>暫不宣稱 H-wide Explorer 已正式可用。</li>
-              <li>暫不再新增大功能，先解決照片分類錯置與絕對路徑問題。</li>
-              <li>不碰 F，不做 F/H 同步。</li>
+              <li>不做整顆 H。</li>
+              <li>不做 F，不做 F/H 同步。</li>
+              <li>不做複製、剪下、貼上。</li>
+              <li>不新增孤立 h-explorer 主頁。</li>
+              <li>不合併 main、不升正式版，除非使用者另外批准。</li>
+              <li>不提交 SQLite、logs、runtime、temp 輸出、driveId、secrets。</li>
+              <li>不永久刪除任何資料。</li>
+            </ul>
+          </article>
+          <article class="card span-12">
+            <h3>照片分類後續仍需補強</h3>
+            <ul class="list">
+              <li>烏干達 2024 的東馬錯置已先修生成頁，但未建立全系統分類引擎。</li>
+              <li>後續仍需照片分類稽核表：頁面國家、年份、來源根、相對路徑、疑似錯置原因。</li>
+              <li>重建或修正更多頁面前仍需 dry-run 與人工確認。</li>
               <li>不合併 main、不升正式版，除非使用者另外批准。</li>
               <li>不修改正式資料、不永久刪除任何資料。</li>
               <li>保留既有照片頁、/data、/file、/open-file、/open 路由。</li>
