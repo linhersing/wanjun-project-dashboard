@@ -591,9 +591,15 @@
             <h2>最新消息</h2>
             <p class="panel-note">只放目前最需要知道的狀態；過去細節請切到「過去紀錄」。</p>
           </div>
-          <span class="pill pending">最後更新：2026-07-07</span>
+          <span class="pill pending">最後更新：2026-07-08</span>
         </div>
         <div class="grid">
+          <article class="card span-12">
+            <span class="pill blocked">2026-07-08 分類校正</span>
+            <h3>烏干達 2024 照片分類錯置已確認：F/H 都有同樣問題</h3>
+            <p>唯讀掃描確認，烏干達 2024 的靜態 country-year 頁面混入大量東馬來源；來源根以 EM東馬 為最大宗，UG 反而較少。2025 初步沒有同型東馬訊號。</p>
+            <p>同時確認 H 的靜態 country-year 頁面仍含 F 絕對路徑與舊本機開啟連結，代表舊靜態頁不是跨硬碟安全資料來源。下一步應先建立路徑分類校驗與重建策略，不應手動補頁或繼續擴大檔案總管功能。</p>
+          </article>
           <article class="card span-12">
             <span class="pill blocked">2026-07-07 實機校正</span>
             <h3>今天 H 實機驗收沒有通過：正式照片年會頁沒有 H-wide Explorer 功能</h3>
@@ -823,6 +829,10 @@
             <div><strong>H 回復到 F 穩定程式外觀</strong><p>使用者判定 H-wide Explorer 與動態照片外觀未達需求，決定停止這幾天的 H 實驗。H 已改回 F 的穩定程式端，保留 H 自己的硬碟身分與備份角色；H-wide Explorer 不再出現，照片首頁回到靜態歷史照片目錄外觀。本次沒有執行 F/H 5TB 原始資料鏡像同步。</p></div>
           </article>
           <article class="event">
+            <div class="date">2026-07-08</div>
+            <div><strong>烏干達 2024 分類錯置確認</strong><p>使用者指出烏干達 2024 頁面出現大量東馬內容。唯讀掃描確認 F/H 兩顆硬碟都有同型問題：烏干達 2024 靜態頁混入大量 EM東馬來源，且 H 靜態頁仍含 F 絕對路徑與舊本機開啟連結。後續優先應先修正照片分類來源與跨硬碟路徑策略。</p></div>
+          </article>
+          <article class="event">
             <div class="date">860a33a</div>
             <div><strong>H-wide Explorer 現場入口校正</strong><p>H 角色受控校正為 backup 後，`/__wanjun/h-explorer` 可開啟。照片資料庫導覽新增「H 硬碟檔案總管」入口，舊版靜態頁按鈕改標為系統備援。安全資料夾 live test 已驗證新增資料夾、改名、移到安全回收區成功。</p></div>
           </article>
@@ -912,30 +922,28 @@
       <section class="panel" id="next-step" data-panel="next">
         <div class="panel-head">
           <div>
-            <h2>下一步：先修正 H 實機入口落差</h2>
-            <p class="panel-note">2026-07-07 實機結果顯示，使用者目前開到的是正式照片年會頁，不是 H-wide Explorer。</p>
+            <h2>下一步：先修正照片分類與路徑來源</h2>
+            <p class="panel-note">2026-07-08 唯讀掃描確認，烏干達 2024 靜態頁混入東馬資料，且 H 靜態頁仍含 F 絕對路徑。</p>
           </div>
-          <span class="pill blocked">目前狀態：實機入口未通過</span>
+          <span class="pill blocked">目前狀態：分類來源需校正</span>
         </div>
         <div class="grid">
           <article class="card span-7">
             <h3>必須先完成的校正</h3>
             <ul class="list">
-              <li>確認 H 實機目前執行的程式版本是否包含 H-wide Explorer 路由。</li>
-              <li>確認 H 的硬碟角色設定；目前診斷為 unknown，需受控確認後才可改為 backup 或啟用 H-only 驗收入口。</li>
-              <li>若路由不存在，先做 H-only 實驗部署或安全驗收入口，不碰 F、不合併 main、不升版。</li>
-              <li>讓使用者從 H 的實際入口可以清楚進入 `/__wanjun/h-explorer`。</li>
-              <li>在 H-wide Explorer 內重新驗證：瀏覽 H 主要資料區、返回上一層、Windows 開啟資料夾、開啟檔案。</li>
-              <li>在 H 安全測試資料夾重新驗證：新增資料夾、改名、複製貼上、剪下移動、移到安全回收區。</li>
-              <li>確認操作後 SQLite / generation / 搜尋結果會更新。</li>
-              <li>確認系統保護區不可操作，且 F 沒被碰、F/H 原始資料同步沒有執行。</li>
+              <li>先產出照片分類稽核表：頁面國家、年份、來源根、相對路徑、疑似錯置原因。</li>
+              <li>確認烏干達 2024 混入東馬資料的產生來源，不可只手動刪頁或補按鈕。</li>
+              <li>修正跨硬碟路徑策略：正式頁不得依賴 F/H 磁碟代號或舊 port，應以 driveRoot + stable relative path 開啟。</li>
+              <li>建立重建前 dry-run，列出將移除、移入與保留的卡片，再由使用者確認。</li>
+              <li>重建或修正頁面前先保留 v18 靜態回復點與 H 程式備份。</li>
+              <li>Windows 檔案總管功能仍保留為下一輪需求，但需等分類與路徑來源校正後再重啟。</li>
             </ul>
           </article>
           <article class="card span-5">
             <h3>暫停事項</h3>
             <ul class="list">
               <li>暫不宣稱 H-wide Explorer 已正式可用。</li>
-              <li>暫不再新增大功能，先解決使用者看不到功能的入口問題。</li>
+              <li>暫不再新增大功能，先解決照片分類錯置與絕對路徑問題。</li>
               <li>不碰 F，不做 F/H 同步。</li>
               <li>不合併 main、不升正式版，除非使用者另外批准。</li>
               <li>不修改正式資料、不永久刪除任何資料。</li>
