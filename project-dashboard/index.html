@@ -558,8 +558,8 @@
         </article>
         <article class="metric">
           <span class="experiment">H 狀態</span>
-          <strong>H-wide 只讀清點完成</strong>
-          <p>先做 dry-run 索引設計；尚未接前台、尚未開 watcher。</p>
+          <strong>Windows 操作暫停</strong>
+          <p>先整理文件與前台視覺口徑，不再硬推功能。</p>
         </article>
         <article class="metric">
           <span class="pending">同步狀態</span>
@@ -594,6 +594,13 @@
           <span class="pill pending">最後更新：2026-07-10</span>
         </div>
         <div class="grid">
+          <article class="card span-12">
+            <span class="pill stable">2026-07-10 方向校正 · commit 48c372e</span>
+            <h3>Windows 式檔案操作暫停；先整理文件與前台口徑</h3>
+            <p>使用者決定暫時放棄本輪瀏覽器內 Windows 操作推進。核心原因不是需求取消，而是目前呈現方式與實機效果未達期待；接下來先整理文件、流程與畫面標準，避免繼續把照片資料庫主畫面變成工程測試頁。</p>
+            <p>前台基準改回目前較穩定的照片資料庫樣式：大標題、副標、同一排導覽按鈕、固定字級與高度、清楚 active 狀態。首頁、按國家、按年份、按事件、常用、年會、搜尋、華宣盟網站照片、萬軍傳承資料庫、素材與文件的按鈕口徑要一致。</p>
+            <p>GitHub 更新的邊界也已重新寫清楚：GitHub 只更新程式與文件，不會同步 F/H 原始資料；若前台仍讀舊靜態 HTML，新增資料不會因為 F5 或重點 BAT 就自動進入前台。</p>
+          </article>
           <article class="card span-12">
             <span class="pill experiment">2026-07-10 Phase A · commit 01a4077</span>
             <h3>H-wide 重新啟動，但第一步只做只讀清點與 dry-run 索引</h3>
@@ -711,8 +718,8 @@
             </tr>
             <tr>
               <td>H 硬碟</td>
-              <td><span class="pill experiment">H-wide Phase A 完成</span></td>
-              <td>唯一實驗與驗收硬碟；目前只完成 H-wide 一般資料區只讀清點與 dry-run 索引設計。尚未讓前台改讀新 SQLite，尚未開 watcher，尚未做整顆 H 前台同步。</td>
+              <td><span class="pill pending">功能暫停，文件優先</span></td>
+              <td>唯一實驗與驗收硬碟；H-wide Phase A 只讀清點已完成，但 Windows 式操作與前台同步暫停推進。下一步先整理文件、流程、前台視覺基準與 GitHub 更新邊界。</td>
             </tr>
             <tr>
               <td>GitHub private repo</td>
@@ -864,6 +871,10 @@
             <div><strong>第二階段 MVP 畫面暫停；照片資料庫退回舊版外觀</strong><p>使用者指出目前畫面太像工程管理頁，不符合照片資料庫主用途。feature 分支新增 `photoDynamicPages.enabled=false`，讓照片資料庫主要頁面回舊版靜態 HTML；MVP 後端可暫存，但不再直接出現在首頁或主導覽。</p></div>
           </article>
           <article class="event">
+            <div class="date">48c372e</div>
+            <div><strong>Windows 操作暫停，改先整理文件與前台口徑</strong><p>使用者決定暫時停止本輪瀏覽器內 Windows 操作實作。照片資料庫前台要保持穩定瀏覽樣式，管理或同步功能未來需重新設計，不可再直接放進主畫面。新增方向文件記錄 GitHub 只更新程式文件、不同步 F/H 原始資料。</p></div>
+          </article>
+          <article class="event">
             <div class="date">01a4077</div>
             <div><strong>H-wide Phase A：只讀清點與 dry-run 索引</strong><p>重新啟動 H-wide 方向，但第一步只做 H 一般資料區 metadata 清點、排除系統區與敏感/執行產物，並在 H temp 建立 dry-run SQLite。沒有接前台、沒有 watcher、沒有碰 F、沒有做 F/H 同步。</p></div>
           </article>
@@ -957,20 +968,20 @@
       <section class="panel" id="next-step" data-panel="next">
         <div class="panel-head">
           <div>
-            <h2>下一步：Phase B shadow index 驗收</h2>
-            <p class="panel-note">Phase A 只讀清點已完成；下一步才可挑選小範圍建立 shadow SQLite，仍不可直接取代前台。</p>
+            <h2>下一步：文件與前台視覺口徑</h2>
+            <p class="panel-note">Windows 操作暫停；先把前台該長什麼樣、GitHub 更新能做什麼、資料同步不能做什麼寫清楚。</p>
           </div>
-          <span class="pill stable">目前狀態：只讀完成</span>
+          <span class="pill stable">目前狀態：功能暫停</span>
         </div>
         <div class="grid">
           <article class="card span-7">
             <h3>下一步建議順序</h3>
             <ul class="list">
-              <li>先檢查 H-wide 只讀清點報告中的排除範圍、過長路徑、零位元檔案與分類風險。</li>
-              <li>選幾個小型 H 一般資料區做 Phase B shadow index，不取代正式前台。</li>
-              <li>前台預覽只能用 preview/query string 或內部入口，不污染目前乾淨照片資料庫外觀。</li>
-              <li>Watcher 放到最後；先確認掃描、安全排除、取消中斷、失敗沿用舊索引都穩定。</li>
-              <li>照片資料庫首頁、分類頁、年會頁與搜尋頁第一眼仍維持瀏覽模式，不顯示工程語言。</li>
+              <li>先用目前穩定照片資料庫頁面作為視覺基準：標題、副標、導覽按鈕、active 狀態、字級與留白。</li>
+              <li>整理 GitHub / BAT / 硬碟資料 / 前台呈現的關係，讓使用者知道更新程式不等於資料同步。</li>
+              <li>整理「硬碟是後台、瀏覽器是前台」的流程圖與使用者操作說明。</li>
+              <li>Windows 式操作若未來恢復，必須先做管理模式線框，不直接改照片資料庫主畫面。</li>
+              <li>Phase B shadow index 暫緩，等文件與 UI 口徑確認後再討論。</li>
             </ul>
           </article>
           <article class="card span-5">
@@ -980,6 +991,7 @@
               <li>不做 F，不做 F/H 同步。</li>
               <li>不讓前台直接改讀新 SQLite。</li>
               <li>不開 watcher。</li>
+              <li>不繼續推瀏覽器內 Windows 操作。</li>
               <li>不新增孤立 h-explorer 主頁。</li>
               <li>不合併 main、不升正式版，除非使用者另外批准。</li>
               <li>不提交 SQLite、logs、runtime、temp 輸出、driveId、secrets。</li>
