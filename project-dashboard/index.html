@@ -4,6 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>萬軍系統專案狀態看板</title>
+  <link rel="icon" href="./assets/wanjun-dashboard-icon.svg" type="image/svg+xml">
+  <link rel="shortcut icon" href="./assets/wanjun-dashboard-icon.svg" type="image/svg+xml">
   <style>
     :root {
       --bg: #f5f9f5;
@@ -86,6 +88,21 @@
       gap: 3px;
     }
 
+    .brand-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .app-icon {
+      flex: 0 0 auto;
+      width: 46px;
+      height: 46px;
+      border-radius: 12px;
+      box-shadow: var(--shadow-soft);
+    }
+
     .brand-title {
       margin: 0;
       font-size: 24px;
@@ -162,6 +179,44 @@
       box-shadow: var(--shadow-soft);
     }
 
+    .metric-label,
+    .status-name {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      flex-wrap: wrap;
+    }
+
+    .drive-icon {
+      display: inline-grid;
+      place-items: center;
+      width: 28px;
+      min-width: 28px;
+      height: 28px;
+      border-radius: 9px;
+      color: #fff;
+      font-size: 13px;
+      font-weight: 950;
+      line-height: 1;
+      box-shadow: 0 6px 16px rgba(22, 52, 66, .12);
+    }
+
+    .drive-icon.f {
+      background: linear-gradient(135deg, #0f6b58, #1e9a72);
+    }
+
+    .drive-icon.h {
+      background: linear-gradient(135deg, #3952d0, #6f58f2);
+    }
+
+    .drive-icon.sync {
+      background: linear-gradient(135deg, #8a6a00, #d0a521);
+    }
+
+    .drive-icon.repo {
+      background: linear-gradient(135deg, #0b2b44, #176b5d);
+    }
+
     .metric span {
       display: inline-flex;
       min-height: 26px;
@@ -170,6 +225,17 @@
       padding: 2px 8px;
       font-size: 12px;
       font-weight: 900;
+    }
+
+    .metric .drive-icon,
+    .status-name .drive-icon {
+      display: inline-grid;
+      min-height: 28px;
+      padding: 0;
+      border: 0;
+      border-radius: 9px;
+      color: #fff;
+      font-size: 13px;
     }
 
     .metric strong {
@@ -522,6 +588,11 @@
         font-size: 22px;
       }
 
+      .app-icon {
+        width: 40px;
+        height: 40px;
+      }
+
       .hero h2 {
         font-size: 25px;
       }
@@ -537,9 +608,12 @@
 <body>
   <div class="page">
     <header class="topbar">
-      <div class="brand">
-        <h1 class="brand-title">萬軍系統專案報告</h1>
-        <p class="brand-subtitle">手機優先的 GitHub-safe 狀態看板。最新消息與過去紀錄分開看。</p>
+      <div class="brand-row">
+        <img class="app-icon" src="./assets/wanjun-dashboard-icon.svg" alt="" width="46" height="46">
+        <div class="brand">
+          <h1 class="brand-title">萬軍系統專案報告</h1>
+          <p class="brand-subtitle">手機優先的 GitHub-safe 狀態看板。最新消息與過去紀錄分開看。</p>
+        </div>
       </div>
       <a class="site-link" href="https://github.com/linhersing/wanjun-project-dashboard">GitHub repo</a>
     </header>
@@ -552,24 +626,24 @@
       </p>
       <div class="status-strip" aria-label="核心狀態">
         <article class="metric">
-          <span class="stable">F 狀態</span>
+          <div class="metric-label"><span class="drive-icon f">F</span><span class="stable">F 狀態</span></div>
           <strong>冷凍穩定基準</strong>
           <p>保持 v2026.07.01-18，不部署 H 實驗功能。</p>
         </article>
         <article class="metric">
-          <span class="experiment">H 狀態</span>
-          <strong>Windows 操作暫停</strong>
-          <p>先整理文件與前台視覺口徑，不再硬推功能。</p>
+          <div class="metric-label"><span class="drive-icon h">H</span><span class="experiment">H 狀態</span></div>
+          <strong>維持穩定外觀</strong>
+          <p>Windows 式操作與 H-wide 前台同步先暫停。</p>
         </article>
         <article class="metric">
-          <span class="pending">同步狀態</span>
+          <div class="metric-label"><span class="drive-icon sync">↔</span><span class="pending">同步狀態</span></div>
           <strong>未做 F/H 原始資料同步</strong>
-          <p>GitHub 只同步程式與文件，不同步 5TB 原始資料。</p>
+          <p>GitHub 只保存程式、文件與報告，不同步 5TB 原始資料。</p>
         </article>
         <article class="metric">
-          <span class="stable">GitHub 範圍</span>
+          <div class="metric-label"><span class="drive-icon repo">G</span><span class="stable">GitHub 範圍</span></div>
           <strong>VERSION v2026.07.01-18</strong>
-          <p>main 尚未合併第二階段 MVP；公開看板只放安全摘要。</p>
+          <p>main 不升版、不合併實驗功能；公開看板只放安全摘要。</p>
         </article>
       </div>
     </section>
@@ -594,6 +668,13 @@
           <span class="pill pending">最後更新：2026-07-10</span>
         </div>
         <div class="grid">
+          <article class="card span-12">
+            <span class="pill stable">2026-07-10 現階段結論</span>
+            <h3>先保持穩定，不再硬推 Windows 操作與跨電腦同步</h3>
+            <p>今天的方向已重新定錨：F 保持冷凍穩定基準；H 先維持目前較穩定的外觀與使用方式。瀏覽器內 Windows 式操作、H-wide 前台自動同步、跨電腦或雲端式 F/H 原始資料同步，現階段都先暫停，不再繼續把未成熟功能推到使用者眼前。</p>
+            <p>目前最實際的作法是：硬碟資料先用 Windows 檔案總管管理，正式前台仍以穩定瀏覽、搜尋、照片與行政資料查看為主；未來若要再做同步或更新，由 Codex 受控更新程式與文件，不把 GitHub 當 5TB 原始資料同步工具。</p>
+            <p>這不是放棄整個專案，而是把系統退回可靠狀態，先把文件、使用方式、F/H 邊界與 GitHub 角色講清楚，再決定下一輪要不要重啟功能設計。</p>
+          </article>
           <article class="card span-12">
             <span class="pill stable">2026-07-10 方向校正 · commit 48c372e</span>
             <h3>Windows 式檔案操作暫停；先整理文件與前台口徑</h3>
@@ -712,17 +793,17 @@
           </thead>
           <tbody>
             <tr>
-              <td>F 硬碟</td>
+              <td><span class="status-name"><span class="drive-icon f">F</span>F 硬碟</span></td>
               <td><span class="pill stable">冷凍穩定基準</span></td>
               <td>正式穩定線保持 v2026.07.01-18；不切 feature、不掃 5TB、不部署 H 實驗功能。</td>
             </tr>
             <tr>
-              <td>H 硬碟</td>
-              <td><span class="pill pending">功能暫停，文件優先</span></td>
-              <td>唯一實驗與驗收硬碟；H-wide Phase A 只讀清點已完成，但 Windows 式操作與前台同步暫停推進。下一步先整理文件、流程、前台視覺基準與 GitHub 更新邊界。</td>
+              <td><span class="status-name"><span class="drive-icon h">H</span>H 硬碟</span></td>
+              <td><span class="pill pending">維持目前穩定狀態</span></td>
+              <td>H 仍可作為未來實驗硬碟，但本輪 Windows 式操作、H-wide 前台同步與 watcher 先停下來。現在不再新增孤立檔案總管頁，也不再把工程操作放到照片資料庫主畫面。</td>
             </tr>
             <tr>
-              <td>GitHub private repo</td>
+              <td><span class="status-name"><span class="drive-icon repo">G</span>GitHub private repo</span></td>
               <td><span class="pill stable">程式與文件倉庫</span></td>
               <td>wanjun-internal-system-runtime 保存程式、測試、文件、版本紀錄，不放正式資料。</td>
             </tr>
@@ -738,8 +819,8 @@
             </tr>
             <tr>
               <td>H 正式根目錄 BAT</td>
-              <td><span class="pill pending">尚未整合</span></td>
-              <td>本輪沒有修改正式根目錄 BAT。Phase A 只做清點與 dry-run 報告；未來 Phase B/C/D 通過後才討論 H-only 啟動流程。</td>
+              <td><span class="pill stable">不修改</span></td>
+              <td>現階段不修改正式根目錄 BAT，也不接 H-only 新入口。若未來要更新，必須另外確認需求、回復點與使用者批准。</td>
             </tr>
             <tr>
               <td>Office 實際視窗開啟</td>
@@ -748,18 +829,18 @@
             </tr>
             <tr>
               <td>F/H 原始資料同步</td>
-              <td><span class="pill blocked">目前不執行</span></td>
-              <td>GitHub 不會同步 5TB 原始資料。F 到 H 的原始資料備份需獨立流程，不能與程式更新混在一起。</td>
+              <td><span class="pill blocked">目前不做</span></td>
+              <td>現階段不做區域網路、GitHub 或雲端式 F/H 原始資料同步。GitHub 只保留作程式版本、文件、看板與回復依據；5TB 原始資料仍需另行人工或專門備份流程。</td>
             </tr>
             <tr>
               <td>看板狀態同步</td>
               <td><span class="pill pending">半自動</span></td>
-              <td>Codex 會更新公開看板；未來可由本機偵測器輸出安全摘要，自動刷新 F/H 狀態欄位。</td>
+              <td>使用者在本對話提出需求或狀態修正時，Codex 會同步更新公開看板。看板不直接讀硬碟、不自動讀 ChatGPT 對話，也不公開敏感資訊。</td>
             </tr>
             <tr>
               <td>即時硬碟偵測</td>
-              <td><span class="pill pending">尚未接入</span></td>
-              <td>手機網頁不能直接讀 F/H。需在插著硬碟的 Windows 電腦上執行本機工具，再把遮蔽摘要推到看板。</td>
+              <td><span class="pill blocked">暫不實作</span></td>
+              <td>手機網頁不能直接讀 F/H。若未來真的要做，也必須由插著硬碟的 Windows 電腦輸出遮蔽摘要，不能讓 public 網站直接碰本機硬碟。</td>
             </tr>
           </tbody>
         </table>
@@ -774,6 +855,22 @@
           <span class="pill stable">時間線</span>
         </div>
         <div class="timeline">
+          <article class="event">
+            <div class="date">2026-05 待補</div>
+            <div><strong>早期討論紀錄待整理</strong><p>本機找到 2026-05-18 的舊 Codex 附件資料夾，但目前沒有可直接轉成公開摘要的完整文字紀錄。若使用者之後提供五月對話摘要、截圖或舊交接文件，可補進本看板；在沒有證據前不硬寫細節。</p></div>
+          </article>
+          <article class="event">
+            <div class="date">2026-06-26</div>
+            <div><strong>可查證的 runtime repo 起點</strong><p>private repo 可查到第一批程式紀錄：建立萬軍內部系統 runtime、GitHub 更新 runtime、Windows PowerShell updater 修正、Git progress 輸出處理與 portable runtime config 分離。這是目前 Git log 可安全確認的最早專案程式節點。</p></div>
+          </article>
+          <article class="event">
+            <div class="date">2026-06-29</div>
+            <div><strong>Portable Runtime 與唯讀 GitHub 更新</strong><p>補齊 deploy key 產生、known_hosts、唯讀 updater、Portable Python / PortableGit 與跨電腦更新驗證相關工作。此階段確認 GitHub 是程式更新來源，不是 5TB 原始資料同步工具。</p></div>
+          </article>
+          <article class="event">
+            <div class="date">2026-06-30</div>
+            <div><strong>硬碟初始化、driveId 與友善入口</strong><p>新增一次性硬碟初始化、driveId / port 隔離、跨電腦更新驗證頁、友善入口與 Codex handoff。F/H 不以磁碟代號判斷身分，每顆硬碟需保留自己的角色與本機狀態。</p></div>
+          </article>
           <article class="event">
             <div class="date">v2026.07.01-18</div>
             <div><strong>正式穩定基準建立</strong><p>main 維持正式穩定線；F 被定義為冷凍穩定基準與救生艇。</p></div>
@@ -892,10 +989,10 @@
       <section class="panel" id="panel-automation" data-panel="automation">
         <div class="panel-head">
           <div>
-            <h2>自動化狀態同步方案</h2>
-            <p class="panel-note">目標是讓看板自動反映 F/H 狀態，但必須先守住資料安全邊界。</p>
+            <h2>自動化方案</h2>
+            <p class="panel-note">目前不實作硬碟自動同步；這裡只保留未來可選方案與安全邊界。</p>
           </div>
-          <span class="pill pending">設計中</span>
+          <span class="pill pending">暫緩</span>
         </div>
         <div class="grid">
           <article class="card span-4">
@@ -906,7 +1003,7 @@
           <article class="card span-4">
             <span class="pill pending">可行方案</span>
             <h3>Windows 本機狀態摘要器</h3>
-            <p>在插著硬碟的 Windows 電腦上執行，只讀取版本、角色、是否存在、索引 generation、最後更新時間等安全摘要。</p>
+            <p>若未來重新啟動，可在插著硬碟的 Windows 電腦上執行，只讀取版本、角色、是否存在與最後更新時間等安全摘要。</p>
           </article>
           <article class="card span-4">
             <span class="pill stable">公開看板</span>
@@ -925,7 +1022,7 @@
           </article>
         </div>
         <div class="callout" style="margin-top:14px">
-          建議下一階段才實作：`Export-WanjunDashboardStatus.ps1`。它應只產生 public-safe 狀態摘要，不碰 F/H 原始資料，不做同步、不搬動、不刪除。
+          目前不建議立刻實作 `Export-WanjunDashboardStatus.ps1`。若未來要做，它也只能產生 public-safe 狀態摘要，不碰 F/H 原始資料，不做同步、不搬動、不刪除。
         </div>
       </section>
 
@@ -968,24 +1065,24 @@
       <section class="panel" id="next-step" data-panel="next">
         <div class="panel-head">
           <div>
-            <h2>下一步：文件與前台視覺口徑</h2>
-            <p class="panel-note">Windows 操作暫停；先把前台該長什麼樣、GitHub 更新能做什麼、資料同步不能做什麼寫清楚。</p>
+            <h2>下一步：先保持穩定</h2>
+            <p class="panel-note">Windows 操作與跨電腦同步都暫停；目前先把狀態、限制與可用流程整理清楚。</p>
           </div>
           <span class="pill stable">目前狀態：功能暫停</span>
         </div>
         <div class="grid">
           <article class="card span-7">
-            <h3>下一步建議順序</h3>
+            <h3>目前建議順序</h3>
             <ul class="list">
-              <li>先用目前穩定照片資料庫頁面作為視覺基準：標題、副標、導覽按鈕、active 狀態、字級與留白。</li>
-              <li>整理 GitHub / BAT / 硬碟資料 / 前台呈現的關係，讓使用者知道更新程式不等於資料同步。</li>
-              <li>整理「硬碟是後台、瀏覽器是前台」的流程圖與使用者操作說明。</li>
-              <li>Windows 式操作若未來恢復，必須先做管理模式線框，不直接改照片資料庫主畫面。</li>
-              <li>Phase B shadow index 暫緩，等文件與 UI 口徑確認後再討論。</li>
+              <li>F 保持冷凍穩定基準；H 先維持目前可用狀態，不再新增實驗前台。</li>
+              <li>硬碟資料先用 Windows 檔案總管整理；前台仍以穩定照片與行政資料瀏覽為主。</li>
+              <li>GitHub 保留作程式、文件、版本紀錄與公開專案報告，不當作原始資料同步工具。</li>
+              <li>每次需求、決策或狀態修正時，同步更新這個公開看板，讓手機與 Gemini 都能讀到最新脈絡。</li>
+              <li>若未來重啟 Windows 式操作，必須先做新的 UI 設計稿與小範圍驗收，不再直接把工程介面塞進照片資料庫主畫面。</li>
             </ul>
           </article>
           <article class="card span-5">
-            <h3>仍然禁止</h3>
+            <h3>現階段不做</h3>
             <ul class="list">
               <li>不直接做 H-wide 前台同步。</li>
               <li>不做 F，不做 F/H 同步。</li>

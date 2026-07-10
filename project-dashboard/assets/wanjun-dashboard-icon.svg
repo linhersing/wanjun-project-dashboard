@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title desc">
+  <title id="title">Wanjun Project Dashboard</title>
+  <desc id="desc">A safe project dashboard icon for the Wanjun portable system.</desc>
+  <rect width="64" height="64" rx="16" fill="#e7f4ef"/>
+  <path d="M12 18c0-3.3 2.7-6 6-6h28c3.3 0 6 2.7 6 6v28c0 3.3-2.7 6-6 6H18c-3.3 0-6-2.7-6-6V18z" fill="#176b5d"/>
+  <path d="M18 20c0-1.1.9-2 2-2h24c1.1 0 2 .9 2 2v12H18V20z" fill="#fff7d7"/>
+  <path d="M18 34h28v10c0 1.1-.9 2-2 2H20c-1.1 0-2-.9-2-2V34z" fill="#0f4039"/>
+  <circle cx="24" cy="40" r="3" fill="#fffefa"/>
+  <circle cx="40" cy="40" r="3" fill="#fffefa"/>
+  <path d="M25 24h14" stroke="#3657c8" stroke-width="4" stroke-linecap="round"/>
+  <path d="M32 16v32" stroke="#8a6a00" stroke-width="3" stroke-linecap="round" opacity=".72"/>
+</svg>
