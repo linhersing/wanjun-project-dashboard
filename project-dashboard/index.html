@@ -591,9 +591,15 @@
             <h2>最新消息</h2>
             <p class="panel-note">只放目前最需要知道的狀態；過去細節請切到「過去紀錄」。</p>
           </div>
-          <span class="pill pending">最後更新：2026-07-08</span>
+          <span class="pill pending">最後更新：2026-07-10</span>
         </div>
         <div class="grid">
+          <article class="card span-12">
+            <span class="pill stable">2026-07-10 UI rollback · commit 6840675</span>
+            <h3>照片資料庫畫面退回舊版外觀；第二階段 MVP 暫停呈現在主畫面</h3>
+            <p>使用者確認：照片資料庫首頁不應顯示「更新資料目錄」「管理此資料夾」「資料根」「索引狀態」等工程操作。已新增開關讓照片首頁、按國家、按年份、按事件、常用、年會、搜尋與素材文件頁回到舊版靜態 HTML 外觀。</p>
+            <p>Windows 操作功能方向沒有放棄，但目前不再出現在照片資料庫主畫面。後續要重新設計成低干擾的管理模式，例如右側抽屜、彈出視窗或資料夾卡片內的次要管理入口。</p>
+          </article>
           <article class="card span-12">
             <span class="pill experiment">2026-07-08 第二階段 · commit 352a4d5</span>
             <h3>Windows 式操作改為 H 單一安全資料夾 MVP</h3>
@@ -847,6 +853,10 @@
             <div><strong>Windows 操作第二階段：H 單一安全資料夾 MVP</strong><p>使用者同意重新啟動 Windows 式操作，但嚴格限制範圍。新方案不再做整顆 H，也不再做孤立 h-explorer 主頁；只從照片資料庫正式外觀進入「管理此資料夾」，並限制在 H 的單一安全測試資料夾。機械化驗證 9 PASS / 0 FAIL；外部 Windows 改資料夾後，按更新索引可反映到瀏覽器 API。</p></div>
           </article>
           <article class="event">
+            <div class="date">6840675</div>
+            <div><strong>第二階段 MVP 畫面暫停；照片資料庫退回舊版外觀</strong><p>使用者指出目前畫面太像工程管理頁，不符合照片資料庫主用途。feature 分支新增 `photoDynamicPages.enabled=false`，讓照片資料庫主要頁面回舊版靜態 HTML；MVP 後端可暫存，但不再直接出現在首頁或主導覽。</p></div>
+          </article>
+          <article class="event">
             <div class="date">860a33a</div>
             <div><strong>H-wide Explorer 現場入口校正</strong><p>H 角色受控校正為 backup 後，`/__wanjun/h-explorer` 可開啟。照片資料庫導覽新增「H 硬碟檔案總管」入口，舊版靜態頁按鈕改標為系統備援。安全資料夾 live test 已驗證新增資料夾、改名、移到安全回收區成功。</p></div>
           </article>
@@ -939,19 +949,18 @@
             <h2>下一步：人工驗收 H 單一安全資料夾 MVP</h2>
             <p class="panel-note">第二階段已縮小範圍：先確認正式照片外觀入口、單一 H 安全資料夾、最小操作與安全回收區。</p>
           </div>
-          <span class="pill experiment">目前狀態：H-only MVP 待人工看畫面</span>
+          <span class="pill stable">目前狀態：主畫面先回舊版</span>
         </div>
         <div class="grid">
           <article class="card span-7">
-            <h3>下一次使用者實機要確認</h3>
+            <h3>下一步要先重新設計管理模式</h3>
             <ul class="list">
-              <li>從照片資料庫首頁看到「Windows 操作驗收」卡片或「管理此資料夾」入口。</li>
-              <li>進入後只看到 H 的安全測試資料夾，不是整顆 H，也不是舊 h-explorer。</li>
-              <li>按「更新此資料夾索引」後，F5 仍能看到最新結果。</li>
-              <li>在頁面中新增資料夾成功。</li>
-              <li>在頁面中重新命名檔案或資料夾成功。</li>
-              <li>在頁面中移到 H 安全回收區成功，且不是永久刪除。</li>
-              <li>外部用 Windows 改資料夾後，按更新索引能反映到瀏覽器。</li>
+              <li>照片資料庫首頁、分類頁、年會頁與搜尋頁第一眼維持乾淨瀏覽模式。</li>
+              <li>不在主導覽列或首頁卡片放工程管理入口。</li>
+              <li>管理功能未來只從資料夾卡片的次要入口進入，例如「⋯」或「管理」。</li>
+              <li>管理內容放在右側抽屜、底部面板、彈出視窗或次要頁，不佔據主畫面。</li>
+              <li>一般使用者不應看到 SQLite、generation、資料根、索引狀態等工程語言。</li>
+              <li>下一版先做 UI 線框與小範圍截圖確認，再恢復功能接線。</li>
             </ul>
           </article>
           <article class="card span-5">
