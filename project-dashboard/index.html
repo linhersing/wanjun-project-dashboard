@@ -558,8 +558,8 @@
         </article>
         <article class="metric">
           <span class="experiment">H 狀態</span>
-          <strong>單一安全資料夾 MVP</strong>
-          <p>H-wide 已暫停；目前只驗證「管理此資料夾」最小操作。</p>
+          <strong>H-wide 只讀清點完成</strong>
+          <p>先做 dry-run 索引設計；尚未接前台、尚未開 watcher。</p>
         </article>
         <article class="metric">
           <span class="pending">同步狀態</span>
@@ -595,6 +595,13 @@
         </div>
         <div class="grid">
           <article class="card span-12">
+            <span class="pill experiment">2026-07-10 Phase A · commit 01a4077</span>
+            <h3>H-wide 重新啟動，但第一步只做只讀清點與 dry-run 索引</h3>
+            <p>使用者重新定義方向：硬碟是後台、瀏覽器是前台；H 可以作為實驗硬碟，但不能直接改前台讀 SQLite，也不能一開始就開 watcher。Codex 已完成 H 一般資料區只讀 metadata 清點與 dry-run SQLite 設計。</p>
+            <p>GitHub-safe 摘要：H 一般資料區共清點 11 個 root folders，約 89.7 萬個檔案、1.45 萬個資料夾、83.0 萬張照片；清點錯誤 0。完整報告與 dry-run SQLite 只保存在 H 本機 temp，不放 public repo。</p>
+            <p>明確未做：沒有碰 F、沒有做 F/H 原始資料同步、沒有修改照片資料庫前台外觀、沒有讓前台改讀新 SQLite、沒有開 watcher、沒有升版、沒有合併 main。</p>
+          </article>
+          <article class="card span-12">
             <span class="pill stable">2026-07-10 UI rollback · commit 6840675</span>
             <h3>照片資料庫畫面退回舊版外觀；第二階段 MVP 暫停呈現在主畫面</h3>
             <p>使用者確認：照片資料庫首頁不應顯示「更新資料目錄」「管理此資料夾」「資料根」「索引狀態」等工程操作。已新增開關讓照片首頁、按國家、按年份、按事件、常用、年會、搜尋與素材文件頁回到舊版靜態 HTML 外觀。</p>
@@ -608,9 +615,9 @@
           </article>
           <article class="card span-12">
             <span class="pill blocked">2026-07-08 分類校正</span>
-            <h3>烏干達 2024 照片分類錯置已修正：F/H 同步清掉東馬卡片</h3>
-            <p>使用者實機指出烏干達 2024 顯示大量東馬資料。唯讀掃描確認 F/H 都有同樣錯置；已備份後修正生成 HTML，烏干達 2024 移除東馬來源卡片，烏干達 2022 也同步移除少量同型錯置。</p>
-            <p>驗證結果：F/H 透過目前本機服務直接讀頁，烏干達 2024 第 1 頁與舊第 5 頁皆不再含東馬來源；非東馬國家頁面中，實際卡片來源為 EM東馬 的數量已降為 0。這次未修改原始照片影片，未重建全系統分類引擎。</p>
+            <h3>烏干達 2024 分類錯置：先前修正紀錄已被 7/10 重新校正</h3>
+            <p>使用者曾指出烏干達 2024 顯示大量東馬資料。7/10 Phase A 只讀檢查確認：H 原始資料中 2024 東馬資料確實位於東馬來源，舊靜態頁仍可能含東馬 encoded path token；因此不能再把前一輪描述成「全系統已修好」。</p>
+            <p>正確狀態：這是下一階段需要用 dry-run 分類稽核處理的前台分類問題；目前沒有搬動、刪除、改名任何原始照片影片，也沒有重建全系統分類引擎。</p>
           </article>
           <article class="card span-12">
             <span class="pill blocked">2026-07-07 實機校正</span>
@@ -704,8 +711,8 @@
             </tr>
             <tr>
               <td>H 硬碟</td>
-              <td><span class="pill experiment">單一安全資料夾 MVP 測試中</span></td>
-              <td>唯一實驗與驗收硬碟；H-wide Explorer 已判定不採用。新的第二階段只在 H 的單一安全測試資料夾中驗證更新索引、新增資料夾、重新命名與移到安全回收區。</td>
+              <td><span class="pill experiment">H-wide Phase A 完成</span></td>
+              <td>唯一實驗與驗收硬碟；目前只完成 H-wide 一般資料區只讀清點與 dry-run 索引設計。尚未讓前台改讀新 SQLite，尚未開 watcher，尚未做整顆 H 前台同步。</td>
             </tr>
             <tr>
               <td>GitHub private repo</td>
@@ -725,7 +732,7 @@
             <tr>
               <td>H 正式根目錄 BAT</td>
               <td><span class="pill pending">尚未整合</span></td>
-              <td>本輪沒有修改正式根目錄 BAT。第二階段 MVP 先由 H 測試服務與正式照片外觀入口驗證，通過後再討論是否接入 H 啟動流程。</td>
+              <td>本輪沒有修改正式根目錄 BAT。Phase A 只做清點與 dry-run 報告；未來 Phase B/C/D 通過後才討論 H-only 啟動流程。</td>
             </tr>
             <tr>
               <td>Office 實際視窗開啟</td>
@@ -846,7 +853,7 @@
           </article>
           <article class="event">
             <div class="date">2026-07-08</div>
-            <div><strong>烏干達 2022/2024 生成頁修正</strong><p>已備份 F/H 受影響頁面後，依來源路徑規則移除不應出現在烏干達的 EM東馬卡片。修正後 F/H 烏干達 2024 剩 289 張卡片、4 個有效頁碼；舊第 5 頁不再顯示錯置照片。這次只修生成 HTML，不搬動、不刪除、不改名任何原始資料。</p></div>
+            <div><strong>烏干達 2022/2024 生成頁曾做局部修正</strong><p>此為前一輪局部處理紀錄；7/10 Phase A 已重新校正狀態：不可視為全系統分類完成，後續需用 dry-run 分類稽核確認頁面國家、年份與來源相對路徑。</p></div>
           </article>
           <article class="event">
             <div class="date">352a4d5</div>
@@ -855,6 +862,10 @@
           <article class="event">
             <div class="date">6840675</div>
             <div><strong>第二階段 MVP 畫面暫停；照片資料庫退回舊版外觀</strong><p>使用者指出目前畫面太像工程管理頁，不符合照片資料庫主用途。feature 分支新增 `photoDynamicPages.enabled=false`，讓照片資料庫主要頁面回舊版靜態 HTML；MVP 後端可暫存，但不再直接出現在首頁或主導覽。</p></div>
+          </article>
+          <article class="event">
+            <div class="date">01a4077</div>
+            <div><strong>H-wide Phase A：只讀清點與 dry-run 索引</strong><p>重新啟動 H-wide 方向，但第一步只做 H 一般資料區 metadata 清點、排除系統區與敏感/執行產物，並在 H temp 建立 dry-run SQLite。沒有接前台、沒有 watcher、沒有碰 F、沒有做 F/H 同步。</p></div>
           </article>
           <article class="event">
             <div class="date">860a33a</div>
@@ -946,29 +957,29 @@
       <section class="panel" id="next-step" data-panel="next">
         <div class="panel-head">
           <div>
-            <h2>下一步：人工驗收 H 單一安全資料夾 MVP</h2>
-            <p class="panel-note">第二階段已縮小範圍：先確認正式照片外觀入口、單一 H 安全資料夾、最小操作與安全回收區。</p>
+            <h2>下一步：Phase B shadow index 驗收</h2>
+            <p class="panel-note">Phase A 只讀清點已完成；下一步才可挑選小範圍建立 shadow SQLite，仍不可直接取代前台。</p>
           </div>
-          <span class="pill stable">目前狀態：主畫面先回舊版</span>
+          <span class="pill stable">目前狀態：只讀完成</span>
         </div>
         <div class="grid">
           <article class="card span-7">
-            <h3>下一步要先重新設計管理模式</h3>
+            <h3>下一步建議順序</h3>
             <ul class="list">
-              <li>照片資料庫首頁、分類頁、年會頁與搜尋頁第一眼維持乾淨瀏覽模式。</li>
-              <li>不在主導覽列或首頁卡片放工程管理入口。</li>
-              <li>管理功能未來只從資料夾卡片的次要入口進入，例如「⋯」或「管理」。</li>
-              <li>管理內容放在右側抽屜、底部面板、彈出視窗或次要頁，不佔據主畫面。</li>
-              <li>一般使用者不應看到 SQLite、generation、資料根、索引狀態等工程語言。</li>
-              <li>下一版先做 UI 線框與小範圍截圖確認，再恢復功能接線。</li>
+              <li>先檢查 H-wide 只讀清點報告中的排除範圍、過長路徑、零位元檔案與分類風險。</li>
+              <li>選幾個小型 H 一般資料區做 Phase B shadow index，不取代正式前台。</li>
+              <li>前台預覽只能用 preview/query string 或內部入口，不污染目前乾淨照片資料庫外觀。</li>
+              <li>Watcher 放到最後；先確認掃描、安全排除、取消中斷、失敗沿用舊索引都穩定。</li>
+              <li>照片資料庫首頁、分類頁、年會頁與搜尋頁第一眼仍維持瀏覽模式，不顯示工程語言。</li>
             </ul>
           </article>
           <article class="card span-5">
             <h3>仍然禁止</h3>
             <ul class="list">
-              <li>不做整顆 H。</li>
+              <li>不直接做 H-wide 前台同步。</li>
               <li>不做 F，不做 F/H 同步。</li>
-              <li>不做複製、剪下、貼上。</li>
+              <li>不讓前台直接改讀新 SQLite。</li>
+              <li>不開 watcher。</li>
               <li>不新增孤立 h-explorer 主頁。</li>
               <li>不合併 main、不升正式版，除非使用者另外批准。</li>
               <li>不提交 SQLite、logs、runtime、temp 輸出、driveId、secrets。</li>
