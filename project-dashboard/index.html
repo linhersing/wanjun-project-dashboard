@@ -665,9 +665,16 @@
             <h2>最新消息</h2>
             <p class="panel-note">只放目前最需要知道的狀態；過去細節請切到「過去紀錄」。</p>
           </div>
-          <span class="pill pending">最後更新：2026-07-10</span>
+          <span class="pill pending">最後更新：2026-07-15</span>
         </div>
         <div class="grid">
+          <article class="card span-12">
+            <span class="pill blocked">2026-07-15 分類校正 · commit cee246e</span>
+            <h3>KD / KW 國家代碼已修正；現有靜態頁需重產或批准後清理</h3>
+            <p>使用者校正：KD 是伊拉克，KW 才是科威特。feature 分支已把這條規則寫入照片動態索引，SQLite 會保存 country_label / country_token，API 與動態按國家頁可依國家查詢。</p>
+            <p>只讀 dry-run 顯示：F/H speed 版舊靜態照片頁各有 102 個科威特頁含 KD 卡片，約 7600 張卡片會受頁面級清理影響。因影響範圍太大，沒有直接刪除現場靜態頁，避免資料在前台消失。</p>
+            <p>本次沒有搬動、改名、刪除 F/H 原始照片、影片、Office、PDF 或資料夾；下一步應走完整重產分類頁，或由使用者明確批准後先備份再清理舊靜態頁。</p>
+          </article>
           <article class="card span-12">
             <span class="pill stable">2026-07-10 現階段結論</span>
             <h3>先保持穩定，不再硬推 Windows 操作與跨電腦同步</h3>
@@ -855,6 +862,10 @@
           <span class="pill stable">時間線</span>
         </div>
         <div class="timeline">
+          <article class="event">
+            <div class="date">2026-07-15</div>
+            <div><strong>KD / KW 國家代碼修正</strong><p>KD 固定歸伊拉克，KW 固定歸科威特；feature commit cee246e 已修動態索引與 API。F/H 舊 speed 靜態頁 dry-run 發現科威特頁大量混入 KD 卡片，尚未硬刪，需重產或批准後備份清理。</p></div>
+          </article>
           <article class="event">
             <div class="date">2026-05 待補</div>
             <div><strong>早期討論紀錄待整理</strong><p>本機找到 2026-05-18 的舊 Codex 附件資料夾，但目前沒有可直接轉成公開摘要的完整文字紀錄。若使用者之後提供五月對話摘要、截圖或舊交接文件，可補進本看板；在沒有證據前不硬寫細節。</p></div>
