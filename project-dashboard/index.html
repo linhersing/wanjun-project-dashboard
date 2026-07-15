@@ -669,6 +669,14 @@
         </div>
         <div class="grid">
           <article class="card span-12">
+            <span class="pill stable">2026-07-15 分類精準度修復 · commit d02844a</span>
+            <h3>人工標題/檔名優先：吉歸吉布地，王家歸台灣／總部資料</h3>
+            <p>使用者實機指出：有些照片卡片標題已明確寫出「吉」或「王家」，但舊分類仍把它們放在馬來西亞／東馬。這次正式校正分類優先順序：明確人工標題與檔名優先，路徑代碼作為補充。</p>
+            <p>已套用到 F/H 的 generated photo pages：F/H speed 版各重建 401 個 country-year 頁並搬移 834 張已生成卡片；H 一般版重建 224 個頁並搬移 240 張已生成卡片。只改生成 HTML 與程式分類規則，沒有搬動或刪除原始照片、影片、Office/PDF 或資料夾。</p>
+            <p>驗證摘要：馬來西亞／東馬 2018 已無明確「吉」與「王家」卡片；吉布地 2018 已出現「吉」卡片；台灣／總部資料 2018 已出現「王家」卡片；烏干達 2024 未再偵測到東馬路徑殘留。</p>
+            <p>重要限制：這仍不是「硬碟新增檔案後前台自動更新」完成版。未來若要達到硬碟作後台、瀏覽器作前台，仍需要穩定的索引與前台重建流程。</p>
+          </article>
+          <article class="card span-12">
             <span class="pill stable">2026-07-15 實機修復 · commit 429f652</span>
             <h3>KD / KW 靜態照片頁已重建：KD 歸伊拉克，KW 歸科威特</h3>
             <p>使用者實機指出：目前瀏覽器看的仍是舊靜態 HTML，所以只修動態 SQLite 還不夠；科威特頁仍大量顯示 KD 路徑，而且只刪錯卡會讓伊拉克資料消失。</p>
@@ -862,6 +870,10 @@
           <span class="pill stable">時間線</span>
         </div>
         <div class="timeline">
+          <article class="event">
+            <div class="date">2026-07-15</div>
+            <div><strong>人工標題優先分類修正</strong><p>使用者實機指出「吉」與「王家」已寫在卡片標題上，應優先於混合路徑判斷。feature commit d02844a 已補上吉布地、台灣／總部資料、馬來西亞／東馬、烏干達與 KD/KW 的分類優先規則，並重建 F/H generated photo pages；原始資料未動。</p></div>
+          </article>
           <article class="event">
             <div class="date">2026-07-15</div>
             <div><strong>KD / KW 靜態頁實機修復</strong><p>KD 固定歸伊拉克，KW 固定歸科威特；feature commit 429f652 已把修復工具改成重建伊拉克/科威特靜態頁，並已套用到 F/H speed 照片站。每顆硬碟各重建 143 頁、搬移 7619 張已生成卡片；原始照片、影片、Office、PDF 與資料夾未動。</p></div>
