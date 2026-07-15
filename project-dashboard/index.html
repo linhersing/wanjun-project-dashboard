@@ -669,11 +669,11 @@
         </div>
         <div class="grid">
           <article class="card span-12">
-            <span class="pill blocked">2026-07-15 分類校正 · commit cee246e</span>
-            <h3>KD / KW 國家代碼已修正；現有靜態頁需重產或批准後清理</h3>
-            <p>使用者校正：KD 是伊拉克，KW 才是科威特。feature 分支已把這條規則寫入照片動態索引，SQLite 會保存 country_label / country_token，API 與動態按國家頁可依國家查詢。</p>
-            <p>只讀 dry-run 顯示：F/H speed 版舊靜態照片頁各有 102 個科威特頁含 KD 卡片，約 7600 張卡片會受頁面級清理影響。因影響範圍太大，沒有直接刪除現場靜態頁，避免資料在前台消失。</p>
-            <p>本次沒有搬動、改名、刪除 F/H 原始照片、影片、Office、PDF 或資料夾；下一步應走完整重產分類頁，或由使用者明確批准後先備份再清理舊靜態頁。</p>
+            <span class="pill stable">2026-07-15 實機修復 · commit 429f652</span>
+            <h3>KD / KW 靜態照片頁已重建：KD 歸伊拉克，KW 歸科威特</h3>
+            <p>使用者實機指出：目前瀏覽器看的仍是舊靜態 HTML，所以只修動態 SQLite 還不夠；科威特頁仍大量顯示 KD 路徑，而且只刪錯卡會讓伊拉克資料消失。</p>
+            <p>已改用「重建靜態頁」方式修復 F/H speed 照片站：每顆硬碟各重建 143 個伊拉克/科威特頁、建立 96 個新頁、移除 92 個多餘舊分頁，並依路徑代碼搬移 7619 張已生成卡片。</p>
+            <p>驗證結果：伊拉克頁有 KD 且無 KW；科威特頁有 KW 且無 KD。這次只改已生成 HTML，沒有搬動、改名、刪除 F/H 原始照片、影片、Office、PDF 或資料夾。</p>
           </article>
           <article class="card span-12">
             <span class="pill stable">2026-07-10 現階段結論</span>
@@ -864,7 +864,7 @@
         <div class="timeline">
           <article class="event">
             <div class="date">2026-07-15</div>
-            <div><strong>KD / KW 國家代碼修正</strong><p>KD 固定歸伊拉克，KW 固定歸科威特；feature commit cee246e 已修動態索引與 API。F/H 舊 speed 靜態頁 dry-run 發現科威特頁大量混入 KD 卡片，尚未硬刪，需重產或批准後備份清理。</p></div>
+            <div><strong>KD / KW 靜態頁實機修復</strong><p>KD 固定歸伊拉克，KW 固定歸科威特；feature commit 429f652 已把修復工具改成重建伊拉克/科威特靜態頁，並已套用到 F/H speed 照片站。每顆硬碟各重建 143 頁、搬移 7619 張已生成卡片；原始照片、影片、Office、PDF 與資料夾未動。</p></div>
           </article>
           <article class="event">
             <div class="date">2026-05 待補</div>
