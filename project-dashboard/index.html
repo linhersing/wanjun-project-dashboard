@@ -632,8 +632,8 @@
         </article>
         <article class="metric">
           <div class="metric-label"><span class="drive-icon h">H</span><span class="experiment">H 狀態</span></div>
-          <strong>後台上架中心規劃</strong>
-          <p>H 作為實驗硬碟；方向改為簡單後台發布資料。</p>
+          <strong>後台上架按鈕 MVP</strong>
+          <p>H 作為實驗硬碟；待上架資料可用按鈕選分類並確認上架。</p>
         </article>
         <article class="metric">
           <div class="metric-label"><span class="drive-icon sync">↔</span><span class="pending">同步狀態</span></div>
@@ -668,6 +668,13 @@
           <span class="pill pending">最後更新：2026-07-17</span>
         </div>
         <div class="grid">
+          <article class="card span-12">
+            <span class="pill experiment">2026-07-17 後台上架按鈕 MVP</span>
+            <h3>上傳後不再只是放水箱：可以按分類按鈕確認上架</h3>
+            <p>使用者提出關鍵建議：待上架資料旁邊的系統建議應該變成可點選的按鈕，例如資料庫、國家、年份與月份；確認後，檔案就應該移到相對應的資料夾，而不是只停在暫存區。</p>
+            <p>feature 線已加入第一版可操作流程：H 後台待上架清單現在可選「歷史影像資料庫 / 窗口行政資料庫 / 素材與文件」、國家/分類、年份與月份，按「確認上架」後會移到 H 的「萬軍已上架資料」。</p>
+            <p>目前接得最完整的是歷史影像資料庫：照片/影片上架後會觸發照片索引更新，讓前台能讀取已上架根目錄。窗口行政資料庫與素材文件目前先安全放到已上架區，正式前台發布仍待下一階段。</p>
+          </article>
           <article class="card span-12">
             <span class="pill stable">2026-07-17 分頁圖示與後台定位校正</span>
             <h3>F/H 本機系統加入萬軍 favicon；待上架仍不是正式發布</h3>
@@ -812,8 +819,8 @@
           </article>
           <article class="card span-6">
             <span class="pill pending">尚未完成</span>
-            <h3>正式入口與 H-only 部署落差需先修正</h3>
-            <p>下一步不是恢復 H-wide Explorer，而是設計 H-only 資料上架中心。使用者把資料放入待上架區，後台掃描、預分類、人工確認後，再更新前台。</p>
+            <h3>下一步驗收後台上架是否真的更新前台</h3>
+            <p>下一步不是恢復 H-wide Explorer，而是驗收 H-only 資料上架中心：上傳或放入待上架區，按分類按鈕確認上架，照片資料庫前台能否讀到已上架內容。行政與素材前台發布仍待下一階段設計。</p>
           </article>
           <article class="card span-6">
             <span class="pill blocked">重要邊界</span>
@@ -847,8 +854,8 @@
             </tr>
             <tr>
               <td><span class="status-name"><span class="drive-icon h">H</span>H 硬碟</span></td>
-              <td><span class="pill pending">後台上架中心規劃</span></td>
-              <td>H 仍是實驗硬碟，但方向改為「硬碟是資料庫、瀏覽器前台乾淨、資料透過後台上架」。不再新增孤立檔案總管頁，也不再把工程操作放到照片資料庫主畫面。</td>
+              <td><span class="pill experiment">後台上架按鈕 MVP</span></td>
+              <td>H 仍是實驗硬碟；方向改為「硬碟是資料庫、瀏覽器前台乾淨、資料透過後台上架」。目前可在後台待上架清單用按鈕選分類並確認上架；照片資料庫已接索引更新，行政與素材前台發布仍待下一步。</td>
             </tr>
             <tr>
               <td><span class="status-name"><span class="drive-icon repo">G</span>GitHub private repo</span></td>
@@ -903,6 +910,10 @@
           <span class="pill stable">時間線</span>
         </div>
         <div class="timeline">
+          <article class="event">
+            <div class="date">2026-07-17</div>
+            <div><strong>後台上架建議變成可點選發布按鈕</strong><p>使用者指出：系統建議不應只是文字提示，應該能直接點選資料庫、國家、年份、月份並確認上架。feature 線已加入 `/__wanjun/backoffice/publish`，把待上架資料移到 H 的「萬軍已上架資料」；照片資料庫項目會觸發照片索引更新。行政與素材前台發布仍未完成。</p></div>
+          </article>
           <article class="event">
             <div class="date">2026-07-17</div>
             <div><strong>加入本機系統分頁圖示，重新界定待上架流程</strong><p>F/H 本機系統新增共用 favicon，讓資料中心、照片資料庫、窗口資料庫與後台分頁更容易辨識。同時確認：待上架區只是暫存與分類建議，還不是正式上架；後續要補「選目的地、人工確認、預覽、發布到前台」。</p></div>
