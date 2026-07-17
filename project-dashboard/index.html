@@ -669,6 +669,13 @@
         </div>
         <div class="grid">
           <article class="card span-12">
+            <span class="pill stable">2026-07-17 後台上架 MVP 調整</span>
+            <h3>資料上架中心從說明頁改為可新增資料的待上架入口</h3>
+            <p>使用者確認第一版後台仍太像靜態說明頁，真正需求是網站 CMS 式後台：可以新增照片、影片、文件與音訊，先進入待上架區，再由系統辨識、人工確認，最後才發布到前台。</p>
+            <p>本次調整方向：H-only 後台提供「新增到待上架區」、「打開待上架資料夾」、「待上架清單」與初步辨識欄位。分類編輯與發布到前台仍鎖住，避免未確認資料直接污染照片資料庫或行政資料庫。</p>
+            <p>安全邊界不變：F 不碰、不做 F/H 原始資料同步、不升版、不提交原始資料、SQLite、logs、runtime、完整本機路徑或 secrets。</p>
+          </article>
+          <article class="card span-12">
             <span class="pill stable">2026-07-17 後台入口第一版</span>
             <h3>首頁快速工具新增「資料上架中心」</h3>
             <p>使用者現場指出：前台首頁沒有任何可進入後台的按鈕，因此無法理解要從哪裡更新資料。本次已在資料中心首頁的「快速工具」加入「資料上架中心」，並新增本機路由 `/__wanjun/backoffice` 作為後台入口第一版。</p>
@@ -883,6 +890,10 @@
           <span class="pill stable">時間線</span>
         </div>
         <div class="timeline">
+          <article class="event">
+            <div class="date">2026-07-17</div>
+            <div><strong>資料上架中心改為上架 MVP</strong><p>使用者指出第一版後台只是靜態說明頁，無法真正新增資料。方向調整為 H-only CMS 式待上架流程：新增資料、列出待上架清單、初步辨識類型/年份/分類，分類確認與發布前台留到下一階段。</p></div>
+          </article>
           <article class="event">
             <div class="date">2026-07-17</div>
             <div><strong>資料上架中心入口第一版</strong><p>使用者確認前台首頁沒有後台入口，已在首頁快速工具新增「資料上架中心」，並新增 `/__wanjun/backoffice` 後台首頁。此版只建立入口與流程頁，不搬動、不改名、不刪除原始資料。</p></div>
