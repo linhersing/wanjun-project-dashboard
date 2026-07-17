@@ -632,8 +632,8 @@
         </article>
         <article class="metric">
           <div class="metric-label"><span class="drive-icon h">H</span><span class="experiment">H 狀態</span></div>
-          <strong>維持穩定外觀</strong>
-          <p>Windows 式操作與 H-wide 前台同步先暫停。</p>
+          <strong>後台上架中心規劃</strong>
+          <p>H 作為實驗硬碟；方向改為簡單後台發布資料。</p>
         </article>
         <article class="metric">
           <div class="metric-label"><span class="drive-icon sync">↔</span><span class="pending">同步狀態</span></div>
@@ -665,9 +665,16 @@
             <h2>最新消息</h2>
             <p class="panel-note">只放目前最需要知道的狀態；過去細節請切到「過去紀錄」。</p>
           </div>
-          <span class="pill pending">最後更新：2026-07-15</span>
+          <span class="pill pending">最後更新：2026-07-17</span>
         </div>
         <div class="grid">
+          <article class="card span-12">
+            <span class="pill stable">2026-07-17 產品方向確認</span>
+            <h3>H 硬碟是資料庫，使用者透過簡單後台上架資料，前台自動更新</h3>
+            <p>使用者重新定義最終需求：硬碟不是要變成複雜的瀏覽器版 Windows 檔案總管，而是像網站資料庫一樣保存原始資料；瀏覽器前台負責查找、瀏覽、開照片與文件；新增資料則應透過一個清楚、低學習成本的「資料上架中心」完成。</p>
+            <p>新的方向是 H-only 先行：F 保持穩定救生艇不動，H 作為實驗硬碟。第一版不做整顆 H watcher、不做複製剪下貼上、不把工程狀態放到照片資料庫主畫面，而是建立「待上架資料 → 掃描新資料 → 系統預分類 → 人工確認 → 更新前台」的上架流程。</p>
+            <p>介面原則：前台仍像照片資料庫與行政資料庫；後台入口可以叫「資料上架中心」，但不能顯示 SQLite、generation、managedRoot、watcher 等工程語言。目標是中老年使用者也能照著按鈕完成資料新增。</p>
+          </article>
           <article class="card span-12">
             <span class="pill stable">2026-07-15 分類精準度修復 · commit d02844a</span>
             <h3>人工標題/檔名優先：吉歸吉布地，王家歸台灣／總部資料</h3>
@@ -780,7 +787,7 @@
           <article class="card span-6">
             <span class="pill pending">尚未完成</span>
             <h3>正式入口與 H-only 部署落差需先修正</h3>
-            <p>下一步不是再新增功能，而是先讓使用者從 H 的實際入口看得到 H-wide Explorer，並重新驗證新增、改名、複製、剪下、貼上與安全回收區。</p>
+            <p>下一步不是恢復 H-wide Explorer，而是設計 H-only 資料上架中心。使用者把資料放入待上架區，後台掃描、預分類、人工確認後，再更新前台。</p>
           </article>
           <article class="card span-6">
             <span class="pill blocked">重要邊界</span>
@@ -814,8 +821,8 @@
             </tr>
             <tr>
               <td><span class="status-name"><span class="drive-icon h">H</span>H 硬碟</span></td>
-              <td><span class="pill pending">維持目前穩定狀態</span></td>
-              <td>H 仍可作為未來實驗硬碟，但本輪 Windows 式操作、H-wide 前台同步與 watcher 先停下來。現在不再新增孤立檔案總管頁，也不再把工程操作放到照片資料庫主畫面。</td>
+              <td><span class="pill pending">後台上架中心規劃</span></td>
+              <td>H 仍是實驗硬碟，但方向改為「硬碟是資料庫、瀏覽器前台乾淨、資料透過後台上架」。不再新增孤立檔案總管頁，也不再把工程操作放到照片資料庫主畫面。</td>
             </tr>
             <tr>
               <td><span class="status-name"><span class="drive-icon repo">G</span>GitHub private repo</span></td>
@@ -870,6 +877,10 @@
           <span class="pill stable">時間線</span>
         </div>
         <div class="timeline">
+          <article class="event">
+            <div class="date">2026-07-17</div>
+            <div><strong>H 後台上架中心方向確認</strong><p>使用者確認新 P0 定義：H 硬碟是資料庫，使用者透過簡單後台上架資料，前台自動更新，而且介面要像給一般人用的系統，不是工程工具。下一步改為 H-only 資料上架中心 MVP 規劃；F 保持冷凍，不做 F/H 原始資料同步。</p></div>
+          </article>
           <article class="event">
             <div class="date">2026-07-15</div>
             <div><strong>人工標題優先分類修正</strong><p>使用者實機指出「吉」與「王家」已寫在卡片標題上，應優先於混合路徑判斷。feature commit d02844a 已補上吉布地、台灣／總部資料、馬來西亞／東馬、烏干達與 KD/KW 的分類優先規則，並重建 F/H generated photo pages；原始資料未動。</p></div>
@@ -1013,7 +1024,7 @@
         <div class="panel-head">
           <div>
             <h2>自動化方案</h2>
-            <p class="panel-note">目前不實作硬碟自動同步；這裡只保留未來可選方案與安全邊界。</p>
+            <p class="panel-note">目前自動化方向改為 H-only 資料上架中心；先做使用者可理解的發布流程，再談 watcher。</p>
           </div>
           <span class="pill pending">暫緩</span>
         </div>
@@ -1024,9 +1035,9 @@
             <p>GitHub Pages 是公開靜態網站，瀏覽器不能讀取 USB 硬碟、磁碟代號、driveId 或本機路徑。這不是設計問題，是安全限制。</p>
           </article>
           <article class="card span-4">
-            <span class="pill pending">可行方案</span>
-            <h3>Windows 本機狀態摘要器</h3>
-            <p>若未來重新啟動，可在插著硬碟的 Windows 電腦上執行，只讀取版本、角色、是否存在與最後更新時間等安全摘要。</p>
+            <span class="pill stable">建議方向</span>
+            <h3>H-only 資料上架中心</h3>
+            <p>先讓使用者把新資料放進 H 的待上架區，再由本機後台掃描、預分類、人工確認並更新前台。這比直接監看整顆 H 更可控，也更像網站 CMS。</p>
           </article>
           <article class="card span-4">
             <span class="pill stable">公開看板</span>
@@ -1039,13 +1050,13 @@
             <p>本網站不會自動讀取 ChatGPT 對話，也不會自動讀硬碟。使用者在本對話提出修正後，Codex 會整理摘要、更新 dashboard repo、commit/push，網站才會更新。</p>
           </article>
           <article class="card span-6">
-            <span class="pill pending">未來可選</span>
+            <span class="pill pending">第二順位</span>
             <h3>本機安全摘要器</h3>
-            <p>若未來要自動顯示 F/H 狀態，可新增 Windows 本機工具，只輸出遮蔽後狀態，不碰原始資料、不做同步、不公開敏感資訊。</p>
+            <p>若未來要自動顯示 F/H 狀態，可新增 Windows 本機工具，只輸出遮蔽後狀態，不碰原始資料、不做同步、不公開敏感資訊。這不是目前第一優先。</p>
           </article>
         </div>
         <div class="callout" style="margin-top:14px">
-          目前不建議立刻實作 `Export-WanjunDashboardStatus.ps1`。若未來要做，它也只能產生 public-safe 狀態摘要，不碰 F/H 原始資料，不做同步、不搬動、不刪除。
+          目前不建議立刻實作 `Export-WanjunDashboardStatus.ps1`。下一個較合理的方向是 H-only「資料上架中心」：讓新增資料先進待上架區，經預覽確認後再更新前台。
         </div>
       </section>
 
@@ -1088,20 +1099,20 @@
       <section class="panel" id="next-step" data-panel="next">
         <div class="panel-head">
           <div>
-            <h2>下一步：先保持穩定</h2>
-            <p class="panel-note">Windows 操作與跨電腦同步都暫停；目前先把狀態、限制與可用流程整理清楚。</p>
+            <h2>下一步：H-only 資料上架中心</h2>
+            <p class="panel-note">不再把前台做成工程測試頁；改用像網站 CMS 的簡單後台完成資料新增與前台更新。</p>
           </div>
-          <span class="pill stable">目前狀態：功能暫停</span>
+          <span class="pill pending">目前狀態：規劃中</span>
         </div>
         <div class="grid">
           <article class="card span-7">
             <h3>目前建議順序</h3>
             <ul class="list">
-              <li>F 保持冷凍穩定基準；H 先維持目前可用狀態，不再新增實驗前台。</li>
-              <li>硬碟資料先用 Windows 檔案總管整理；前台仍以穩定照片與行政資料瀏覽為主。</li>
+              <li>F 保持冷凍穩定基準；H 作為第一顆後台上架流程實驗硬碟。</li>
+              <li>前台仍以穩定照片與行政資料瀏覽為主；後台入口另設「資料上架中心」。</li>
               <li>GitHub 保留作程式、文件、版本紀錄與公開專案報告，不當作原始資料同步工具。</li>
               <li>每次需求、決策或狀態修正時，同步更新這個公開看板，讓手機與 Gemini 都能讀到最新脈絡。</li>
-              <li>若未來重啟 Windows 式操作，必須先做新的 UI 設計稿與小範圍驗收，不再直接把工程介面塞進照片資料庫主畫面。</li>
+              <li>第一版只設計「待上架資料 → 掃描 → 預分類 → 人工確認 → 更新前台」流程，不先做複製剪下貼上或整顆 H watcher。</li>
             </ul>
           </article>
           <article class="card span-5">
@@ -1111,7 +1122,7 @@
               <li>不做 F，不做 F/H 同步。</li>
               <li>不讓前台直接改讀新 SQLite。</li>
               <li>不開 watcher。</li>
-              <li>不繼續推瀏覽器內 Windows 操作。</li>
+              <li>不繼續推瀏覽器內 Windows 操作作為第一版。</li>
               <li>不新增孤立 h-explorer 主頁。</li>
               <li>不合併 main、不升正式版，除非使用者另外批准。</li>
               <li>不提交 SQLite、logs、runtime、temp 輸出、driveId、secrets。</li>
