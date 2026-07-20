@@ -632,8 +632,8 @@
         </article>
         <article class="metric">
           <div class="metric-label"><span class="drive-icon h">H</span><span class="experiment">H 狀態</span></div>
-          <strong>後台滿版上架修正版</strong>
-          <p>H 作為實驗硬碟；後台改成滿版卡片，每筆待上架資料都有清楚分類按鈕與確認上架動作。</p>
+          <strong>後台前台卡片結果修正版</strong>
+          <p>H 作為實驗硬碟；歷史影像資料上架後會先顯示瀏覽器前台卡片，不再只導向硬碟資料夾。</p>
         </article>
         <article class="metric">
           <div class="metric-label"><span class="drive-icon sync">↔</span><span class="pending">同步狀態</span></div>
@@ -668,6 +668,13 @@
           <span class="pill pending">最後更新：2026-07-20</span>
         </div>
         <div class="grid">
+          <article class="card span-12">
+            <span class="pill experiment">2026-07-20 後台上架結果修正</span>
+            <h3>上架成功後，要看得到「前台卡片」，不是只打開硬碟資料夾</h3>
+            <p>使用者校正核心誤解：資料上架不是把檔案放到硬碟某個資料夾就結束，而是要能在照片資料庫前台看到新的格子、圖片與操作按鈕。這次補上 H-only 歷史影像資料的前台結果頁。</p>
+            <p>Runtime feature commit：<code>f30a595</code>。歷史影像資料庫項目上架成功後會導向 <code>/__wanjun/photo-index/published?rel=...</code>，用照片資料庫前台卡片樣式顯示剛上架的項目；上架紀錄也新增「查看前台卡片」。硬碟本體操作改名為「開啟硬碟資料 / 開啟所在資料夾」，避免混淆。</p>
+            <p>同時補強新上架資料的國家辨識：中文目的地資料夾「伊拉克」「科威特」「尼泊爾」會被標成對應國家，並保留 KD=伊拉克、KW=科威特規則。這仍是 H 實驗線，不碰 F、不做 F/H 原始資料同步、不升版、不合併 main。</p>
+          </article>
           <article class="card span-12">
             <span class="pill experiment">2026-07-20 後台上架成功紀錄</span>
             <h3>上架成功後，後台會留下「最近上架成功紀錄」</h3>
@@ -925,6 +932,10 @@
         <div class="timeline">
           <article class="event">
             <div class="date">2026-07-20</div>
+            <div><strong>後台上架結果改為前台卡片</strong><p>使用者指出「開啟所在資料夾」不是上架到前台。feature commit f30a595 新增 `/__wanjun/photo-index/published?rel=...`，歷史影像資料上架成功後會用照片資料庫卡片樣式顯示該項目；後台成功紀錄也新增「查看前台卡片」。硬碟操作按鈕改名為「開啟硬碟資料 / 開啟所在資料夾」，避免再把前台結果和實體資料夾混在一起。</p></div>
+          </article>
+          <article class="event">
+            <div class="date">2026-07-20</div>
             <div><strong>後台補上上架成功紀錄</strong><p>使用者成功上架後找不到結果頁，因此 feature commit d9b3d6b 在 `/__wanjun/backoffice` 新增「最近上架成功紀錄」。成功後會保留相對位置、資料庫、分類與狀態，並提供開啟上架資料與所在資料夾的按鈕。這只讀取 H 本機 operation log，不提交 log/SQLite/runtime，也不碰 F。</p></div>
           </article>
           <article class="event">
@@ -1176,7 +1187,7 @@
             <h2>下一步：H-only 資料上架中心</h2>
             <p class="panel-note">不再把前台做成工程測試頁；改用像網站 CMS 的簡單後台完成資料新增與前台更新。</p>
           </div>
-          <span class="pill pending">目前狀態：規劃中</span>
+          <span class="pill experiment">目前狀態：H-only 第一版打磨中</span>
         </div>
         <div class="grid">
           <article class="card span-7">
@@ -1187,6 +1198,7 @@
               <li>GitHub 保留作程式、文件、版本紀錄與公開專案報告，不當作原始資料同步工具。</li>
               <li>每次需求、決策或狀態修正時，同步更新這個公開看板，讓手機與 Gemini 都能讀到最新脈絡。</li>
               <li>第一版只設計「待上架資料 → 掃描 → 預分類 → 人工確認 → 更新前台」流程，不先做複製剪下貼上或整顆 H watcher。</li>
+              <li>歷史影像資料上架成功後，必須先能看到前台卡片；不能只停在硬碟資料夾或操作紀錄。</li>
             </ul>
           </article>
           <article class="card span-5">
