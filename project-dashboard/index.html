@@ -632,8 +632,8 @@
         </article>
         <article class="metric">
           <div class="metric-label"><span class="drive-icon h">H</span><span class="experiment">H 狀態</span></div>
-          <strong>後台上架按鈕 MVP</strong>
-          <p>H 作為實驗硬碟；待上架資料可用按鈕選分類並確認上架。</p>
+          <strong>後台滿版上架修正版</strong>
+          <p>H 作為實驗硬碟；後台改成滿版卡片，每筆待上架資料都有清楚分類按鈕與確認上架動作。</p>
         </article>
         <article class="metric">
           <div class="metric-label"><span class="drive-icon sync">↔</span><span class="pending">同步狀態</span></div>
@@ -665,9 +665,15 @@
             <h2>最新消息</h2>
             <p class="panel-note">只放目前最需要知道的狀態；過去細節請切到「過去紀錄」。</p>
           </div>
-          <span class="pill pending">最後更新：2026-07-17</span>
+          <span class="pill pending">最後更新：2026-07-20</span>
         </div>
         <div class="grid">
+          <article class="card span-12">
+            <span class="pill experiment">2026-07-20 後台滿版上架 UX 修正</span>
+            <h3>「待確認」不再只是看得到、按不到的狀態</h3>
+            <p>使用者實機指出：上傳成功後，待上架清單雖然顯示系統建議與「待確認」，但那些看起來不是可操作按鈕，下一步不清楚。因此本次把 H-only 資料上架中心改成滿版後台卡片。</p>
+            <p>每筆待上架資料現在會顯示明確步驟：選資料庫、選國家或分類、選年份、選月份，最後按「確認上架到前台」。這次是介面可用性修正，不擴大 F、不升版、不合併 main，也不做 F/H 原始資料同步。</p>
+          </article>
           <article class="card span-12">
             <span class="pill experiment">2026-07-17 後台上架按鈕 MVP</span>
             <h3>上傳後不再只是放水箱：可以按分類按鈕確認上架</h3>
@@ -854,8 +860,8 @@
             </tr>
             <tr>
               <td><span class="status-name"><span class="drive-icon h">H</span>H 硬碟</span></td>
-              <td><span class="pill experiment">後台上架按鈕 MVP</span></td>
-              <td>H 仍是實驗硬碟；方向改為「硬碟是資料庫、瀏覽器前台乾淨、資料透過後台上架」。目前可在後台待上架清單用按鈕選分類並確認上架；照片資料庫已接索引更新，行政與素材前台發布仍待下一步。</td>
+              <td><span class="pill experiment">後台滿版上架修正版</span></td>
+              <td>H 仍是實驗硬碟；方向維持「硬碟是資料庫、瀏覽器前台乾淨、資料透過後台上架」。目前後台待上架清單已改成滿版卡片式操作，可用清楚按鈕選資料庫、國家/分類、年份、月份並確認上架；照片資料庫已接索引更新，行政與素材前台發布仍待下一步。</td>
             </tr>
             <tr>
               <td><span class="status-name"><span class="drive-icon repo">G</span>GitHub private repo</span></td>
@@ -910,6 +916,10 @@
           <span class="pill stable">時間線</span>
         </div>
         <div class="timeline">
+          <article class="event">
+            <div class="date">2026-07-20</div>
+            <div><strong>後台改成滿版卡片式上架操作</strong><p>使用者指出「待確認」看起來只是狀態、不能點，後台也太窄。本次將 `/__wanjun/backoffice` 待上架清單由表格改為滿版上架卡，每筆資料都有選資料庫、選國家/分類、選年份、選月份與「確認上架到前台」按鈕。這是 H-only UX 修正；F 不碰、main 不合併、VERSION 不升。</p></div>
+          </article>
           <article class="event">
             <div class="date">2026-07-17</div>
             <div><strong>後台上架建議變成可點選發布按鈕</strong><p>使用者指出：系統建議不應只是文字提示，應該能直接點選資料庫、國家、年份、月份並確認上架。feature 線已加入 `/__wanjun/backoffice/publish`，把待上架資料移到 H 的「萬軍已上架資料」；照片資料庫項目會觸發照片索引更新。行政與素材前台發布仍未完成。</p></div>
