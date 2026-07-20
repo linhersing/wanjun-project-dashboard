@@ -669,6 +669,13 @@
         </div>
         <div class="grid">
           <article class="card span-12">
+            <span class="pill experiment">2026-07-20 後台上架成功紀錄</span>
+            <h3>上架成功後，後台會留下「最近上架成功紀錄」</h3>
+            <p>使用者實機回報：資料似乎已成功上架，但後來不知道它去了哪裡，也不知道哪一頁可以回頭確認。這次補上 H-only 後台的結果追蹤。</p>
+            <p>Runtime feature commit：<code>d9b3d6b</code>。`/__wanjun/backoffice` 現在會顯示「最近上架成功紀錄」：每筆成功上架資料可看到資料庫、年份、國家/分類、月份、相對位置與目前是否存在，並提供「開啟上架資料」與「開啟所在資料夾」。</p>
+            <p>這是後台可追蹤性修正：不提交本機 log、不提交 SQLite、不碰 F、不做 F/H 原始資料同步、不升版、不合併 main。</p>
+          </article>
+          <article class="card span-12">
             <span class="pill experiment">2026-07-20 後台滿版上架 UX 修正</span>
             <h3>「待確認」不再只是看得到、按不到的狀態</h3>
             <p>使用者實機指出：上傳成功後，待上架清單雖然顯示系統建議與「待確認」，但那些看起來不是可操作按鈕，下一步不清楚。因此本次把 H-only 資料上架中心改成滿版後台卡片。</p>
@@ -916,6 +923,10 @@
           <span class="pill stable">時間線</span>
         </div>
         <div class="timeline">
+          <article class="event">
+            <div class="date">2026-07-20</div>
+            <div><strong>後台補上上架成功紀錄</strong><p>使用者成功上架後找不到結果頁，因此 feature commit d9b3d6b 在 `/__wanjun/backoffice` 新增「最近上架成功紀錄」。成功後會保留相對位置、資料庫、分類與狀態，並提供開啟上架資料與所在資料夾的按鈕。這只讀取 H 本機 operation log，不提交 log/SQLite/runtime，也不碰 F。</p></div>
+          </article>
           <article class="event">
             <div class="date">2026-07-20</div>
             <div><strong>後台改成滿版卡片式上架操作</strong><p>使用者指出「待確認」看起來只是狀態、不能點，後台也太窄。本次將 `/__wanjun/backoffice` 待上架清單由表格改為滿版上架卡，每筆資料都有選資料庫、選國家/分類、選年份、選月份與「確認上架到前台」按鈕。這是 H-only UX 修正；F 不碰、main 不合併、VERSION 不升。</p></div>
