@@ -670,6 +670,13 @@
         </div>
         <div class="grid">
           <article class="card span-12">
+            <span class="pill experiment">2026-07-21 南蘇丹上架前台修正 · runtime commit df766cb</span>
+            <h3>南蘇丹 2026 已上架但國家頁漏出，原因是國家沒有寫進索引</h3>
+            <p>使用者實機指出：後台已選南蘇丹、2026、07月並確認上架，但「按國家 → 南蘇丹」仍只到 2025。診斷確認檔案已進 H 已上架資料區，單筆 upsert 也有紀錄，但 photo SQLite 原本沒有把這筆標成南蘇丹，所以國家頁查不到。</p>
+            <p>修正後，後台上架到歷史影像資料庫時，索引器會直接採用已上架路徑中的國家層級作為 country_label，不再只靠檔名猜測。H 實機已重新 upsert 該筆南蘇丹 2026 資料，API 與舊國家頁都可看到 2026。</p>
+            <p>安全狀態：F 未碰、main 未合併、VERSION 未升版、未做 F/H 原始資料同步；本次只更新程式、測試、文件與 GitHub-safe 看板。</p>
+          </article>
+          <article class="card span-12">
             <span class="pill experiment">2026-07-21 後台人工分類面板 · H-only</span>
             <h3>上傳後可以人工選目的地，不再只是「待確認」標籤</h3>
             <p>使用者提出更清楚的後台方向：資料先上傳到待上架區，再用按鈕選資料庫、國家/分類、年份、月份與相簿名稱，確認後才發布到前台。這次 feature 線已把後台待上架項目改成可操作的分類面板，支援自訂國家、年份、月份與相簿名稱。</p>
@@ -978,6 +985,10 @@
           <span class="pill stable">時間線</span>
         </div>
         <div class="timeline">
+          <article class="event">
+            <div class="date">2026-07-21</div>
+            <div><strong>南蘇丹上架國家索引修正</strong><p>使用者回報：後台已把資料上架到南蘇丹、2026、07月，但前台「按國家 → 南蘇丹」仍看不到 2026。診斷確認檔案與上架紀錄存在，問題在 SQLite 索引沒有保留 backoffice 已選的國家。runtime commit df766cb 修正後，已上架路徑中的國家層級會直接成為 country_label；H 現場已重新 upsert 該筆資料並驗證國家頁補出 2026。F 未碰、main 未合併、VERSION 未升版。</p></div>
+          </article>
           <article class="event">
             <div class="date">2026-07-21</div>
             <div><strong>後台人工分類面板</strong><p>使用者確認後台不應只把資料丟進水箱，而是要能用按鈕選目的地。feature 線已讓待上架項目可選資料庫、國家/分類、年份、月份與相簿名稱；歷史影像資料上架後會移到 H 已上架資料區並更新照片 SQLite。後續補正為「依資料庫切換欄位」：照片不顯示行政資料夾，行政不顯示照片國家分類，素材不顯示照片月份。行政/素材前台發布、批次上架與 OCR 辨識仍未完成。</p></div>
