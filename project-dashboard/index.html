@@ -670,6 +670,12 @@
         </div>
         <div class="grid">
           <article class="card span-12">
+            <span class="pill experiment">2026-07-21 尼泊爾 2026 年度按鈕修正 · commit 05970ec</span>
+            <h3>修正「頁面有 2026 字樣，但沒有真正 2026 入口」的誤判</h3>
+            <p>使用者實機截圖指出：尼泊爾國家頁仍看不到 2026。原因是舊頁說明文字提到 2026，程式誤以為年度卡片已存在，所以沒有插入真正的 `__2026.html` 年度入口。</p>
+            <p>runtime feature commit <code>05970ec</code> 已改成只認真正年度連結或年度卡片，不再把一般說明文字當成年度入口。H 實機驗證：尼泊爾國家頁已有真正 2026 入口，進入後也能看到 07 月份/資料夾層級。</p>
+          </article>
+          <article class="card span-12">
             <span class="pill experiment">2026-07-21 國家年份頁補月份/資料夾 · commit 173a9fe</span>
             <h3>按國家進 2026 後，先看到月份與資料夾，再看照片卡片</h3>
             <p>使用者澄清需求：不是只要搜尋找到上架照片，而是前台正常路徑要成立，例如「按國家 → 尼泊爾 → 2026 → 07月資料夾 → 照片卡片」。</p>
@@ -959,6 +965,10 @@
           <span class="pill stable">時間線</span>
         </div>
         <div class="timeline">
+          <article class="event">
+            <div class="date">2026-07-21</div>
+            <div><strong>尼泊爾 2026 年度入口誤判修正</strong><p>使用者回報國家頁看不到 2026；修正後只把真正的 `__2026.html` 連結或年度卡片算作已存在，不再被說明文字誤導。H 已驗證尼泊爾國家頁有 2026 入口，country-year 頁有 07 月份/資料夾層級。</p></div>
+          </article>
           <article class="event">
             <div class="date">2026-07-21</div>
             <div><strong>國家年份頁補上月份/資料夾層級</strong><p>修正上架資料只在搜尋或單張結果頁出現的問題：缺少舊靜態頁時，動態備援會呈現「國家 → 年份 → 月份/資料夾 → 卡片」的前台瀏覽路徑。H 已驗證尼泊爾 2026 可看到 07 月層級；F 未碰、main 未合併、VERSION 未升版。</p></div>
