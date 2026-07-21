@@ -632,8 +632,8 @@
         </article>
         <article class="metric">
           <div class="metric-label"><span class="drive-icon h">H</span><span class="experiment">H 狀態</span></div>
-          <strong>後台前台卡片結果修正版</strong>
-          <p>H 作為實驗硬碟；歷史影像資料上架後會先顯示瀏覽器前台卡片，不再只導向硬碟資料夾。</p>
+          <strong>後台前台卡片與單筆上架加速修正版</strong>
+          <p>H 作為實驗硬碟；歷史影像資料上架後會用前台卡片確認，且單筆上架不再每次完整掃描大量照片索引。</p>
         </article>
         <article class="metric">
           <div class="metric-label"><span class="drive-icon sync">↔</span><span class="pending">同步狀態</span></div>
@@ -665,9 +665,16 @@
             <h2>最新消息</h2>
             <p class="panel-note">只放目前最需要知道的狀態；過去細節請切到「過去紀錄」。</p>
           </div>
-          <span class="pill pending">最後更新：2026-07-20</span>
+          <span class="pill pending">最後更新：2026-07-21</span>
         </div>
         <div class="grid">
+          <article class="card span-12">
+            <span class="pill experiment">2026-07-21 後台上架流程修正</span>
+            <h3>前台結果改開新分頁，連結不再跑到錯誤路徑，單筆上架加速</h3>
+            <p>使用者實機指出：從後台上架後查看前台卡片時，若結果頁把作業中的後台頁面帶走，容易關錯視窗；同時前台結果頁內的「按國家 / 按年份 / 搜尋」連結會跑到 <code>/__wanjun/photo-index/...</code> 而顯示找不到資料。</p>
+            <p>Runtime feature commit：<code>73716dd</code>。`確認上架到前台` 與「查看前台卡片」改為新分頁開啟；照片資料庫導覽與「看同年份 / 看同國家 / 用前台搜尋查看」改為根目錄連結，回到真正前台頁面。</p>
+            <p>速度修正：歷史影像資料上架後先做單筆 <code>single-path-upsert</code>，只把剛上架的項目寫進 H 本機 photo SQLite。H 實機驗證單筆索引只掃 1 筆，約 85ms；完整 refresh 仍保留作為失敗備援。這仍不是整顆 H 自動同步，也還不是批次發布完成。</p>
+          </article>
           <article class="card span-12">
             <span class="pill experiment">2026-07-20 後台上架結果修正</span>
             <h3>上架成功後，要看得到「前台卡片」，不是只打開硬碟資料夾</h3>
@@ -874,8 +881,8 @@
             </tr>
             <tr>
               <td><span class="status-name"><span class="drive-icon h">H</span>H 硬碟</span></td>
-              <td><span class="pill experiment">後台滿版上架修正版</span></td>
-              <td>H 仍是實驗硬碟；方向維持「硬碟是資料庫、瀏覽器前台乾淨、資料透過後台上架」。目前後台待上架清單已改成滿版卡片式操作，可用清楚按鈕選資料庫、國家/分類、年份、月份並確認上架；照片資料庫已接索引更新，行政與素材前台發布仍待下一步。</td>
+              <td><span class="pill experiment">後台前台卡片與單筆上架加速修正版</span></td>
+              <td>H 仍是實驗硬碟；方向維持「硬碟是資料庫、瀏覽器前台乾淨、資料透過後台上架」。目前歷史影像資料上架後可用前台卡片確認，前台結果連結已修正為根目錄路徑，單筆上架改為只更新該項 SQLite 索引。行政與素材前台發布、批次發布、整顆 H 自動同步仍待下一步。</td>
             </tr>
             <tr>
               <td><span class="status-name"><span class="drive-icon repo">G</span>GitHub private repo</span></td>
@@ -930,6 +937,10 @@
           <span class="pill stable">時間線</span>
         </div>
         <div class="timeline">
+          <article class="event">
+            <div class="date">2026-07-21</div>
+            <div><strong>後台前台結果新分頁與單筆上架加速</strong><p>使用者指出後台作業頁不應被前台結果頁取代，且動態結果頁的前台導覽會跑到錯誤 `/__wanjun/photo-index/2026...` 路徑。feature commit 73716dd 將上架結果與查看前台卡片改為新分頁，前台導覽改為根目錄連結，並新增 `single-path-upsert`，讓歷史影像單筆上架只更新該項 SQLite 索引，不再每次完整掃描大量照片資料。</p></div>
+          </article>
           <article class="event">
             <div class="date">2026-07-20</div>
             <div><strong>後台上架結果改為前台卡片</strong><p>使用者指出「開啟所在資料夾」不是上架到前台。feature commit f30a595 新增 `/__wanjun/photo-index/published?rel=...`，歷史影像資料上架成功後會用照片資料庫卡片樣式顯示該項目；後台成功紀錄也新增「查看前台卡片」。硬碟操作按鈕改名為「開啟硬碟資料 / 開啟所在資料夾」，避免再把前台結果和實體資料夾混在一起。</p></div>
@@ -1198,7 +1209,8 @@
               <li>GitHub 保留作程式、文件、版本紀錄與公開專案報告，不當作原始資料同步工具。</li>
               <li>每次需求、決策或狀態修正時，同步更新這個公開看板，讓手機與 Gemini 都能讀到最新脈絡。</li>
               <li>第一版只設計「待上架資料 → 掃描 → 預分類 → 人工確認 → 更新前台」流程，不先做複製剪下貼上或整顆 H watcher。</li>
-              <li>歷史影像資料上架成功後，必須先能看到前台卡片；不能只停在硬碟資料夾或操作紀錄。</li>
+              <li>歷史影像資料上架成功後，先用新分頁查看前台卡片，確認卡片、同年、同國家與搜尋連結都回到真正前台。</li>
+              <li>下一步若繼續做後台，優先處理批次上架與行政/素材的前台發布流程，而不是回到整顆 H watcher。</li>
             </ul>
           </article>
           <article class="card span-5">
