@@ -70,9 +70,9 @@
     }
 
     .page {
-      width: min(1180px, 100%);
+      width: min(1760px, calc(100% - 28px));
       margin: 0 auto;
-      padding: 18px 18px 42px;
+      padding: 18px 0 42px;
     }
 
     .topbar {
@@ -520,7 +520,8 @@
 
     @media (max-width: 980px) {
       .page {
-        padding: 14px 12px 34px;
+        width: calc(100% - 16px);
+        padding: 14px 0 34px;
       }
 
       .topbar {
@@ -632,8 +633,8 @@
         </article>
         <article class="metric">
           <div class="metric-label"><span class="drive-icon h">H</span><span class="experiment">H 狀態</span></div>
-          <strong>後台前台卡片與單筆上架加速修正版</strong>
-          <p>H 作為實驗硬碟；歷史影像資料上架後會用前台卡片確認，且單筆上架不再每次完整掃描大量照片索引。</p>
+          <strong>後台上架實驗版</strong>
+          <p>H 作為實驗硬碟；上架後可看前台卡片，國家/年份舊入口已補動態橋接。</p>
         </article>
         <article class="metric">
           <div class="metric-label"><span class="drive-icon sync">↔</span><span class="pending">同步狀態</span></div>
@@ -668,6 +669,14 @@
           <span class="pill pending">最後更新：2026-07-21</span>
         </div>
         <div class="grid">
+          <article class="card span-12">
+            <span class="pill experiment">2026-07-21 國家年份與上架紀錄修正 · commit ceafa44</span>
+            <h3>尼泊爾 2026 不再只出現在上架結果頁；舊國家頁也能看到動態年份</h3>
+            <p>使用者實機指出：後台上架後，前台卡片頁能看到新照片，但進入「按國家 → 尼泊爾」時年份仍只到 2025。這不是資料沒上架，而是舊靜態國家頁仍在顯示舊 HTML。</p>
+            <p>runtime feature commit：<code>ceafa44</code>。舊網址 <code>2026整理_pages/countries/&lt;國家&gt;.html</code> 與 <code>2026整理_pages/country_year/&lt;國家&gt;/...</code> 現在會讀 H 本機 photo SQLite 補出動態國家年份；<code>?legacy=1</code> 仍可回靜態備援。</p>
+            <p>同次修正：最近上架成功紀錄新增「重新命名」與「移到回收區」。移到回收區不是永久刪除，會同步把前台索引中的舊路徑標記移除。H 實機服務已重啟驗證：尼泊爾舊國家頁可看到 2026，後台頁可看到改名/回收操作。</p>
+            <p>仍未完成：整顆 H 自動同步、批次上架、行政/素材正式前台發布、F 更新。F 仍保持不動；main 未合併；VERSION 仍是 <code>v2026.07.01-18</code>。</p>
+          </article>
           <article class="card span-12">
             <span class="pill experiment">2026-07-21 後台上架流程修正</span>
             <h3>前台結果改開新分頁，連結不再跑到錯誤路徑，單筆上架加速</h3>
@@ -937,6 +946,10 @@
           <span class="pill stable">時間線</span>
         </div>
         <div class="timeline">
+          <article class="event">
+            <div class="date">2026-07-21</div>
+            <div><strong>國家年份舊入口補動態橋接，最近上架紀錄可管理</strong><p>使用者指出：尼泊爾上架後，前台卡片能看到，但「按國家 → 尼泊爾」舊頁仍只到 2025。feature commit ceafa44 讓舊國家頁與舊 country-year 頁讀取本顆硬碟 photo SQLite，補出 2026 等新年份；同時在最近上架成功紀錄新增「重新命名」與「移到回收區」。H 已部署重啟驗證；F 不碰，main 不合併，VERSION 不升。</p></div>
+          </article>
           <article class="event">
             <div class="date">2026-07-21</div>
             <div><strong>後台前台結果新分頁與單筆上架加速</strong><p>使用者指出後台作業頁不應被前台結果頁取代，且動態結果頁的前台導覽會跑到錯誤 `/__wanjun/photo-index/2026...` 路徑。feature commit 73716dd 將上架結果與查看前台卡片改為新分頁，前台導覽改為根目錄連結，並新增 `single-path-upsert`，讓歷史影像單筆上架只更新該項 SQLite 索引，不再每次完整掃描大量照片資料。</p></div>
