@@ -670,6 +670,12 @@
         </div>
         <div class="grid">
           <article class="card span-12">
+            <span class="pill experiment">2026-07-21 國家年份頁補月份/資料夾 · commit 173a9fe</span>
+            <h3>按國家進 2026 後，先看到月份與資料夾，再看照片卡片</h3>
+            <p>使用者澄清需求：不是只要搜尋找到上架照片，而是前台正常路徑要成立，例如「按國家 → 尼泊爾 → 2026 → 07月資料夾 → 照片卡片」。</p>
+            <p>runtime feature commit <code>173a9fe</code> 修正舊 country-year 動態備援頁：當舊 HTML 沒有該國 2026 頁面時，會先依月份與資料夾整理，再列出照片、影片與文件卡片。這仍是 H 實驗線功能，不代表整顆硬碟 watcher 或 F/H 同步完成。</p>
+          </article>
+          <article class="card span-12">
             <span class="pill experiment">2026-07-21 前台外觀回復修正 · commit e72ee59</span>
             <h3>保留原本照片資料庫畫面，只補缺少的 2026 / 2027 入口</h3>
             <p>使用者實機指出：點進尼泊爾、巴基斯坦等舊國家頁時，畫面被換成新的 SQLite 卡片頁，不是原本照片資料庫的版面。這次修正方向改為：既有 HTML 頁面如果存在，就保留原本外觀，不再整頁替換成工程感的動態頁。</p>
@@ -953,6 +959,10 @@
           <span class="pill stable">時間線</span>
         </div>
         <div class="timeline">
+          <article class="event">
+            <div class="date">2026-07-21</div>
+            <div><strong>國家年份頁補上月份/資料夾層級</strong><p>修正上架資料只在搜尋或單張結果頁出現的問題：缺少舊靜態頁時，動態備援會呈現「國家 → 年份 → 月份/資料夾 → 卡片」的前台瀏覽路徑。H 已驗證尼泊爾 2026 可看到 07 月層級；F 未碰、main 未合併、VERSION 未升版。</p></div>
+          </article>
           <article class="event">
             <div class="date">2026-07-21</div>
             <div><strong>國家年份舊入口補動態橋接，最近上架紀錄可管理</strong><p>使用者指出：尼泊爾上架後，前台卡片能看到，但「按國家 → 尼泊爾」舊頁仍只到 2025。feature commit ceafa44 讓舊國家頁與舊 country-year 頁讀取本顆硬碟 photo SQLite，補出 2026 等新年份；同時在最近上架成功紀錄新增「重新命名」與「移到回收區」。H 已部署重啟驗證；F 不碰，main 不合併，VERSION 不升。</p></div>
