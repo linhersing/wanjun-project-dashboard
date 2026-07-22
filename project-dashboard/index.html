@@ -670,6 +670,13 @@
         </div>
         <div class="grid">
           <article class="card span-12">
+            <span class="pill experiment">2026-07-22 窗口行政前台位置橋接 · runtime commit 116cccc</span>
+            <h3>窗口行政上架後，不只看確認卡，也要看它在前台資料夾位置</h3>
+            <p>使用者現場校正：窗口行政資料庫上架成功後，只看到「窗口前台確認」仍不夠，因為那像是一張獨立驗收卡；真正需要的是能進到「窗口前台式」的位置畫面，看到該筆資料位在同一層資料夾清單中。</p>
+            <p>feature 線已新增 H-only 路由 <code>/window/__published-location</code>，最近上架紀錄與確認卡會出現「查看窗口前台位置 / 在窗口前台位置查看」。此頁會用窗口行政資料庫的前台風格顯示目前資料夾、同層檔案、縮圖與本次上架標記，讓使用者不用自己去硬碟裡翻找。</p>
+            <p>重要邊界：這是窗口行政上架後的前台位置橋接頁，還不是正式窗口行政資料庫全站動態發布完成。舊紀錄若實體檔已不存在，就無法回看該位置；下一次重新上架窗口資料後會看到新按鈕。F 未碰、main 未合併、VERSION 未升版、未做 F/H 原始資料同步。</p>
+          </article>
+          <article class="card span-12">
             <span class="pill experiment">2026-07-22 窗口 PNG 前台確認頁圖片預覽修正 · runtime commit eee7e3c</span>
             <h3>窗口行政上架成功頁不能只顯示檔案類型，必須看得到圖片本身</h3>
             <p>使用者現場回報：窗口行政資料庫上架 PNG 後，後台最近上架紀錄已出現「查看上傳成功畫面」，但前台確認頁右側仍只顯示 PNG 方塊，無法直接用眼睛確認圖片內容。</p>
@@ -1025,6 +1032,10 @@
           <span class="pill stable">時間線</span>
         </div>
         <div class="timeline">
+          <article class="event">
+            <div class="date">2026-07-22</div>
+            <div><strong>窗口行政前台位置橋接</strong><p>使用者指出：窗口行政上架後只看到確認卡還不夠，要能知道資料在窗口前台哪一層資料夾中。runtime commit <code>116cccc</code> 新增 H-only <code>/window/__published-location</code>，讓最近上架紀錄與確認卡可開啟「窗口前台位置」畫面，顯示同層資料夾清單、縮圖與本次上架標記。這是前台位置橋接，不代表正式窗口行政資料庫已完整動態化；F 未碰、main 未合併、VERSION 未升版。</p></div>
+          </article>
           <article class="event">
             <div class="date">2026-07-22</div>
             <div><strong>前台確認頁與選檔 UX 修正</strong><p>使用者指出：開啟硬碟資料夾不是前台成功證明。runtime commit <code>5289b6c</code> 將窗口行政資料庫與素材文件的非照片上架結果改為「查看前台確認頁」，以瀏覽器確認卡顯示資料庫、年份、分類、檔名與狀態。同次把後台「選擇檔案」改成較清楚的萬軍風格上架按鈕。F 未碰、main 未合併、VERSION 未升版、未做 F/H 原始資料同步。</p></div>
