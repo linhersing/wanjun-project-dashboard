@@ -633,8 +633,8 @@
         </article>
         <article class="metric">
           <div class="metric-label"><span class="drive-icon h">H</span><span class="experiment">H 狀態</span></div>
-          <strong>後台上架實驗版</strong>
-          <p>H 作為實驗硬碟；照片上架後可看前台卡片，非照片上架後可看前台確認頁。</p>
+          <strong>後台與照片前台一致性驗證中</strong>
+          <p>H 作為實驗硬碟；照片上架、改名與移到回收區後，前台卡片與空白分類已可同步更新。</p>
         </article>
         <article class="metric">
           <div class="metric-label"><span class="drive-icon sync">↔</span><span class="pending">同步狀態</span></div>
@@ -669,6 +669,13 @@
           <span class="pill pending">最後更新：2026-07-22</span>
         </div>
         <div class="grid">
+          <article class="card span-12">
+            <span class="pill experiment">2026-07-22 照片後台／前台一致性修正 · runtime commits 51c6a0f / 869105b</span>
+            <h3>刪除照片後，前台失效卡片與空白月份框必須一起消失</h3>
+            <p>使用者現場指出：尼泊爾 2026 的 07 月資料已刪除，前台仍留下 0 筆卡片，並出現「月份待確認 / 2026」與「月份待確認 / country_year」等錯誤空框。根因有兩部分：索引只移除單一路徑，沒有完整處理資料夾子樹；分類查詢也沒有排除檔案數為 0 的群組。</p>
+            <p>feature 線已建立一致性規則：上架會索引整個資料夾子樹；重新命名會移除舊路徑並建立新路徑；移到安全回收區會將原路徑與子項目標記移除；前台只顯示仍有有效檔案的年份、國家、月份與活動卡片。H 實機頁已確認只保留有內容的「01月 / 尼泊爾」，空白 07 月與兩個錯誤待確認卡片均已消失。</p>
+            <p>同次修正啟動器的舊服務判斷：健康檢查現在回報服務啟動時載入的程式指紋，並以檔案更新時間作備援，避免同版號更新後仍由舊 Python 服務提供舊畫面。照片整合測試、Watcher 測試與動態預覽測試皆通過。範圍仍限 H 實驗線；窗口行政正式前台尚未完成全站動態整合，不能稱為完整後台正式上線。</p>
+          </article>
           <article class="card span-12">
             <span class="pill experiment">2026-07-22 窗口行政前台位置橋接 · runtime commit 116cccc</span>
             <h3>窗口行政上架後，不只看確認卡，也要看它在前台資料夾位置</h3>
@@ -976,8 +983,8 @@
             </tr>
             <tr>
               <td><span class="status-name"><span class="drive-icon h">H</span>H 硬碟</span></td>
-              <td><span class="pill experiment">後台人工分類上架 MVP</span></td>
-              <td>H 仍是實驗硬碟；方向維持「硬碟是資料庫、瀏覽器前台乾淨、資料透過後台上架」。目前歷史影像資料可在後台選資料庫、國家/分類、年份、月份與相簿名稱後上架，並更新照片 SQLite 供前台卡片讀取。窗口行政資料庫與素材文件可上架到 H 已上架資料區，並新增「前台確認頁」供人眼確認、回看與開啟檔案；正式前台完整動態整合仍待下一步。分類面板已改為依資料庫切換顯示欄位，年份預先列到 2035。批次發布、OCR/照片內容辨識、整顆 H 自動同步仍未做。</td>
+              <td><span class="pill experiment">照片後台／前台一致性已通過 H 實機檢查</span></td>
+              <td>H 仍是實驗硬碟；方向維持「硬碟是資料庫、瀏覽器前台乾淨、資料透過後台上架」。歷史影像資料可在後台選資料庫、國家/分類、年份、月份與相簿名稱後上架；照片上架、資料夾改名、移到安全回收區會更新 SQLite 與前台，空分類卡不再保留。窗口行政資料庫與素材文件已有確認頁與位置橋接，但正式前台仍未完整動態化。批次發布、OCR/照片內容辨識與整顆 H 自動同步仍未做。</td>
             </tr>
             <tr>
               <td><span class="status-name"><span class="drive-icon repo">G</span>GitHub private repo</span></td>
@@ -1032,6 +1039,10 @@
           <span class="pill stable">時間線</span>
         </div>
         <div class="timeline">
+          <article class="event">
+            <div class="date">2026-07-22</div>
+            <div><strong>照片後台／前台一致性與舊服務重啟修正</strong><p>使用者刪除尼泊爾 2026 的 07 月資料後，前台仍留下 0 筆月份卡與錯誤待確認卡。runtime commits <code>51c6a0f</code> / <code>869105b</code> 補齊資料夾子樹索引、改名與回收移除、空群組過濾，以及同版號程式更新後的服務重啟判斷。H 實機已確認 01 月有內容卡保留，空白 07 月與錯誤待確認卡消失；F 未碰、main 未合併、VERSION 未升版。</p></div>
+          </article>
           <article class="event">
             <div class="date">2026-07-22</div>
             <div><strong>窗口行政前台位置橋接</strong><p>使用者指出：窗口行政上架後只看到確認卡還不夠，要能知道資料在窗口前台哪一層資料夾中。runtime commit <code>116cccc</code> 新增 H-only <code>/window/__published-location</code>，讓最近上架紀錄與確認卡可開啟「窗口前台位置」畫面，顯示同層資料夾清單、縮圖與本次上架標記。這是前台位置橋接，不代表正式窗口行政資料庫已完整動態化；F 未碰、main 未合併、VERSION 未升版。</p></div>
@@ -1337,6 +1348,7 @@
               <li>每次需求、決策或狀態修正時，同步更新這個公開看板，讓手機與 Gemini 都能讀到最新脈絡。</li>
               <li>第一版只設計「待上架資料 → 掃描 → 預分類 → 人工確認 → 更新前台」流程，不先做複製剪下貼上或整顆 H watcher。</li>
               <li>歷史影像資料上架成功後，先用新分頁查看前台卡片，確認卡片、同年、同國家與搜尋連結都回到真正前台。</li>
+              <li>照片後台後續改動必須通過同一份一致性契約：上架後前台出現、改名後舊路徑消失且新路徑出現、回收後檔案與空分類卡一起消失。</li>
               <li>窗口行政資料庫與素材文件目前先用「前台確認頁」確認檔案存在、分類與可開啟；下一步才設計正式前台資料夾清單與搜尋整合。</li>
               <li>下一步若繼續做後台，優先處理批次上架、成功紀錄收納、行政/素材前台發布流程，而不是回到整顆 H watcher。</li>
             </ul>
