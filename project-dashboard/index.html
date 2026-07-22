@@ -666,9 +666,15 @@
             <h2>最新消息</h2>
             <p class="panel-note">只放目前最需要知道的狀態；過去細節請切到「過去紀錄」。</p>
           </div>
-          <span class="pill pending">最後更新：2026-07-21</span>
+          <span class="pill pending">最後更新：2026-07-22</span>
         </div>
         <div class="grid">
+          <article class="card span-12">
+            <span class="pill experiment">2026-07-22 後台選檔按鈕視覺改善 · runtime commit 5c583cc</span>
+            <h3>「選擇檔案」改成清楚的「選擇上架檔案」按鈕</h3>
+            <p>使用者實機確認後台上架流程大致可用，但指出瀏覽器原生「選擇檔案」控制太老舊、不像萬軍系統介面。這次只調整 H-only 資料上架中心的上傳區視覺：改為較明顯的綠色按鈕，旁邊顯示尚未選擇、單一檔名或已選檔案數。</p>
+            <p>本次不改上架、分類、索引或前台資料邏輯；F 未碰、main 未合併、VERSION 未升版、未做 F/H 原始資料同步，也沒有提交 SQLite、logs、runtime、temp、截圖或正式資料。</p>
+          </article>
           <article class="card span-12">
             <span class="pill experiment">2026-07-21 南蘇丹上架前台修正 · runtime commit df766cb</span>
             <h3>南蘇丹 2026 已上架但國家頁漏出，原因是國家沒有寫進索引</h3>
