@@ -634,7 +634,7 @@
         <article class="metric">
           <div class="metric-label"><span class="drive-icon h">H</span><span class="experiment">H 狀態</span></div>
           <strong>後台上架實驗版</strong>
-          <p>H 作為實驗硬碟；上架後可看前台卡片，國家/年份舊入口已補動態橋接。</p>
+          <p>H 作為實驗硬碟；照片上架後可看前台卡片，非照片上架後可看前台確認頁。</p>
         </article>
         <article class="metric">
           <div class="metric-label"><span class="drive-icon sync">↔</span><span class="pending">同步狀態</span></div>
@@ -669,6 +669,13 @@
           <span class="pill pending">最後更新：2026-07-22</span>
         </div>
         <div class="grid">
+          <article class="card span-12">
+            <span class="pill experiment">2026-07-22 前台確認頁與選檔 UX · runtime commit 37de4e4</span>
+            <h3>上架後要看到瀏覽器確認，不只是硬碟資料夾</h3>
+            <p>使用者再次校正：開啟硬碟資料夾只能證明檔案在 H 裡，不等於前台成功。feature 線已把窗口行政資料庫與素材文件的非照片上架紀錄改為「查看前台確認頁」，用瀏覽器卡片顯示資料庫、年份、分類、檔名與狀態，避免只看到硬碟資料夾。</p>
+            <p>同次修正：後台選檔區不再像老式 HTML 控制項，改成萬軍風格的「選擇要上架的檔案」大按鈕，包含加號、支援檔案提示與已選檔名/數量回饋。</p>
+            <p>重要邊界：這仍不是正式窗口/素材前台完整動態化；它是 H 後台上架後的人眼確認頁。F 未碰、main 未合併、VERSION 未升版、未做 F/H 原始資料同步。</p>
+          </article>
           <article class="card span-12">
             <span class="pill experiment">2026-07-22 窗口行政上架回看頁 · runtime commit c14d07d</span>
             <h3>非照片資料上架後，不再只回到首頁</h3>
@@ -943,7 +950,7 @@
             <tr>
               <td><span class="status-name"><span class="drive-icon h">H</span>H 硬碟</span></td>
               <td><span class="pill experiment">後台人工分類上架 MVP</span></td>
-              <td>H 仍是實驗硬碟；方向維持「硬碟是資料庫、瀏覽器前台乾淨、資料透過後台上架」。目前歷史影像資料可在後台選資料庫、國家/分類、年份、月份與相簿名稱後上架，並更新照片 SQLite 供前台卡片讀取。窗口行政資料庫與素材文件可上架到 H 已上架資料區，並新增「上架資料頁」供回看與開啟檔案；正式前台動態整合仍待下一步。分類面板已改為依資料庫切換顯示欄位，年份預先列到 2035。批次發布、OCR/照片內容辨識、整顆 H 自動同步仍未做。</td>
+              <td>H 仍是實驗硬碟；方向維持「硬碟是資料庫、瀏覽器前台乾淨、資料透過後台上架」。目前歷史影像資料可在後台選資料庫、國家/分類、年份、月份與相簿名稱後上架，並更新照片 SQLite 供前台卡片讀取。窗口行政資料庫與素材文件可上架到 H 已上架資料區，並新增「前台確認頁」供人眼確認、回看與開啟檔案；正式前台完整動態整合仍待下一步。分類面板已改為依資料庫切換顯示欄位，年份預先列到 2035。批次發布、OCR/照片內容辨識、整顆 H 自動同步仍未做。</td>
             </tr>
             <tr>
               <td><span class="status-name"><span class="drive-icon repo">G</span>GitHub private repo</span></td>
@@ -998,6 +1005,10 @@
           <span class="pill stable">時間線</span>
         </div>
         <div class="timeline">
+          <article class="event">
+            <div class="date">2026-07-22</div>
+            <div><strong>前台確認頁與選檔 UX 修正</strong><p>使用者指出：開啟硬碟資料夾不是前台成功證明。runtime commit <code>37de4e4</code> 將窗口行政資料庫與素材文件的非照片上架結果改為「查看前台確認頁」，以瀏覽器確認卡顯示資料庫、年份、分類、檔名與狀態。同次把後台「選擇檔案」改成較清楚的萬軍風格上架按鈕。F 未碰、main 未合併、VERSION 未升版、未做 F/H 原始資料同步。</p></div>
+          </article>
           <article class="event">
             <div class="date">2026-07-22</div>
             <div><strong>窗口行政上架資料頁</strong><p>使用者上傳 PSD 到窗口行政資料庫後，檔案存在於 H 已上架資料區，但「回窗口前台」只開窗口首頁，無法確認剛剛那筆上架資料。runtime commit c14d07d 新增 `/__wanjun/backoffice/published-item` 回看頁，並把非照片上架紀錄的主要按鈕改成「查看上架資料頁」。此頁可檢查檔名、分類、年份、存在狀態並開啟硬碟資料；正式窗口前台動態發布仍未完成。F 未碰、main 未合併、VERSION 未升版。</p></div>
@@ -1295,7 +1306,7 @@
               <li>每次需求、決策或狀態修正時，同步更新這個公開看板，讓手機與 Gemini 都能讀到最新脈絡。</li>
               <li>第一版只設計「待上架資料 → 掃描 → 預分類 → 人工確認 → 更新前台」流程，不先做複製剪下貼上或整顆 H watcher。</li>
               <li>歷史影像資料上架成功後，先用新分頁查看前台卡片，確認卡片、同年、同國家與搜尋連結都回到真正前台。</li>
-              <li>窗口行政資料庫與素材文件目前先用「上架資料頁」確認檔案存在與可開啟；下一步才設計正式前台資料夾清單與搜尋整合。</li>
+              <li>窗口行政資料庫與素材文件目前先用「前台確認頁」確認檔案存在、分類與可開啟；下一步才設計正式前台資料夾清單與搜尋整合。</li>
               <li>下一步若繼續做後台，優先處理批次上架、成功紀錄收納、行政/素材前台發布流程，而不是回到整顆 H watcher。</li>
             </ul>
           </article>
