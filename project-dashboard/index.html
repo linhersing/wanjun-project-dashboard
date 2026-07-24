@@ -633,8 +633,8 @@
         </article>
         <article class="metric">
           <div class="metric-label"><span class="drive-icon h">H</span><span class="experiment">H 狀態</span></div>
-          <strong>後台與照片前台一致性驗證中</strong>
-          <p>H 作為實驗硬碟；照片上架、改名與移到回收區後，前台卡片與空白分類已可同步更新。</p>
+          <strong>照片與窗口動態索引 MVP 待人工驗收</strong>
+          <p>照片一致性已通過；窗口行政搜尋、活動標籤與手動索引重建已完成機械驗證。</p>
         </article>
         <article class="metric">
           <div class="metric-label"><span class="drive-icon sync">↔</span><span class="pending">同步狀態</span></div>
@@ -669,6 +669,14 @@
           <span class="pill pending">最後更新：2026-07-24</span>
         </div>
         <div class="grid">
+          <article class="card span-12">
+            <span class="pill experiment">2026-07-24 窗口行政動態索引 MVP · runtime commit e785f38</span>
+            <h3>窗口行政資料開始由專用 SQLite 提供搜尋、分類與前台注入</h3>
+            <p>H 實驗線已新增窗口行政專用索引器，收錄穩定相對路徑、年份、行政分類、活動標籤、檔名、副檔名與建立時間。窗口既有靜態頁維持原本 HTML 外觀，由本機服務注入搜尋與分類抽屜；Word、PDF、PSD 等非照片檔會顯示正確檔案圖示，不再以破圖呈現。</p>
+            <p>後台分類面板已加入「專案／活動」欄位，並依資料庫自動切換：歷史影像顯示國家、年份、月份與活動；窗口行政只顯示行政分類、年份與活動。另已解鎖「重新整理現有前台資料」，可在背景依序重建照片與窗口索引，失敗時保留上一個可用 SQLite。</p>
+            <p>H 實機完整照片索引共掃描 464,251 筆，照片階段約 115.6 秒，整體約 132.4 秒，錯誤 0。測試當下「已上架窗口行政資料」尚無檔案，因此窗口索引為 0 筆，這不是索引失敗；仍需人工上架一筆 Office／PDF／PSD，確認窗口頁搜尋、圖示與 Windows 實際開啟。</p>
+            <p>範圍仍限 H 實驗線：F 未碰、main 未合併、VERSION 仍為 v2026.07.01-18、未做 F/H 原始資料同步，也尚未宣稱正式上線。</p>
+          </article>
           <article class="card span-12">
             <span class="pill experiment">2026-07-24 一檔一卡與上架紀錄收納 · runtime commit aa9a14b</span>
             <h3>一個實體檔案只顯示一張內容卡，月份只作為導覽</h3>
@@ -990,8 +998,8 @@
             </tr>
             <tr>
               <td><span class="status-name"><span class="drive-icon h">H</span>H 硬碟</span></td>
-              <td><span class="pill experiment">照片一致性與一檔一卡已通過 H 實機檢查</span></td>
-              <td>H 仍是實驗硬碟；方向維持「硬碟是資料庫、瀏覽器前台乾淨、資料透過後台上架」。照片上架、改名與移到安全回收區會更新 SQLite 與前台，空分類卡不再保留；同一實體檔案現在只顯示一張內容卡。窗口行政資料庫與素材文件已有確認頁與位置橋接，但正式前台仍未完整動態化。批次發布、OCR/照片內容辨識與整顆 H 自動同步仍未做。</td>
+              <td><span class="pill experiment">照片一致性通過；窗口動態索引 MVP 待人工驗收</span></td>
+              <td>H 仍是實驗硬碟；方向維持「硬碟是資料庫、瀏覽器前台乾淨、資料透過後台上架」。照片上架、改名與移到安全回收區會更新 SQLite 與前台，空分類卡不再保留；同一實體檔案只顯示一張內容卡。窗口行政現已具備專用 SQLite、搜尋 API、靜態頁動態注入、檔案類型卡片與手動重建索引，但測試當下已上架窗口根目錄沒有檔案，Office／PDF／PSD 實際上架與開啟仍待人工驗收。素材文件正式動態發布、OCR/照片內容辨識與整顆 H 自動同步仍未做。</td>
             </tr>
             <tr>
               <td><span class="status-name"><span class="drive-icon repo">G</span>GitHub private repo</span></td>
@@ -1358,8 +1366,8 @@
               <li>照片後台後續改動必須通過同一份一致性契約：上架後前台出現、改名後舊路徑消失且新路徑出現、回收後檔案與空分類卡一起消失。</li>
               <li>每個實體檔案只允許一張前台內容卡；月份與相簿摘要只能作為導覽，不得再偽裝成第二張檔案卡。</li>
               <li>另一顆硬碟若要接入，先做永久身分核對與唯讀 dry-run 差異比對；未經人工確認不得整碟覆蓋或同步。</li>
-              <li>窗口行政資料庫與素材文件目前先用「前台確認頁」確認檔案存在、分類與可開啟；下一步才設計正式前台資料夾清單與搜尋整合。</li>
-              <li>下一步若繼續做後台，優先處理批次上架、成功紀錄收納、行政/素材前台發布流程，而不是回到整顆 H watcher。</li>
+              <li>窗口行政資料庫已接上專用 SQLite、搜尋 API 與既有靜態頁注入；下一步用一筆 H 實驗資料人工驗收搜尋、分類、下載及 Windows 開啟。</li>
+              <li>人工驗收後再處理素材文件正式動態發布與批次上架；不回到整顆 H watcher，也不直接部署 F。</li>
             </ul>
           </article>
           <article class="card span-5">
