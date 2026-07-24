@@ -633,8 +633,8 @@
         </article>
         <article class="metric">
           <div class="metric-label"><span class="drive-icon h">H</span><span class="experiment">H 狀態</span></div>
-          <strong>照片與窗口動態索引 MVP 待人工驗收</strong>
-          <p>照片一致性已通過；窗口行政搜尋、活動標籤與手動索引重建已完成機械驗證。</p>
+          <strong>窗口真實雙層架構已接線，待人工驗收</strong>
+          <p>後台組織與主分類已對齊 H 實體架構；SQLite、搜尋與路徑安全測試通過。</p>
         </article>
         <article class="metric">
           <div class="metric-label"><span class="drive-icon sync">↔</span><span class="pending">同步狀態</span></div>
@@ -669,6 +669,14 @@
           <span class="pill pending">最後更新：2026-07-24</span>
         </div>
         <div class="grid">
+          <article class="card span-12">
+            <span class="pill experiment">2026-07-24 窗口行政真實雙層架構 · feature commit 84c6154</span>
+            <h3>後台分類不再使用通用名稱，改為組織與真實主分類連動</h3>
+            <p>H 實驗線已把窗口行政上架流程調整為兩層選擇：先選主組織，再顯示該組織已驗證的主分類。介面名稱與硬碟實體名稱由程式安全對應，使用者不需要記住實體資料夾命名；另保留可選的安全子資料夾欄位。</p>
+            <p>上架 API、窗口行政 SQLite 與搜尋 API 已同步保存主組織、主分類與子路徑。組織與分類錯配、絕對路徑、磁碟代號及越界路徑會被拒絕，待上架原檔保持原位；舊的年份優先上架紀錄仍可搜尋，不會自動搬動。</p>
+            <p>Python 單元測試與完整 temp 整合測試均通過，H 程式副本也已用 SHA-256 核對一致。這仍是 feature 實驗線，必須重新啟動 H 服務並完成人工上架驗收後，才可討論正式發布。</p>
+            <p>F 保持冷凍、main 未合併、VERSION 維持 v2026.07.01-18，未做 F/H 原始資料同步，也未修改正式根目錄 BAT。</p>
+          </article>
           <article class="card span-12">
             <span class="pill experiment">2026-07-24 窗口行政動態索引 MVP · runtime commit e785f38</span>
             <h3>窗口行政資料開始由專用 SQLite 提供搜尋、分類與前台注入</h3>
@@ -998,8 +1006,8 @@
             </tr>
             <tr>
               <td><span class="status-name"><span class="drive-icon h">H</span>H 硬碟</span></td>
-              <td><span class="pill experiment">照片一致性通過；窗口動態索引 MVP 待人工驗收</span></td>
-              <td>H 仍是實驗硬碟；方向維持「硬碟是資料庫、瀏覽器前台乾淨、資料透過後台上架」。照片上架、改名與移到安全回收區會更新 SQLite 與前台，空分類卡不再保留；同一實體檔案只顯示一張內容卡。窗口行政現已具備專用 SQLite、搜尋 API、靜態頁動態注入、檔案類型卡片與手動重建索引，但測試當下已上架窗口根目錄沒有檔案，Office／PDF／PSD 實際上架與開啟仍待人工驗收。素材文件正式動態發布、OCR/照片內容辨識與整顆 H 自動同步仍未做。</td>
+              <td><span class="pill experiment">窗口真實雙層架構已接線；待人工驗收</span></td>
+              <td>H 仍是實驗硬碟；方向維持「硬碟是資料庫、瀏覽器前台乾淨、資料透過後台上架」。窗口行政後台已改為主組織與真實主分類連動，SQLite 與搜尋 API 也保存組織、主分類和安全子路徑；錯配分類與越界路徑會被阻擋。照片一致性與窗口機械測試已通過，但新介面、實際 Office／PDF／PSD 上架與 Windows 開啟仍待人工驗收。素材文件正式動態發布、OCR/照片內容辨識與整顆 H 自動同步仍未做。</td>
             </tr>
             <tr>
               <td><span class="status-name"><span class="drive-icon repo">G</span>GitHub private repo</span></td>
@@ -1054,6 +1062,10 @@
           <span class="pill stable">時間線</span>
         </div>
         <div class="timeline">
+          <article class="event">
+            <div class="date">2026-07-24</div>
+            <div><strong>窗口行政真實雙層架構接線</strong><p>feature commit <code>84c6154</code> 將 H 後台窗口行政分類改為主組織與主分類連動，並讓上架 API、SQLite 與搜尋 API 保存組織、主分類及安全子路徑。錯配分類與越界路徑測試均會拒絕且保留待上架原檔；舊上架紀錄維持相容。H 程式已部署但尚待人工介面與實際文件上架驗收。F 未碰、main 未合併、VERSION 未升版、未做 F/H 原始資料同步。</p></div>
+          </article>
           <article class="event">
             <div class="date">2026-07-22</div>
             <div><strong>照片後台／前台一致性與舊服務重啟修正</strong><p>使用者刪除尼泊爾 2026 的 07 月資料後，前台仍留下 0 筆月份卡與錯誤待確認卡。runtime commits <code>51c6a0f</code> / <code>869105b</code> 補齊資料夾子樹索引、改名與回收移除、空群組過濾，以及同版號程式更新後的服務重啟判斷。H 實機已確認 01 月有內容卡保留，空白 07 月與錯誤待確認卡消失；F 未碰、main 未合併、VERSION 未升版。</p></div>
